@@ -1,20 +1,25 @@
 import { Link } from "react-router-dom";
-import { Car, Phone, Mail, MapPin } from "lucide-react";
+import { Phone, Mail, MapPin } from "lucide-react";
 
 export const Footer = () => {
   return (
     <footer className="bg-card border-t border-border">
-      <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div className="container mx-auto px-4 py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Logo & Description */}
           <div className="space-y-4">
-            <Link to="/" className="flex items-center gap-2">
-              <div className="w-10 h-10 rounded-lg bg-primary flex items-center justify-center">
-                <Car className="w-6 h-6 text-primary-foreground" />
+            <Link to="/" className="flex items-center gap-3">
+              <div className="relative">
+                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center">
+                  <span className="font-display text-lg font-bold text-primary-foreground">H</span>
+                </div>
+                <div className="absolute -bottom-1 -right-1 w-3 h-3 rounded-full bg-accent" />
               </div>
-              <span className="font-display text-xl text-foreground tracking-wide">
-                AUTO<span className="text-primary">PIESE</span>
-              </span>
+              <div className="flex flex-col">
+                <span className="font-display text-xl text-foreground tracking-tight leading-none">
+                  AUTO <span className="text-primary">HAR</span>
+                </span>
+              </div>
             </Link>
             <p className="text-muted-foreground text-sm leading-relaxed">
               Piese auto originale din dezmembrări pentru toate mărcile. 
@@ -24,8 +29,8 @@ export const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <h3 className="font-display text-lg text-foreground mb-4">NAVIGARE</h3>
-            <ul className="space-y-2">
+            <h3 className="font-display text-base text-foreground mb-5">Navigare</h3>
+            <ul className="space-y-3">
               {[
                 { name: "Acasă", path: "/" },
                 { name: "Despre noi", path: "/despre-noi" },
@@ -35,7 +40,7 @@ export const Footer = () => {
                 <li key={link.path}>
                   <Link
                     to={link.path}
-                    className="text-muted-foreground text-sm hover:text-primary transition-colors duration-300"
+                    className="text-muted-foreground text-sm hover:text-accent transition-colors duration-300"
                   >
                     {link.name}
                   </Link>
@@ -46,41 +51,47 @@ export const Footer = () => {
 
           {/* Services */}
           <div>
-            <h3 className="font-display text-lg text-foreground mb-4">CATEGORII PIESE</h3>
-            <ul className="space-y-2 text-sm text-muted-foreground">
-              <li>Piese motor</li>
-              <li>Cutii de viteze</li>
-              <li>Elemente caroserie</li>
-              <li>Electronice & senzori</li>
+            <h3 className="font-display text-base text-foreground mb-5">Categorii piese</h3>
+            <ul className="space-y-3 text-sm text-muted-foreground">
+              <li className="hover:text-accent transition-colors cursor-default">Piese motor</li>
+              <li className="hover:text-accent transition-colors cursor-default">Cutii de viteze</li>
+              <li className="hover:text-accent transition-colors cursor-default">Elemente caroserie</li>
+              <li className="hover:text-accent transition-colors cursor-default">Electronice & senzori</li>
             </ul>
           </div>
 
           {/* Contact */}
           <div>
-            <h3 className="font-display text-lg text-foreground mb-4">CONTACT</h3>
-            <ul className="space-y-3">
-              <li className="flex items-center gap-3 text-sm text-muted-foreground">
-                <Phone className="w-4 h-4 text-primary" />
+            <h3 className="font-display text-base text-foreground mb-5">Contact</h3>
+            <ul className="space-y-4">
+              <li className="flex items-center gap-3 text-sm text-muted-foreground group">
+                <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                  <Phone className="w-4 h-4 text-primary" />
+                </div>
                 <span>+40 721 234 567</span>
               </li>
-              <li className="flex items-center gap-3 text-sm text-muted-foreground">
-                <Mail className="w-4 h-4 text-primary" />
-                <span>contact@autopiese.ro</span>
+              <li className="flex items-center gap-3 text-sm text-muted-foreground group">
+                <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                  <Mail className="w-4 h-4 text-primary" />
+                </div>
+                <span>contact@autohar.ro</span>
               </li>
-              <li className="flex items-start gap-3 text-sm text-muted-foreground">
-                <MapPin className="w-4 h-4 text-primary mt-0.5" />
+              <li className="flex items-start gap-3 text-sm text-muted-foreground group">
+                <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors flex-shrink-0">
+                  <MapPin className="w-4 h-4 text-primary" />
+                </div>
                 <span>Strada Industriilor Nr. 15, București</span>
               </li>
             </ul>
           </div>
         </div>
 
-        <div className="mt-12 pt-8 border-t border-border flex flex-col md:flex-row justify-between items-center gap-4">
+        <div className="mt-14 pt-8 border-t border-border flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-muted-foreground text-sm">
-            © {new Date().getFullYear()} AutoPiese. Toate drepturile rezervate.
+            © {new Date().getFullYear()} Auto Har. Toate drepturile rezervate.
           </p>
           <p className="text-muted-foreground text-xs">
-            Piese auto din dezmembrări • Import Germania, Spania, Italia, Belgia
+            Import Germania • Spania • Italia • Belgia
           </p>
         </div>
       </div>

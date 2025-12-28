@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Check, Truck, Shield, Euro, Wrench, Car, Cog, MessageCircle } from "lucide-react";
+import { Check, Truck, Shield, Euro, Wrench, Car, Cog, MessageCircle, ArrowRight } from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
 
 const benefits = [
@@ -35,7 +35,7 @@ const HomePage = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden pt-16">
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         {/* Background */}
         <div className="absolute inset-0">
           <img
@@ -46,26 +46,36 @@ const HomePage = () => {
           <div className="hero-overlay absolute inset-0" />
         </div>
 
+        {/* Decorative elements */}
+        <div className="absolute top-1/4 left-10 w-72 h-72 bg-primary/20 rounded-full blur-[100px]" />
+        <div className="absolute bottom-1/4 right-10 w-96 h-96 bg-accent/15 rounded-full blur-[120px]" />
+
         {/* Content */}
-        <div className="relative z-10 container mx-auto px-4 py-20 text-center">
-          <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-foreground mb-6 animate-fade-up">
-            PIESE AUTO DIN DEZMEMBRĂRI
+        <div className="relative z-10 container mx-auto px-4 py-32 text-center">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-foreground/5 backdrop-blur-sm border border-foreground/10 mb-8 animate-fade-up">
+            <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
+            <span className="text-sm text-muted-foreground">Import din Germania, Spania, Italia, Belgia</span>
+          </div>
+
+          <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-foreground mb-6 animate-fade-up leading-tight">
+            Piese Auto din Dezmembrări
             <br />
-            <span className="text-gradient">PENTRU TOATE MĂRCILE</span>
+            <span className="text-gradient">Pentru Toate Mărcile</span>
           </h1>
-          <p className="text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto mb-8 animate-fade-up" style={{ animationDelay: "0.1s" }}>
+          
+          <p className="text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto mb-10 animate-fade-up" style={{ animationDelay: "0.1s" }}>
             Piese auto second-hand originale, verificate și garantate. 
-            Import din Germania, Spania, Italia și Belgia.
+            Găsește piesa potrivită la cel mai bun preț.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-up" style={{ animationDelay: "0.2s" }}>
             <Button variant="hero" size="xl" asChild>
               <Link to="/contact">
-                <Wrench className="w-5 h-5" />
                 Cere ofertă
+                <ArrowRight className="w-5 h-5" />
               </Link>
             </Button>
-            <Button variant="whatsapp" size="xl" asChild>
+            <Button variant="mint" size="xl" asChild>
               <a href="https://wa.me/40721234567" target="_blank" rel="noopener noreferrer">
                 <MessageCircle className="w-5 h-5" />
                 WhatsApp
@@ -74,15 +84,15 @@ const HomePage = () => {
           </div>
 
           {/* Quick stats */}
-          <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto animate-fade-up" style={{ animationDelay: "0.3s" }}>
+          <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto animate-fade-up" style={{ animationDelay: "0.3s" }}>
             {[
               { value: "15+", label: "Ani experiență" },
-              { value: "10.000+", label: "Clienți mulțumiți" },
-              { value: "50.000+", label: "Piese în stoc" },
+              { value: "10K+", label: "Clienți mulțumiți" },
+              { value: "50K+", label: "Piese în stoc" },
               { value: "100%", label: "Piese originale" },
             ].map((stat, index) => (
-              <div key={index} className="text-center">
-                <div className="font-display text-3xl md:text-4xl text-primary">{stat.value}</div>
+              <div key={index} className="p-4 rounded-2xl bg-foreground/5 backdrop-blur-sm border border-foreground/10">
+                <div className="font-display text-3xl md:text-4xl text-accent">{stat.value}</div>
                 <div className="text-muted-foreground text-sm mt-1">{stat.label}</div>
               </div>
             ))}
@@ -91,29 +101,32 @@ const HomePage = () => {
 
         {/* Scroll indicator */}
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-float">
-          <div className="w-6 h-10 border-2 border-muted-foreground rounded-full flex justify-center pt-2">
-            <div className="w-1 h-3 bg-primary rounded-full" />
+          <div className="w-6 h-10 border-2 border-muted-foreground/50 rounded-full flex justify-center pt-2">
+            <div className="w-1.5 h-3 bg-accent rounded-full" />
           </div>
         </div>
       </section>
 
       {/* Benefits Section */}
-      <section className="py-20 bg-card">
-        <div className="container mx-auto px-4">
-          <h2 className="font-display text-3xl md:text-4xl text-center text-foreground mb-4">
-            DE CE SĂ ALEGI <span className="text-gradient">AUTOPIESE</span>?
-          </h2>
-          <p className="text-muted-foreground text-center max-w-xl mx-auto mb-12">
-            Oferim cele mai bune piese auto din dezmembrări, cu garanție și suport complet.
-          </p>
+      <section className="py-24 bg-card relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-80 h-80 bg-primary/5 rounded-full blur-[100px]" />
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="text-center mb-16">
+            <span className="inline-block px-4 py-1.5 rounded-full bg-accent/10 text-accent text-sm font-medium mb-4">
+              De ce noi
+            </span>
+            <h2 className="font-display text-3xl md:text-5xl text-foreground">
+              De ce să alegi <span className="text-primary">Auto Har</span>?
+            </h2>
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {benefits.map((benefit, index) => (
               <div
                 key={index}
-                className="card-gradient p-6 rounded-xl border border-border hover-lift group"
+                className="card-glass p-6 rounded-2xl border border-border/50 hover-lift group"
               >
-                <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors duration-300">
+                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300">
                   <benefit.icon className="w-7 h-7 text-primary" />
                 </div>
                 <h3 className="font-display text-xl text-foreground mb-2">
@@ -129,14 +142,17 @@ const HomePage = () => {
       </section>
 
       {/* Categories Section */}
-      <section className="py-20 bg-background">
-        <div className="container mx-auto px-4">
-          <h2 className="font-display text-3xl md:text-4xl text-center text-foreground mb-4">
-            CATEGORII DE <span className="text-gradient">PIESE AUTO</span>
-          </h2>
-          <p className="text-muted-foreground text-center max-w-xl mx-auto mb-12">
-            Găsești piese pentru orice componentă a mașinii tale.
-          </p>
+      <section className="py-24 bg-background relative">
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent/5 rounded-full blur-[120px]" />
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="text-center mb-16">
+            <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
+              Categorii
+            </span>
+            <h2 className="font-display text-3xl md:text-5xl text-foreground">
+              Categorii de <span className="text-accent">piese auto</span>
+            </h2>
+          </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
@@ -147,18 +163,18 @@ const HomePage = () => {
             ].map((category, index) => (
               <div
                 key={index}
-                className="bg-card p-6 rounded-xl border border-border hover:border-primary/50 transition-colors duration-300 group"
+                className="bg-card p-6 rounded-2xl border border-border hover:border-accent/50 transition-all duration-300 group hover-lift"
               >
-                <div className="w-12 h-12 rounded-lg bg-primary flex items-center justify-center mb-4">
-                  <category.icon className="w-6 h-6 text-primary-foreground" />
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-accent to-accent/80 flex items-center justify-center mb-5">
+                  <category.icon className="w-6 h-6 text-accent-foreground" />
                 </div>
-                <h3 className="font-display text-xl text-foreground mb-3">
+                <h3 className="font-display text-xl text-foreground mb-4">
                   {category.title}
                 </h3>
-                <ul className="space-y-2">
+                <ul className="space-y-2.5">
                   {category.items.map((item, i) => (
                     <li key={i} className="flex items-center gap-2 text-sm text-muted-foreground">
-                      <Check className="w-4 h-4 text-primary" />
+                      <div className="w-1.5 h-1.5 rounded-full bg-accent" />
                       {item}
                     </li>
                   ))}
@@ -167,25 +183,28 @@ const HomePage = () => {
             ))}
           </div>
 
-          <div className="text-center mt-10">
+          <div className="text-center mt-12">
             <Button variant="outline" size="lg" asChild>
-              <Link to="/piese-auto">Vezi toate categoriile</Link>
+              <Link to="/piese-auto">
+                Vezi toate categoriile
+                <ArrowRight className="w-4 h-4" />
+              </Link>
             </Button>
           </div>
         </div>
       </section>
 
       {/* Brands Section */}
-      <section className="py-16 bg-card">
+      <section className="py-20 bg-card">
         <div className="container mx-auto px-4">
-          <h2 className="font-display text-2xl md:text-3xl text-center text-foreground mb-8">
-            MĂRCI AUTO DISPONIBILE
+          <h2 className="font-display text-2xl md:text-3xl text-center text-foreground mb-10">
+            Mărci auto disponibile
           </h2>
-          <div className="flex flex-wrap justify-center gap-4">
+          <div className="flex flex-wrap justify-center gap-3">
             {carBrands.map((brand, index) => (
               <div
                 key={index}
-                className="px-6 py-3 bg-secondary rounded-lg text-foreground text-sm font-medium hover:bg-primary hover:text-primary-foreground transition-colors duration-300 cursor-default"
+                className="px-5 py-3 bg-secondary rounded-xl text-foreground text-sm font-medium hover:bg-accent hover:text-accent-foreground transition-all duration-300 cursor-default"
               >
                 {brand}
               </div>
@@ -195,20 +214,25 @@ const HomePage = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-background relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-primary/10 via-transparent to-primary/10" />
+      <section className="py-24 bg-background relative overflow-hidden">
+        <div className="absolute inset-0">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[150px]" />
+        </div>
         <div className="container mx-auto px-4 relative z-10 text-center">
-          <h2 className="font-display text-3xl md:text-4xl text-foreground mb-4">
-            AI NEVOIE DE O <span className="text-gradient">PIESĂ AUTO</span>?
+          <h2 className="font-display text-3xl md:text-5xl text-foreground mb-6">
+            Ai nevoie de o <span className="text-gradient">piesă auto</span>?
           </h2>
-          <p className="text-muted-foreground max-w-xl mx-auto mb-8">
+          <p className="text-muted-foreground max-w-xl mx-auto mb-10 text-lg">
             Trimite-ne o cerere de ofertă și îți răspundem în cel mai scurt timp cu cel mai bun preț.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Button variant="hero" size="xl" asChild>
-              <Link to="/contact">Cere ofertă gratuită</Link>
+              <Link to="/contact">
+                Cere ofertă gratuită
+                <ArrowRight className="w-5 h-5" />
+              </Link>
             </Button>
-            <Button variant="whatsapp" size="xl" asChild>
+            <Button variant="mint" size="xl" asChild>
               <a href="https://wa.me/40721234567" target="_blank" rel="noopener noreferrer">
                 <MessageCircle className="w-5 h-5" />
                 Scrie pe WhatsApp

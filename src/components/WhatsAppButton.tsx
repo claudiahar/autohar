@@ -10,11 +10,11 @@ export const WhatsAppButton = () => {
       href={whatsappUrl}
       target="_blank"
       rel="noopener noreferrer"
-      className="fixed bottom-6 right-6 z-50 w-14 h-14 md:w-16 md:h-16 bg-[hsl(142,70%,45%)] rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-transform duration-300 animate-pulse-glow group"
+      className="fixed bottom-6 right-6 z-50 w-14 h-14 md:w-16 md:h-16 bg-accent rounded-2xl flex items-center justify-center shadow-2xl hover:scale-110 transition-all duration-300 animate-pulse-glow group"
       aria-label="Contact pe WhatsApp"
     >
-      <MessageCircle className="w-7 h-7 md:w-8 md:h-8 text-foreground" />
-      <span className="absolute right-full mr-3 bg-card text-foreground text-sm font-medium px-4 py-2 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap shadow-lg hidden md:block">
+      <MessageCircle className="w-7 h-7 md:w-8 md:h-8 text-accent-foreground" />
+      <span className="absolute right-full mr-4 bg-card text-foreground text-sm font-medium px-4 py-2.5 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-300 whitespace-nowrap shadow-xl border border-border hidden md:block">
         Scrie-ne pe WhatsApp
       </span>
     </a>

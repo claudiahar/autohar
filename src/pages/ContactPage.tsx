@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
-import { Phone, Mail, MapPin, Clock, MessageCircle, Send } from "lucide-react";
+import { Phone, Mail, MapPin, Clock, MessageCircle, Send, ArrowRight } from "lucide-react";
 import { z } from "zod";
 
 const formSchema = z.object({
@@ -47,9 +47,8 @@ const ContactPage = () => {
     setIsSubmitting(true);
 
     try {
-      const validatedData = formSchema.parse(formData);
+      formSchema.parse(formData);
       
-      // Simulate form submission
       await new Promise((resolve) => setTimeout(resolve, 1000));
       
       toast({
@@ -86,11 +85,16 @@ const ContactPage = () => {
   return (
     <div className="min-h-screen pt-20">
       {/* Hero */}
-      <section className="py-16 md:py-24 bg-card">
-        <div className="container mx-auto px-4">
+      <section className="py-20 md:py-28 bg-card relative overflow-hidden">
+        <div className="absolute top-0 right-1/4 w-96 h-96 bg-primary/10 rounded-full blur-[120px]" />
+        <div className="absolute bottom-0 left-1/4 w-80 h-80 bg-accent/10 rounded-full blur-[100px]" />
+        <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-3xl mx-auto text-center">
+            <span className="inline-block px-4 py-1.5 rounded-full bg-accent/10 text-accent text-sm font-medium mb-6">
+              Contact
+            </span>
             <h1 className="font-display text-4xl md:text-5xl lg:text-6xl text-foreground mb-6">
-              <span className="text-gradient">CONTACTEAZĂ</span>-NE
+              <span className="text-primary">Contactează</span>-ne
             </h1>
             <p className="text-muted-foreground text-lg leading-relaxed">
               Ai nevoie de o piesă auto? Trimite-ne o cerere și îți răspundem în cel mai scurt timp.
@@ -100,25 +104,31 @@ const ContactPage = () => {
       </section>
 
       {/* Contact Info + Form */}
-      <section className="py-16 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-3 gap-8">
+      <section className="py-20 bg-background relative">
+        <div className="absolute top-1/2 right-0 w-80 h-80 bg-primary/5 rounded-full blur-[100px]" />
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="grid lg:grid-cols-3 gap-10">
             {/* Contact Info */}
             <div className="lg:col-span-1 space-y-6">
-              <h2 className="font-display text-2xl text-foreground mb-6">
-                DATE DE <span className="text-gradient">CONTACT</span>
-              </h2>
+              <div>
+                <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
+                  Date de contact
+                </span>
+                <h2 className="font-display text-2xl text-foreground">
+                  Suntem aici pentru <span className="text-accent">tine</span>
+                </h2>
+              </div>
 
               <div className="space-y-4">
                 <a
                   href="tel:+40721234567"
-                  className="flex items-center gap-4 p-4 bg-card rounded-xl border border-border hover:border-primary/50 transition-colors duration-300"
+                  className="flex items-center gap-4 p-4 bg-card rounded-2xl border border-border hover:border-primary/50 transition-all duration-300 group"
                 >
-                  <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
-                    <Phone className="w-6 h-6 text-primary" />
+                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <Phone className="w-5 h-5 text-primary" />
                   </div>
                   <div>
-                    <div className="text-muted-foreground text-sm">Telefon</div>
+                    <div className="text-muted-foreground text-xs uppercase tracking-wider">Telefon</div>
                     <div className="text-foreground font-medium">+40 721 234 567</div>
                   </div>
                 </a>
@@ -127,36 +137,36 @@ const ContactPage = () => {
                   href="https://wa.me/40721234567"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-4 p-4 bg-card rounded-xl border border-border hover:border-[hsl(142,70%,45%)]/50 transition-colors duration-300"
+                  className="flex items-center gap-4 p-4 bg-card rounded-2xl border border-border hover:border-accent/50 transition-all duration-300 group"
                 >
-                  <div className="w-12 h-12 rounded-lg bg-[hsl(142,70%,45%)]/10 flex items-center justify-center">
-                    <MessageCircle className="w-6 h-6 text-[hsl(142,70%,45%)]" />
+                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-accent/20 to-accent/5 flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <MessageCircle className="w-5 h-5 text-accent" />
                   </div>
                   <div>
-                    <div className="text-muted-foreground text-sm">WhatsApp</div>
+                    <div className="text-muted-foreground text-xs uppercase tracking-wider">WhatsApp</div>
                     <div className="text-foreground font-medium">+40 721 234 567</div>
                   </div>
                 </a>
 
                 <a
-                  href="mailto:contact@autopiese.ro"
-                  className="flex items-center gap-4 p-4 bg-card rounded-xl border border-border hover:border-primary/50 transition-colors duration-300"
+                  href="mailto:contact@autohar.ro"
+                  className="flex items-center gap-4 p-4 bg-card rounded-2xl border border-border hover:border-primary/50 transition-all duration-300 group"
                 >
-                  <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
-                    <Mail className="w-6 h-6 text-primary" />
+                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <Mail className="w-5 h-5 text-primary" />
                   </div>
                   <div>
-                    <div className="text-muted-foreground text-sm">Email</div>
-                    <div className="text-foreground font-medium">contact@autopiese.ro</div>
+                    <div className="text-muted-foreground text-xs uppercase tracking-wider">Email</div>
+                    <div className="text-foreground font-medium">contact@autohar.ro</div>
                   </div>
                 </a>
 
-                <div className="flex items-start gap-4 p-4 bg-card rounded-xl border border-border">
-                  <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
-                    <MapPin className="w-6 h-6 text-primary" />
+                <div className="flex items-start gap-4 p-4 bg-card rounded-2xl border border-border">
+                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center flex-shrink-0">
+                    <MapPin className="w-5 h-5 text-primary" />
                   </div>
                   <div>
-                    <div className="text-muted-foreground text-sm">Adresă</div>
+                    <div className="text-muted-foreground text-xs uppercase tracking-wider">Adresă</div>
                     <div className="text-foreground font-medium">
                       Strada Industriilor Nr. 15,<br />
                       Sector 3, București
@@ -164,16 +174,16 @@ const ContactPage = () => {
                   </div>
                 </div>
 
-                <div className="flex items-start gap-4 p-4 bg-card rounded-xl border border-border">
-                  <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
-                    <Clock className="w-6 h-6 text-primary" />
+                <div className="flex items-start gap-4 p-4 bg-card rounded-2xl border border-border">
+                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-accent/20 to-accent/5 flex items-center justify-center flex-shrink-0">
+                    <Clock className="w-5 h-5 text-accent" />
                   </div>
                   <div>
-                    <div className="text-muted-foreground text-sm">Program</div>
-                    <div className="text-foreground font-medium">
-                      Luni - Vineri: 08:00 - 18:00<br />
-                      Sâmbătă: 09:00 - 14:00<br />
-                      Duminică: Închis
+                    <div className="text-muted-foreground text-xs uppercase tracking-wider">Program</div>
+                    <div className="text-foreground font-medium text-sm space-y-1">
+                      <p>Luni - Vineri: 08:00 - 18:00</p>
+                      <p>Sâmbătă: 09:00 - 14:00</p>
+                      <p>Duminică: Închis</p>
                     </div>
                   </div>
                 </div>
@@ -182,10 +192,15 @@ const ContactPage = () => {
 
             {/* Form */}
             <div className="lg:col-span-2">
-              <div className="bg-card p-6 md:p-8 rounded-xl border border-border">
-                <h2 className="font-display text-2xl text-foreground mb-6">
-                  CERERE DE <span className="text-gradient">OFERTĂ</span>
-                </h2>
+              <div className="bg-card p-6 md:p-8 rounded-2xl border border-border">
+                <div className="mb-8">
+                  <span className="inline-block px-4 py-1.5 rounded-full bg-accent/10 text-accent text-sm font-medium mb-3">
+                    Formular
+                  </span>
+                  <h2 className="font-display text-2xl text-foreground">
+                    Cerere de <span className="text-primary">ofertă</span>
+                  </h2>
+                </div>
 
                 <form onSubmit={handleSubmit} className="space-y-6">
                   {/* Personal Info */}
@@ -199,7 +214,7 @@ const ContactPage = () => {
                         value={formData.name}
                         onChange={handleChange}
                         placeholder="Ion Popescu"
-                        className={errors.name ? "border-destructive" : ""}
+                        className={`rounded-xl h-12 ${errors.name ? "border-destructive" : ""}`}
                       />
                       {errors.name && (
                         <p className="text-destructive text-sm mt-1">{errors.name}</p>
@@ -214,7 +229,7 @@ const ContactPage = () => {
                         value={formData.phone}
                         onChange={handleChange}
                         placeholder="0721 234 567"
-                        className={errors.phone ? "border-destructive" : ""}
+                        className={`rounded-xl h-12 ${errors.phone ? "border-destructive" : ""}`}
                       />
                       {errors.phone && (
                         <p className="text-destructive text-sm mt-1">{errors.phone}</p>
@@ -232,7 +247,7 @@ const ContactPage = () => {
                       value={formData.email}
                       onChange={handleChange}
                       placeholder="email@exemplu.ro"
-                      className={errors.email ? "border-destructive" : ""}
+                      className={`rounded-xl h-12 ${errors.email ? "border-destructive" : ""}`}
                     />
                     {errors.email && (
                       <p className="text-destructive text-sm mt-1">{errors.email}</p>
@@ -241,8 +256,8 @@ const ContactPage = () => {
 
                   {/* Car Info */}
                   <div className="border-t border-border pt-6">
-                    <h3 className="font-display text-lg text-foreground mb-4">
-                      DETALII AUTOTURISM
+                    <h3 className="font-display text-lg text-foreground mb-5">
+                      Detalii autoturism
                     </h3>
                     <div className="grid md:grid-cols-2 gap-4">
                       <div>
@@ -254,7 +269,7 @@ const ContactPage = () => {
                           value={formData.carBrand}
                           onChange={handleChange}
                           placeholder="Ex: Volkswagen"
-                          className={errors.carBrand ? "border-destructive" : ""}
+                          className={`rounded-xl h-12 ${errors.carBrand ? "border-destructive" : ""}`}
                         />
                         {errors.carBrand && (
                           <p className="text-destructive text-sm mt-1">{errors.carBrand}</p>
@@ -269,7 +284,7 @@ const ContactPage = () => {
                           value={formData.carModel}
                           onChange={handleChange}
                           placeholder="Ex: Golf 7"
-                          className={errors.carModel ? "border-destructive" : ""}
+                          className={`rounded-xl h-12 ${errors.carModel ? "border-destructive" : ""}`}
                         />
                         {errors.carModel && (
                           <p className="text-destructive text-sm mt-1">{errors.carModel}</p>
@@ -284,7 +299,7 @@ const ContactPage = () => {
                           value={formData.year}
                           onChange={handleChange}
                           placeholder="Ex: 2018"
-                          className={errors.year ? "border-destructive" : ""}
+                          className={`rounded-xl h-12 ${errors.year ? "border-destructive" : ""}`}
                         />
                         {errors.year && (
                           <p className="text-destructive text-sm mt-1">{errors.year}</p>
@@ -299,7 +314,7 @@ const ContactPage = () => {
                           value={formData.engine}
                           onChange={handleChange}
                           placeholder="Ex: 1.6 TDI 115 CP"
-                          className={errors.engine ? "border-destructive" : ""}
+                          className={`rounded-xl h-12 ${errors.engine ? "border-destructive" : ""}`}
                         />
                         {errors.engine && (
                           <p className="text-destructive text-sm mt-1">{errors.engine}</p>
@@ -319,7 +334,7 @@ const ContactPage = () => {
                       onChange={handleChange}
                       placeholder="Descrieți piesa de care aveți nevoie (ex: cutie de viteze manuală 6 trepte, turbosuflantă, calculator motor, etc.)"
                       rows={4}
-                      className={errors.partNeeded ? "border-destructive" : ""}
+                      className={`rounded-xl resize-none ${errors.partNeeded ? "border-destructive" : ""}`}
                     />
                     {errors.partNeeded && (
                       <p className="text-destructive text-sm mt-1">{errors.partNeeded}</p>
@@ -337,8 +352,8 @@ const ContactPage = () => {
                       "Se trimite..."
                     ) : (
                       <>
-                        <Send className="w-5 h-5" />
                         Trimite cererea
+                        <Send className="w-5 h-5" />
                       </>
                     )}
                   </Button>
@@ -350,7 +365,7 @@ const ContactPage = () => {
       </section>
 
       {/* Quick Contact CTA */}
-      <section className="py-12 bg-card">
+      <section className="py-14 bg-card">
         <div className="container mx-auto px-4 text-center">
           <p className="text-muted-foreground mb-6">
             Preferi să vorbești direct cu noi? Sună-ne sau scrie pe WhatsApp!
@@ -362,7 +377,7 @@ const ContactPage = () => {
                 Sună acum
               </a>
             </Button>
-            <Button variant="whatsapp" size="lg" asChild>
+            <Button variant="mint" size="lg" asChild>
               <a href="https://wa.me/40721234567" target="_blank" rel="noopener noreferrer">
                 <MessageCircle className="w-5 h-5" />
                 Scrie pe WhatsApp
