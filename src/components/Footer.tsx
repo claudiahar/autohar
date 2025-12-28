@@ -69,7 +69,7 @@ export const Footer = () => {
                   <Phone className="w-4 h-4 text-primary" />
                 </div>
                 <span>
-+40 749 707 694 
++40 749 707 694                                                                                                                                              
 +40 748 951 120 </span>
               </li>
               <li className="flex items-center gap-3 text-sm text-muted-foreground group">
