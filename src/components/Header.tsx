@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, Car } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const navLinks = [
@@ -15,29 +15,35 @@ export const Header = () => {
   const location = useLocation();
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-md border-b border-border">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-xl border-b border-border/50">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2 group">
-            <div className="w-10 h-10 rounded-lg bg-primary flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
-              <Car className="w-6 h-6 text-primary-foreground" />
+          <Link to="/" className="flex items-center gap-3 group">
+            <div className="relative">
+              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
+                <span className="font-display text-lg font-bold text-primary-foreground">H</span>
+              </div>
+              <div className="absolute -bottom-1 -right-1 w-3 h-3 rounded-full bg-accent" />
             </div>
-            <span className="font-display text-xl md:text-2xl text-foreground tracking-wide">
-              AUTO<span className="text-primary">PIESE</span>
-            </span>
+            <div className="flex flex-col">
+              <span className="font-display text-xl text-foreground tracking-tight leading-none">
+                AUTO <span className="text-primary">HAR</span>
+              </span>
+              <span className="text-[10px] text-muted-foreground tracking-widest uppercase">Piese auto</span>
+            </div>
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-8">
+          <nav className="hidden md:flex items-center gap-1">
             {navLinks.map((link) => (
               <Link
                 key={link.path}
                 to={link.path}
-                className={`text-sm font-medium transition-colors duration-300 hover:text-primary ${
+                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${
                   location.pathname === link.path
-                    ? "text-primary"
-                    : "text-muted-foreground"
+                    ? "text-primary bg-primary/10"
+                    : "text-muted-foreground hover:text-foreground hover:bg-foreground/5"
                 }`}
               >
                 {link.name}
@@ -47,7 +53,7 @@ export const Header = () => {
 
           {/* Desktop CTA */}
           <div className="hidden md:block">
-            <Button variant="hero" size="lg" asChild>
+            <Button variant="hero" asChild>
               <Link to="/contact">Cere ofertă</Link>
             </Button>
           </div>
@@ -55,7 +61,7 @@ export const Header = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden p-2 text-foreground"
+            className="md:hidden p-2 text-foreground rounded-lg hover:bg-foreground/5 transition-colors"
             aria-label="Toggle menu"
           >
             {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -65,14 +71,14 @@ export const Header = () => {
 
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className="md:hidden bg-card border-t border-border animate-fade-in">
-          <nav className="container mx-auto px-4 py-4 flex flex-col gap-2">
+        <div className="md:hidden bg-card/95 backdrop-blur-xl border-t border-border animate-fade-in">
+          <nav className="container mx-auto px-4 py-6 flex flex-col gap-2">
             {navLinks.map((link) => (
               <Link
                 key={link.path}
                 to={link.path}
                 onClick={() => setIsMenuOpen(false)}
-                className={`py-3 px-4 rounded-lg text-base font-medium transition-colors duration-300 ${
+                className={`py-3 px-4 rounded-xl text-base font-medium transition-all duration-300 ${
                   location.pathname === link.path
                     ? "bg-primary text-primary-foreground"
                     : "text-foreground hover:bg-secondary"

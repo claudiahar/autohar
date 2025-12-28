@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Check, Cog, Car, Shield, Wrench, Cpu, Settings, MessageCircle } from "lucide-react";
+import { Check, Cog, Car, Shield, Wrench, Cpu, Settings, MessageCircle, ArrowRight } from "lucide-react";
 
 const partsCategories = [
   {
@@ -93,21 +93,29 @@ const PartsPage = () => {
   return (
     <div className="min-h-screen pt-20">
       {/* Hero */}
-      <section className="py-16 md:py-24 bg-card">
-        <div className="container mx-auto px-4">
+      <section className="py-20 md:py-28 bg-card relative overflow-hidden">
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-[120px]" />
+        <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-accent/10 rounded-full blur-[100px]" />
+        <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-3xl mx-auto text-center">
+            <span className="inline-block px-4 py-1.5 rounded-full bg-accent/10 text-accent text-sm font-medium mb-6">
+              Catalog piese
+            </span>
             <h1 className="font-display text-4xl md:text-5xl lg:text-6xl text-foreground mb-6">
-              PIESE AUTO DIN <span className="text-gradient">DEZMEMBRĂRI</span>
+              Piese Auto din <span className="text-primary">Dezmembrări</span>
             </h1>
-            <p className="text-muted-foreground text-lg leading-relaxed mb-8">
+            <p className="text-muted-foreground text-lg leading-relaxed mb-10">
               Dispunem de un stoc vast de piese auto originale, second-hand, 
               în stare foarte bună de funcționare. Toate piesele sunt verificate și testate.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button variant="hero" size="xl" asChild>
-                <Link to="/contact">Cere ofertă</Link>
+                <Link to="/contact">
+                  Cere ofertă
+                  <ArrowRight className="w-5 h-5" />
+                </Link>
               </Button>
-              <Button variant="whatsapp" size="xl" asChild>
+              <Button variant="mint" size="xl" asChild>
                 <a href="https://wa.me/40721234567" target="_blank" rel="noopener noreferrer">
                   <MessageCircle className="w-5 h-5" />
                   WhatsApp
@@ -119,7 +127,7 @@ const PartsPage = () => {
       </section>
 
       {/* Info Banner */}
-      <section className="py-8 bg-primary">
+      <section className="py-5 bg-gradient-to-r from-primary to-primary/90">
         <div className="container mx-auto px-4">
           <div className="flex flex-wrap justify-center items-center gap-6 md:gap-12 text-primary-foreground">
             {[
@@ -130,7 +138,7 @@ const PartsPage = () => {
             ].map((item, index) => (
               <div key={index} className="flex items-center gap-2">
                 <Check className="w-5 h-5" />
-                <span className="font-medium">{item}</span>
+                <span className="font-medium text-sm">{item}</span>
               </div>
             ))}
           </div>
@@ -138,34 +146,37 @@ const PartsPage = () => {
       </section>
 
       {/* Categories Grid */}
-      <section className="py-16 bg-background">
-        <div className="container mx-auto px-4">
-          <h2 className="font-display text-3xl md:text-4xl text-center text-foreground mb-4">
-            CATEGORII DE <span className="text-gradient">PIESE</span>
-          </h2>
-          <p className="text-muted-foreground text-center max-w-xl mx-auto mb-12">
-            Explorează gama noastră completă de piese auto pentru orice componentă a mașinii tale.
-          </p>
+      <section className="py-20 bg-background relative">
+        <div className="absolute top-1/2 left-0 w-80 h-80 bg-accent/5 rounded-full blur-[100px]" />
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="text-center mb-14">
+            <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
+              Categorii
+            </span>
+            <h2 className="font-display text-3xl md:text-4xl text-foreground">
+              Găsește piesa <span className="text-accent">potrivită</span>
+            </h2>
+          </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {partsCategories.map((category, index) => (
               <div
                 key={index}
-                className="bg-card p-6 rounded-xl border border-border hover:border-primary/50 transition-all duration-300 group"
+                className="bg-card p-6 rounded-2xl border border-border hover:border-accent/50 transition-all duration-300 group hover-lift"
               >
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors duration-300">
-                    <category.icon className="w-7 h-7 text-primary" />
+                <div className="flex items-center gap-4 mb-5">
+                  <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-accent/20 to-accent/5 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <category.icon className="w-7 h-7 text-accent" />
                   </div>
                   <div>
                     <h3 className="font-display text-xl text-foreground">{category.title}</h3>
                   </div>
                 </div>
-                <p className="text-muted-foreground text-sm mb-4">{category.description}</p>
-                <ul className="space-y-2">
+                <p className="text-muted-foreground text-sm mb-5">{category.description}</p>
+                <ul className="space-y-2.5">
                   {category.items.map((item, i) => (
                     <li key={i} className="flex items-center gap-2 text-sm text-muted-foreground">
-                      <Check className="w-4 h-4 text-primary flex-shrink-0" />
+                      <div className="w-1.5 h-1.5 rounded-full bg-primary" />
                       {item}
                     </li>
                   ))}
@@ -177,20 +188,22 @@ const PartsPage = () => {
       </section>
 
       {/* Brands Section */}
-      <section className="py-16 bg-card">
+      <section className="py-20 bg-card">
         <div className="container mx-auto px-4">
-          <h2 className="font-display text-3xl md:text-4xl text-center text-foreground mb-4">
-            MĂRCI AUTO <span className="text-gradient">DISPONIBILE</span>
-          </h2>
-          <p className="text-muted-foreground text-center max-w-xl mx-auto mb-12">
-            Avem piese pentru cele mai populare mărci auto din Europa.
-          </p>
+          <div className="text-center mb-12">
+            <span className="inline-block px-4 py-1.5 rounded-full bg-accent/10 text-accent text-sm font-medium mb-4">
+              Compatibilitate
+            </span>
+            <h2 className="font-display text-3xl md:text-4xl text-foreground">
+              Mărci auto <span className="text-primary">disponibile</span>
+            </h2>
+          </div>
 
           <div className="flex flex-wrap justify-center gap-3">
             {brands.map((brand, index) => (
               <div
                 key={index}
-                className="px-5 py-3 bg-secondary rounded-lg text-foreground text-sm font-medium hover:bg-primary hover:text-primary-foreground transition-colors duration-300"
+                className="px-5 py-3 bg-secondary rounded-xl text-foreground text-sm font-medium hover:bg-accent hover:text-accent-foreground transition-all duration-300"
               >
                 {brand}
               </div>
@@ -200,11 +213,17 @@ const PartsPage = () => {
       </section>
 
       {/* How It Works */}
-      <section className="py-16 bg-background">
-        <div className="container mx-auto px-4">
-          <h2 className="font-display text-3xl md:text-4xl text-center text-foreground mb-12">
-            CUM <span className="text-gradient">FUNCȚIONEAZĂ</span>?
-          </h2>
+      <section className="py-20 bg-background relative overflow-hidden">
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-[120px]" />
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="text-center mb-14">
+            <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
+              Proces simplu
+            </span>
+            <h2 className="font-display text-3xl md:text-4xl text-foreground">
+              Cum <span className="text-accent">funcționează</span>?
+            </h2>
+          </div>
 
           <div className="grid md:grid-cols-4 gap-6 max-w-4xl mx-auto">
             {[
@@ -213,8 +232,8 @@ const PartsPage = () => {
               { step: "03", title: "Primești Oferta", desc: "Îți trimitem prețul și detaliile despre piesă." },
               { step: "04", title: "Livrare Rapidă", desc: "Livrăm prin curier în 24-48 ore în toată țara." },
             ].map((item, index) => (
-              <div key={index} className="text-center">
-                <div className="w-16 h-16 rounded-full bg-primary flex items-center justify-center mx-auto mb-4">
+              <div key={index} className="text-center group">
+                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center mx-auto mb-5 group-hover:scale-110 transition-transform duration-300">
                   <span className="font-display text-2xl text-primary-foreground">{item.step}</span>
                 </div>
                 <h3 className="font-display text-lg text-foreground mb-2">{item.title}</h3>
@@ -226,19 +245,25 @@ const PartsPage = () => {
       </section>
 
       {/* CTA */}
-      <section className="py-16 bg-card">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="font-display text-3xl md:text-4xl text-foreground mb-4">
-            NU GĂSEȘTI PIESA <span className="text-gradient">CĂUTATĂ</span>?
+      <section className="py-20 bg-card relative overflow-hidden">
+        <div className="absolute inset-0">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-accent/10 rounded-full blur-[150px]" />
+        </div>
+        <div className="container mx-auto px-4 relative z-10 text-center">
+          <h2 className="font-display text-3xl md:text-4xl text-foreground mb-6">
+            Nu găsești piesa <span className="text-primary">căutată</span>?
           </h2>
-          <p className="text-muted-foreground max-w-xl mx-auto mb-8">
+          <p className="text-muted-foreground max-w-xl mx-auto mb-10">
             Contactează-ne și te ajutăm să găsești exact piesa de care ai nevoie.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button variant="hero" size="xl" asChild>
-              <Link to="/contact">Cere ofertă personalizată</Link>
+              <Link to="/contact">
+                Cere ofertă personalizată
+                <ArrowRight className="w-5 h-5" />
+              </Link>
             </Button>
-            <Button variant="whatsapp" size="xl" asChild>
+            <Button variant="mint" size="xl" asChild>
               <a href="https://wa.me/40721234567" target="_blank" rel="noopener noreferrer">
                 <MessageCircle className="w-5 h-5" />
                 Întreabă pe WhatsApp
