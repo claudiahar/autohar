@@ -1,9 +1,7 @@
 import { Link } from "react-router-dom";
 import { Phone, Mail, MapPin } from "lucide-react";
-
 export const Footer = () => {
-  return (
-    <footer className="bg-card border-t border-border">
+  return <footer className="bg-card border-t border-border">
       <div className="container mx-auto px-4 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Logo & Description */}
@@ -31,21 +29,23 @@ export const Footer = () => {
           <div>
             <h3 className="font-display text-base text-foreground mb-5">Navigare</h3>
             <ul className="space-y-3">
-              {[
-                { name: "Acasă", path: "/" },
-                { name: "Despre noi", path: "/despre-noi" },
-                { name: "Piese auto", path: "/piese-auto" },
-                { name: "Contact", path: "/contact" },
-              ].map((link) => (
-                <li key={link.path}>
-                  <Link
-                    to={link.path}
-                    className="text-muted-foreground text-sm hover:text-accent transition-colors duration-300"
-                  >
+              {[{
+              name: "Acasă",
+              path: "/"
+            }, {
+              name: "Despre noi",
+              path: "/despre-noi"
+            }, {
+              name: "Piese auto",
+              path: "/piese-auto"
+            }, {
+              name: "Contact",
+              path: "/contact"
+            }].map(link => <li key={link.path}>
+                  <Link to={link.path} className="text-muted-foreground text-sm hover:text-accent transition-colors duration-300">
                     {link.name}
                   </Link>
-                </li>
-              ))}
+                </li>)}
             </ul>
           </div>
 
@@ -68,7 +68,7 @@ export const Footer = () => {
                 <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
                   <Phone className="w-4 h-4 text-primary" />
                 </div>
-                <span>+40 721 234 567</span>
+                <span>+40 748 951 120 </span>
               </li>
               <li className="flex items-center gap-3 text-sm text-muted-foreground group">
                 <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
@@ -95,6 +95,5 @@ export const Footer = () => {
           </p>
         </div>
       </div>
-    </footer>
-  );
+    </footer>;
 };
