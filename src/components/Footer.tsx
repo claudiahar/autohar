@@ -82,7 +82,11 @@ export const Footer = () => {
                 <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors flex-shrink-0">
                   <MapPin className="w-4 h-4 text-primary" />
                 </div>
-                <span>Strada Industriilor Nr. 15, București</span>
+                <span>Strada Traian Popovici 156,
+Suceava
+
+
+ </span>
               </li>
             </ul>
           </div>
