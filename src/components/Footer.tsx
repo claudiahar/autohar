@@ -76,7 +76,7 @@ export const Footer = () => {
                 <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
                   <Mail className="w-4 h-4 text-primary" />
                 </div>
-                <span>contact@autohar.ro</span>
+                <span>autohargrup@gmail.com</span>
               </li>
               <li className="flex items-start gap-3 text-sm text-muted-foreground group">
                 <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors flex-shrink-0">
