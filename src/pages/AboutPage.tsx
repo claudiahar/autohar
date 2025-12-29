@@ -11,15 +11,12 @@ const AboutPage = () => {
         <div className="absolute bottom-0 left-0 w-80 h-80 bg-accent/10 rounded-full blur-[100px]" />
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-3xl mx-auto text-center">
-            <span className="inline-block px-4 py-1.5 rounded-full bg-accent/10 text-accent text-sm font-medium mb-6">
-              Despre noi
-            </span>
             <h1 className="font-display text-4xl md:text-5xl lg:text-6xl text-foreground mb-6">
-              Experiență de peste <span className="text-primary">15 ani</span>
+              Experiență de peste <span className="text-primary">25 ani</span>
             </h1>
             <p className="text-muted-foreground text-lg leading-relaxed">
-              Cu o experiență de peste 15 ani în domeniul pieselor auto din dezmembrări, 
-              suntem partenerul de încredere pentru mii de clienți din toată România.
+              Cu o experiență de peste 25 de ani în domeniul pieselor auto din dezmembrări, 
+              suntem partenerul de încredere pentru clienți din întreaga țară.
             </p>
           </div>
         </div>
@@ -30,32 +27,24 @@ const AboutPage = () => {
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
-              <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
-                Povestea noastră
-              </span>
               <h2 className="font-display text-3xl md:text-4xl text-foreground mb-6">
                 De la pasiune la <span className="text-accent">afacere</span>
               </h2>
               <div className="space-y-4 text-muted-foreground leading-relaxed">
                 <p>
-                  Am început activitatea în 2008, cu o mică unitate de dezmembrări și un singur angajat. 
-                  Pasiunea pentru automobile și dorința de a oferi soluții accesibile ne-au ghidat în dezvoltarea 
-                  unei afaceri bazate pe încredere și calitate.
+                  Activitatea noastră a început în anul 2010, din dorința de a oferi clienților piese auto second-hand originale, provenite din dezmembrări, la prețuri corecte. De-a lungul timpului, ne-am dezvoltat constant și am devenit un partener de încredere pentru clienți din întreaga țară.
                 </p>
                 <p>
-                  Astăzi, dispunem de un stoc impresionant de piese auto provenite din autoturisme 
-                  aduse din <span className="text-foreground font-medium">Germania, Spania, Italia și Belgia</span>. 
-                  Selectăm cu grijă fiecare vehicul pentru a vă oferi doar piese în stare foarte bună de funcționare.
+                  Importăm autoturisme din <span className="text-foreground font-medium">Belgia, Spania, Germania și Italia</span>, iar piesele rezultate sunt puse la dispoziția clienților cu garanție și posibilitatea returului în cazul în care piesa nu este compatibilă.
                 </p>
                 <p>
-                  Echipa noastră de specialiști verifică și testează fiecare piesă înainte de a ajunge la clienți, 
-                  garantând astfel calitatea și fiabilitatea produselor noastre.
+                  Punem accent pe seriozitate, transparență și comunicare rapidă, oferind soluții eficiente pentru majoritatea mărcilor auto.
                 </p>
               </div>
             </div>
             <div className="grid grid-cols-2 gap-4">
               {[
-                { value: "15+", label: "Ani de experiență" },
+                { value: "25+", label: "Ani de experiență" },
                 { value: "10K+", label: "Clienți mulțumiți" },
                 { value: "50K+", label: "Piese în stoc" },
                 { value: "4", label: "Țări de import" },
@@ -78,9 +67,6 @@ const AboutPage = () => {
         <div className="absolute top-1/2 right-0 w-80 h-80 bg-accent/5 rounded-full blur-[100px]" />
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-14">
-            <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
-              Valorile noastre
-            </span>
             <h2 className="font-display text-3xl md:text-4xl text-foreground">
               Ce ne <span className="text-accent">definește</span>
             </h2>
@@ -91,7 +77,7 @@ const AboutPage = () => {
               {
                 icon: Award,
                 title: "Calitate",
-                description: "Piese originale, verificate și testate pentru performanță optimă.",
+                description: "Piese auto originale din dezmembrări, selectate pentru a oferi un raport corect între preț și funcționalitate.",
               },
               {
                 icon: Handshake,
@@ -101,7 +87,7 @@ const AboutPage = () => {
               {
                 icon: Users,
                 title: "Suport",
-                description: "Echipă dedicată pentru consiliere și asistență tehnică.",
+                description: "Suntem disponibili pentru informații rapide și comunicare eficientă pe tot parcursul procesului de comandă.",
               },
               {
                 icon: Globe,
@@ -128,20 +114,17 @@ const AboutPage = () => {
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
           <div className="text-center mb-14">
-            <span className="inline-block px-4 py-1.5 rounded-full bg-accent/10 text-accent text-sm font-medium mb-4">
-              Import european
-            </span>
             <h2 className="font-display text-3xl md:text-4xl text-foreground">
-              Importăm din toată <span className="text-primary">Europa</span>
+              Importăm din <span className="text-primary">Europa</span>
             </h2>
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto">
             {[
-              { country: "Germania", flag: "🇩🇪" },
-              { country: "Spania", flag: "🇪🇸" },
-              { country: "Italia", flag: "🇮🇹" },
               { country: "Belgia", flag: "🇧🇪" },
+              { country: "Spania", flag: "🇪🇸" },
+              { country: "Germania", flag: "🇩🇪" },
+              { country: "Italia", flag: "🇮🇹" },
             ].map((item, index) => (
               <div
                 key={index}
@@ -160,9 +143,6 @@ const AboutPage = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto">
             <div className="text-center mb-14">
-              <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
-                Avantaje
-              </span>
               <h2 className="font-display text-3xl md:text-4xl text-foreground">
                 De ce <span className="text-accent">noi</span>?
               </h2>
@@ -170,12 +150,10 @@ const AboutPage = () => {
 
             <ul className="space-y-4">
               {[
-                "Experiență de peste 15 ani în domeniul dezmembrărilor auto",
+                "Experiență de peste 25 de ani în domeniul dezmembrărilor auto",
                 "Piese originale, second-hand, în stare foarte bună de funcționare",
-                "Garanție pentru toate piesele comercializate",
+                "Piesele beneficiază de garanție și posibilitatea returului în cazul în care piesa nu este compatibilă",
                 "Livrare rapidă în toată România prin curier",
-                "Consiliere tehnică gratuită pentru alegerea piesei potrivite",
-                "Prețuri competitive, cu până la 70% mai mici decât piesele noi",
                 "Stoc vast de piese pentru cele mai populare mărci auto",
                 "Suport clienți disponibil prin telefon, email și WhatsApp",
               ].map((item, index) => (
@@ -214,7 +192,7 @@ const AboutPage = () => {
               </Link>
             </Button>
             <Button variant="mint" size="xl" asChild>
-              <a href="https://wa.me/40721234567" target="_blank" rel="noopener noreferrer">
+              <a href="https://wa.me/40749707694" target="_blank" rel="noopener noreferrer">
                 <MessageCircle className="w-5 h-5" />
                 WhatsApp
               </a>

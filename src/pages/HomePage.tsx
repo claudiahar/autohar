@@ -7,12 +7,12 @@ const benefits = [
   {
     icon: Euro,
     title: "Prețuri Accesibile",
-    description: "Economisești până la 70% față de piesele noi, cu aceeași calitate.",
+    description: "Economisești față de piesele noi, cu aceeași calitate.",
   },
   {
     icon: Shield,
     title: "Piese Originale",
-    description: "Toate piesele sunt originale, provenite din autoturisme verificate.",
+    description: "Toate piesele sunt originale, provenite din autoturisme importate.",
   },
   {
     icon: Truck,
@@ -21,8 +21,8 @@ const benefits = [
   },
   {
     icon: Check,
-    title: "Garanție",
-    description: "Oferim garanție pentru toate piesele comercializate.",
+    title: "Garanție & Retur",
+    description: "Piesele beneficiază de garanție și posibilitatea returului în cazul în care piesa nu este compatibilă.",
   },
 ];
 
@@ -40,7 +40,7 @@ const HomePage = () => {
         <div className="absolute inset-0">
           <img
             src={heroBg}
-            alt="Piese auto din dezmembrări"
+            alt="Piese auto din dezmembrări Suceava"
             className="w-full h-full object-cover"
           />
           <div className="hero-overlay absolute inset-0" />
@@ -54,7 +54,7 @@ const HomePage = () => {
         <div className="relative z-10 container mx-auto px-4 py-32 text-center">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-foreground/5 backdrop-blur-sm border border-foreground/10 mb-8 animate-fade-up">
             <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
-            <span className="text-sm text-muted-foreground">Import din Germania, Spania, Italia, Belgia</span>
+            <span className="text-sm text-muted-foreground">Import din Belgia • Spania • Germania • Italia</span>
           </div>
 
           <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-foreground mb-6 animate-fade-up leading-tight">
@@ -64,7 +64,7 @@ const HomePage = () => {
           </h1>
           
           <p className="text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto mb-10 animate-fade-up" style={{ animationDelay: "0.1s" }}>
-            Piese auto second-hand originale, verificate și garantate. 
+            Piese auto second-hand originale și garantate. 
             Găsește piesa potrivită la cel mai bun preț.
           </p>
           
@@ -76,7 +76,7 @@ const HomePage = () => {
               </Link>
             </Button>
             <Button variant="mint" size="xl" asChild>
-              <a href="https://wa.me/40721234567" target="_blank" rel="noopener noreferrer">
+              <a href="https://wa.me/40749707694" target="_blank" rel="noopener noreferrer">
                 <MessageCircle className="w-5 h-5" />
                 WhatsApp
               </a>
@@ -86,7 +86,7 @@ const HomePage = () => {
           {/* Quick stats */}
           <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto animate-fade-up" style={{ animationDelay: "0.3s" }}>
             {[
-              { value: "15+", label: "Ani experiență" },
+              { value: "25+", label: "Ani experiență" },
               { value: "10K+", label: "Clienți mulțumiți" },
               { value: "50K+", label: "Piese în stoc" },
               { value: "100%", label: "Piese originale" },
@@ -99,10 +99,10 @@ const HomePage = () => {
           </div>
         </div>
 
-        {/* Scroll indicator */}
+        {/* Animated car icon */}
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-float">
-          <div className="w-6 h-10 border-2 border-muted-foreground/50 rounded-full flex justify-center pt-2">
-            <div className="w-1.5 h-3 bg-accent rounded-full" />
+          <div className="w-16 h-16 rounded-full bg-accent/20 backdrop-blur-sm flex items-center justify-center border border-accent/30">
+            <Car className="w-8 h-8 text-accent" />
           </div>
         </div>
       </section>
@@ -112,9 +112,6 @@ const HomePage = () => {
         <div className="absolute top-0 right-0 w-80 h-80 bg-primary/5 rounded-full blur-[100px]" />
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-16">
-            <span className="inline-block px-4 py-1.5 rounded-full bg-accent/10 text-accent text-sm font-medium mb-4">
-              De ce noi
-            </span>
             <h2 className="font-display text-3xl md:text-5xl text-foreground">
               De ce să alegi <span className="text-primary">Auto Har</span>?
             </h2>
@@ -146,9 +143,6 @@ const HomePage = () => {
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent/5 rounded-full blur-[120px]" />
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-16">
-            <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
-              Categorii
-            </span>
             <h2 className="font-display text-3xl md:text-5xl text-foreground">
               Categorii de <span className="text-accent">piese auto</span>
             </h2>
@@ -233,7 +227,7 @@ const HomePage = () => {
               </Link>
             </Button>
             <Button variant="mint" size="xl" asChild>
-              <a href="https://wa.me/40721234567" target="_blank" rel="noopener noreferrer">
+              <a href="https://wa.me/40749707694" target="_blank" rel="noopener noreferrer">
                 <MessageCircle className="w-5 h-5" />
                 Scrie pe WhatsApp
               </a>

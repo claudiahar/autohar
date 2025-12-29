@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Car } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const navLinks = [
@@ -22,7 +22,7 @@ export const Header = () => {
           <Link to="/" className="flex items-center gap-3 group">
             <div className="relative">
               <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
-                <span className="font-display text-lg font-bold text-primary-foreground">H</span>
+                <Car className="w-5 h-5 text-primary-foreground" />
               </div>
               <div className="absolute -bottom-1 -right-1 w-3 h-3 rounded-full bg-accent" />
             </div>
@@ -30,7 +30,7 @@ export const Header = () => {
               <span className="font-display text-xl text-foreground tracking-tight leading-none">
                 AUTO <span className="text-primary">HAR</span>
               </span>
-              <span className="text-[10px] text-muted-foreground tracking-widest uppercase">Piese auto</span>
+              <span className="text-[10px] text-muted-foreground tracking-widest uppercase">Dezmembrări Suceava</span>
             </div>
           </Link>
 
