@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
-import { Phone, Mail, MapPin } from "lucide-react";
+import { Phone, Mail, MapPin, Car } from "lucide-react";
+
 export const Footer = () => {
-  return <footer className="bg-card border-t border-border">
+  return (
+    <footer className="bg-card border-t border-border">
       <div className="container mx-auto px-4 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Logo & Description */}
@@ -9,7 +11,7 @@ export const Footer = () => {
             <Link to="/" className="flex items-center gap-3">
               <div className="relative">
                 <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center">
-                  <span className="font-display text-lg font-bold text-primary-foreground">H</span>
+                  <Car className="w-5 h-5 text-primary-foreground" />
                 </div>
                 <div className="absolute -bottom-1 -right-1 w-3 h-3 rounded-full bg-accent" />
               </div>
@@ -29,23 +31,21 @@ export const Footer = () => {
           <div>
             <h3 className="font-display text-base text-foreground mb-5">Navigare</h3>
             <ul className="space-y-3">
-              {[{
-              name: "Acasă",
-              path: "/"
-            }, {
-              name: "Despre noi",
-              path: "/despre-noi"
-            }, {
-              name: "Piese auto",
-              path: "/piese-auto"
-            }, {
-              name: "Contact",
-              path: "/contact"
-            }].map(link => <li key={link.path}>
-                  <Link to={link.path} className="text-muted-foreground text-sm hover:text-accent transition-colors duration-300">
+              {[
+                { name: "Acasă", path: "/" },
+                { name: "Despre noi", path: "/despre-noi" },
+                { name: "Piese auto", path: "/piese-auto" },
+                { name: "Contact", path: "/contact" },
+              ].map((link) => (
+                <li key={link.path}>
+                  <Link
+                    to={link.path}
+                    className="text-muted-foreground text-sm hover:text-accent transition-colors duration-300"
+                  >
                     {link.name}
                   </Link>
-                </li>)}
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -68,9 +68,7 @@ export const Footer = () => {
                 <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
                   <Phone className="w-4 h-4 text-primary" />
                 </div>
-                <span>
-+40 749 707 694
- </span>
+                <span>0749 707 694</span>
               </li>
               <li className="flex items-center gap-3 text-sm text-muted-foreground group">
                 <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
@@ -82,11 +80,7 @@ export const Footer = () => {
                 <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors flex-shrink-0">
                   <MapPin className="w-4 h-4 text-primary" />
                 </div>
-                <span>Strada Traian Popovici 156,
-Suceava
-
-
- </span>
+                <span>Strada Traian Popovici 156, Suceava</span>
               </li>
             </ul>
           </div>
@@ -97,9 +91,10 @@ Suceava
             © {new Date().getFullYear()} Auto Har. Toate drepturile rezervate.
           </p>
           <p className="text-muted-foreground text-xs">
-            Import Germania • Spania • Italia • Belgia
+            Import Belgia • Spania • Germania • Italia
           </p>
         </div>
       </div>
-    </footer>;
+    </footer>
+  );
 };

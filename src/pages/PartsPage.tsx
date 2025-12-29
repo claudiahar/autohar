@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Check, Cog, Car, Shield, Wrench, Cpu, Settings, MessageCircle, ArrowRight } from "lucide-react";
+import { Check, Cog, Car, Wrench, Cpu, Settings, MessageCircle, ArrowRight } from "lucide-react";
 
 const partsCategories = [
   {
@@ -57,28 +57,15 @@ const partsCategories = [
   },
   {
     icon: Wrench,
-    title: "Suspensie & Direcție",
-    description: "Componente pentru sistemele de suspensie și direcție.",
+    title: "Suspensie",
+    description: "Componente pentru sistemul de suspensie.",
     items: [
       "Amortizoare față/spate",
       "Arcuri spirale",
       "Fuzete și pivoti",
       "Bielete antiruliu",
-      "Cremaiere de direcție",
-      "Pompe servo-direcție",
-    ],
-  },
-  {
-    icon: Shield,
-    title: "Frânare",
-    description: "Piese pentru sistemul de frânare în condiții optime.",
-    items: [
-      "Discuri de frână",
-      "Etriere și plăcuțe",
-      "Cilindri de frână",
-      "Pompe de frână",
-      "Furtune și conducte",
-      "Senzori ABS",
+      "Brate suspensie",
+      "Bucșe și articulații",
     ],
   },
 ];
@@ -98,15 +85,12 @@ const PartsPage = () => {
         <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-accent/10 rounded-full blur-[100px]" />
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-3xl mx-auto text-center">
-            <span className="inline-block px-4 py-1.5 rounded-full bg-accent/10 text-accent text-sm font-medium mb-6">
-              Catalog piese
-            </span>
             <h1 className="font-display text-4xl md:text-5xl lg:text-6xl text-foreground mb-6">
-              Piese Auto din <span className="text-primary">Dezmembrări</span>
+              Piese Auto din <span className="text-primary">Dezmembrări</span> Suceava
             </h1>
             <p className="text-muted-foreground text-lg leading-relaxed mb-10">
               Dispunem de un stoc vast de piese auto originale, second-hand, 
-              în stare foarte bună de funcționare. Toate piesele sunt verificate și testate.
+              în stare foarte bună de funcționare. Piesele beneficiază de garanție și posibilitatea returului în cazul în care piesa nu este compatibilă.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button variant="hero" size="xl" asChild>
@@ -116,7 +100,7 @@ const PartsPage = () => {
                 </Link>
               </Button>
               <Button variant="mint" size="xl" asChild>
-                <a href="https://wa.me/40721234567" target="_blank" rel="noopener noreferrer">
+                <a href="https://wa.me/40749707694" target="_blank" rel="noopener noreferrer">
                   <MessageCircle className="w-5 h-5" />
                   WhatsApp
                 </a>
@@ -132,8 +116,8 @@ const PartsPage = () => {
           <div className="flex flex-wrap justify-center items-center gap-6 md:gap-12 text-primary-foreground">
             {[
               "Piese originale",
-              "Second-hand verificate",
               "Garanție inclusă",
+              "Posibilitate retur",
               "Livrare în toată țara",
             ].map((item, index) => (
               <div key={index} className="flex items-center gap-2">
@@ -150,9 +134,6 @@ const PartsPage = () => {
         <div className="absolute top-1/2 left-0 w-80 h-80 bg-accent/5 rounded-full blur-[100px]" />
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-14">
-            <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
-              Categorii
-            </span>
             <h2 className="font-display text-3xl md:text-4xl text-foreground">
               Găsește piesa <span className="text-accent">potrivită</span>
             </h2>
@@ -191,9 +172,6 @@ const PartsPage = () => {
       <section className="py-20 bg-card">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <span className="inline-block px-4 py-1.5 rounded-full bg-accent/10 text-accent text-sm font-medium mb-4">
-              Compatibilitate
-            </span>
             <h2 className="font-display text-3xl md:text-4xl text-foreground">
               Mărci auto <span className="text-primary">disponibile</span>
             </h2>
@@ -217,9 +195,6 @@ const PartsPage = () => {
         <div className="absolute bottom-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-[120px]" />
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-14">
-            <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
-              Proces simplu
-            </span>
             <h2 className="font-display text-3xl md:text-4xl text-foreground">
               Cum <span className="text-accent">funcționează</span>?
             </h2>
@@ -264,7 +239,7 @@ const PartsPage = () => {
               </Link>
             </Button>
             <Button variant="mint" size="xl" asChild>
-              <a href="https://wa.me/40721234567" target="_blank" rel="noopener noreferrer">
+              <a href="https://wa.me/40749707694" target="_blank" rel="noopener noreferrer">
                 <MessageCircle className="w-5 h-5" />
                 Întreabă pe WhatsApp
               </a>
