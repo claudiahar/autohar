@@ -6,7 +6,6 @@ import { useToast } from "@/hooks/use-toast";
 import { Phone, Mail, MapPin, Clock, MessageCircle, Send } from "lucide-react";
 import { z } from "zod";
 import contactHero from "@/assets/contact-hero.jpg";
-
 const formSchema = z.object({
   name: z.string().trim().min(2, "Numele trebuie să aibă minim 2 caractere").max(100, "Numele este prea lung"),
   phone: z.string().trim().min(10, "Numărul de telefon nu este valid").max(15, "Numărul de telefon este prea lung"),
@@ -17,11 +16,11 @@ const formSchema = z.object({
   engine: z.string().trim().max(100, "Motorizarea este prea lungă").optional(),
   partNeeded: z.string().trim().min(5, "Descrieți piesa dorită").max(1000, "Descrierea este prea lungă")
 });
-
 type FormData = z.infer<typeof formSchema>;
-
 const ContactPage = () => {
-  const { toast } = useToast();
+  const {
+    toast
+  } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState<FormData>({
     name: "",
@@ -34,9 +33,11 @@ const ContactPage = () => {
     partNeeded: ""
   });
   const [errors, setErrors] = useState<Partial<Record<keyof FormData, string>>>({});
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
+    const {
+      name,
+      value
+    } = e.target;
     setFormData(prev => ({
       ...prev,
       [name]: value
@@ -48,7 +49,6 @@ const ContactPage = () => {
       }));
     }
   };
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -84,9 +84,7 @@ const ContactPage = () => {
       setIsSubmitting(false);
     }
   };
-
-  return (
-    <div className="min-h-screen pt-20">
+  return <div className="min-h-screen pt-20">
       {/* Hero */}
       <section className="py-20 md:py-28 bg-card relative overflow-hidden">
         <div className="absolute top-0 right-1/4 w-96 h-96 bg-primary/10 rounded-full blur-[120px]" />
@@ -103,11 +101,7 @@ const ContactPage = () => {
           
           {/* Hero Image */}
           <div className="max-w-4xl mx-auto mt-4">
-            <img 
-              src={contactHero} 
-              alt="Contact Auto Har Suceava" 
-              className="w-full h-64 md:h-80 object-cover rounded-2xl border border-border"
-            />
+            
           </div>
         </div>
       </section>
@@ -221,26 +215,14 @@ const ContactPage = () => {
                       <label className="block text-sm text-muted-foreground mb-2">
                         Nume complet *
                       </label>
-                      <Input
-                        name="name"
-                        value={formData.name}
-                        onChange={handleChange}
-                        placeholder="Ion Popescu"
-                        className={`rounded-xl h-12 ${errors.name ? "border-destructive" : ""}`}
-                      />
+                      <Input name="name" value={formData.name} onChange={handleChange} placeholder="Ion Popescu" className={`rounded-xl h-12 ${errors.name ? "border-destructive" : ""}`} />
                       {errors.name && <p className="text-destructive text-sm mt-1">{errors.name}</p>}
                     </div>
                     <div>
                       <label className="block text-sm text-muted-foreground mb-2">
                         Telefon *
                       </label>
-                      <Input
-                        name="phone"
-                        value={formData.phone}
-                        onChange={handleChange}
-                        placeholder="0721 234 567"
-                        className={`rounded-xl h-12 ${errors.phone ? "border-destructive" : ""}`}
-                      />
+                      <Input name="phone" value={formData.phone} onChange={handleChange} placeholder="0721 234 567" className={`rounded-xl h-12 ${errors.phone ? "border-destructive" : ""}`} />
                       {errors.phone && <p className="text-destructive text-sm mt-1">{errors.phone}</p>}
                     </div>
                   </div>
@@ -249,14 +231,7 @@ const ContactPage = () => {
                     <label className="block text-sm text-muted-foreground mb-2">
                       Email (opțional)
                     </label>
-                    <Input
-                      name="email"
-                      type="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      placeholder="email@exemplu.ro"
-                      className={`rounded-xl h-12 ${errors.email ? "border-destructive" : ""}`}
-                    />
+                    <Input name="email" type="email" value={formData.email} onChange={handleChange} placeholder="email@exemplu.ro" className={`rounded-xl h-12 ${errors.email ? "border-destructive" : ""}`} />
                     {errors.email && <p className="text-destructive text-sm mt-1">{errors.email}</p>}
                   </div>
 
@@ -270,52 +245,28 @@ const ContactPage = () => {
                         <label className="block text-sm text-muted-foreground mb-2">
                           Marcă auto *
                         </label>
-                        <Input
-                          name="carBrand"
-                          value={formData.carBrand}
-                          onChange={handleChange}
-                          placeholder="Ex: Volkswagen"
-                          className={`rounded-xl h-12 ${errors.carBrand ? "border-destructive" : ""}`}
-                        />
+                        <Input name="carBrand" value={formData.carBrand} onChange={handleChange} placeholder="Ex: Volkswagen" className={`rounded-xl h-12 ${errors.carBrand ? "border-destructive" : ""}`} />
                         {errors.carBrand && <p className="text-destructive text-sm mt-1">{errors.carBrand}</p>}
                       </div>
                       <div>
                         <label className="block text-sm text-muted-foreground mb-2">
                           Model *
                         </label>
-                        <Input
-                          name="carModel"
-                          value={formData.carModel}
-                          onChange={handleChange}
-                          placeholder="Ex: Golf 7"
-                          className={`rounded-xl h-12 ${errors.carModel ? "border-destructive" : ""}`}
-                        />
+                        <Input name="carModel" value={formData.carModel} onChange={handleChange} placeholder="Ex: Golf 7" className={`rounded-xl h-12 ${errors.carModel ? "border-destructive" : ""}`} />
                         {errors.carModel && <p className="text-destructive text-sm mt-1">{errors.carModel}</p>}
                       </div>
                       <div>
                         <label className="block text-sm text-muted-foreground mb-2">
                           An fabricație *
                         </label>
-                        <Input
-                          name="year"
-                          value={formData.year}
-                          onChange={handleChange}
-                          placeholder="Ex: 2018"
-                          className={`rounded-xl h-12 ${errors.year ? "border-destructive" : ""}`}
-                        />
+                        <Input name="year" value={formData.year} onChange={handleChange} placeholder="Ex: 2018" className={`rounded-xl h-12 ${errors.year ? "border-destructive" : ""}`} />
                         {errors.year && <p className="text-destructive text-sm mt-1">{errors.year}</p>}
                       </div>
                       <div>
                         <label className="block text-sm text-muted-foreground mb-2">
                           Motorizare
                         </label>
-                        <Input
-                          name="engine"
-                          value={formData.engine}
-                          onChange={handleChange}
-                          placeholder="Ex: 1.6 TDI 115 CP"
-                          className={`rounded-xl h-12 ${errors.engine ? "border-destructive" : ""}`}
-                        />
+                        <Input name="engine" value={formData.engine} onChange={handleChange} placeholder="Ex: 1.6 TDI 115 CP" className={`rounded-xl h-12 ${errors.engine ? "border-destructive" : ""}`} />
                         {errors.engine && <p className="text-destructive text-sm mt-1">{errors.engine}</p>}
                       </div>
                     </div>
@@ -326,26 +277,15 @@ const ContactPage = () => {
                     <label className="block text-sm text-muted-foreground mb-2">
                       Piesa dorită *
                     </label>
-                    <Textarea
-                      name="partNeeded"
-                      value={formData.partNeeded}
-                      onChange={handleChange}
-                      placeholder="Descrieți piesa de care aveți nevoie (ex: cutie de viteze manuală 6 trepte, turbosuflantă, calculator motor, etc.)"
-                      rows={4}
-                      className={`rounded-xl resize-none ${errors.partNeeded ? "border-destructive" : ""}`}
-                    />
+                    <Textarea name="partNeeded" value={formData.partNeeded} onChange={handleChange} placeholder="Descrieți piesa de care aveți nevoie (ex: cutie de viteze manuală 6 trepte, turbosuflantă, calculator motor, etc.)" rows={4} className={`rounded-xl resize-none ${errors.partNeeded ? "border-destructive" : ""}`} />
                     {errors.partNeeded && <p className="text-destructive text-sm mt-1">{errors.partNeeded}</p>}
                   </div>
 
                   <Button type="submit" variant="hero" size="xl" className="w-full md:w-auto" disabled={isSubmitting}>
-                    {isSubmitting ? (
-                      "Se trimite..."
-                    ) : (
-                      <>
+                    {isSubmitting ? "Se trimite..." : <>
                         Trimite cererea
                         <Send className="w-5 h-5" />
-                      </>
-                    )}
+                      </>}
                   </Button>
                 </form>
               </div>
@@ -376,8 +316,6 @@ const ContactPage = () => {
           </div>
         </div>
       </section>
-    </div>
-  );
+    </div>;
 };
-
 export default ContactPage;
