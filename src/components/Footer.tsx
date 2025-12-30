@@ -9,17 +9,12 @@ export const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Logo & Description */}
           <div className="space-y-4">
-            <Link to="/" className="flex items-center gap-2">
+            <Link to="/" className="block">
               <img 
                 src={logo} 
                 alt="Auto Har - Dezmembrări Suceava" 
-                className="h-10 w-auto object-contain"
+                className="h-16 w-auto object-contain"
               />
-              <div className="flex flex-col">
-                <span className="font-display text-xl text-foreground tracking-tight leading-none">
-                  AUTO <span className="text-primary">HAR</span>
-                </span>
-              </div>
             </Link>
             <p className="text-muted-foreground text-sm leading-relaxed">
               Piese auto originale din dezmembrări pentru toate mărcile. 
@@ -64,11 +59,15 @@ export const Footer = () => {
           <div>
             <h3 className="font-display text-base text-foreground mb-5">Contact</h3>
             <ul className="space-y-4">
-              <li className="flex items-center gap-3 text-sm text-muted-foreground group">
-                <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+              <li className="flex items-start gap-3 text-sm text-muted-foreground group">
+                <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors flex-shrink-0">
                   <Phone className="w-4 h-4 text-primary" />
                 </div>
-                <span>0749 707 694</span>
+                <div className="flex flex-col gap-1">
+                  <a href="tel:+40749707694" className="hover:text-primary transition-colors">0749 707 694</a>
+                  <a href="tel:+40748951120" className="hover:text-primary transition-colors">0748 951 120</a>
+                  <a href="tel:+40742934231" className="hover:text-primary transition-colors">0742 934 231</a>
+                </div>
               </li>
               <li className="flex items-center gap-3 text-sm text-muted-foreground group">
                 <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
