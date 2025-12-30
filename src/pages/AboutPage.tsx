@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Check, Award, Users, Globe, Handshake, MessageCircle, ArrowRight } from "lucide-react";
+import aboutHero from "@/assets/about-hero.jpg";
 
 const AboutPage = () => {
   return (
@@ -12,12 +13,21 @@ const AboutPage = () => {
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="font-display text-4xl md:text-5xl lg:text-6xl text-foreground mb-6">
-              Experiență de peste <span className="text-primary">25 ani</span>
+              Experiență de peste <span className="text-primary">15 ani</span>
             </h1>
-            <p className="text-muted-foreground text-lg leading-relaxed">
-              Cu o experiență de peste 25 de ani în domeniul pieselor auto din dezmembrări, 
+            <p className="text-muted-foreground text-lg leading-relaxed mb-10">
+              Cu o experiență de peste 15 de ani în domeniul pieselor auto din dezmembrări, 
               suntem partenerul de încredere pentru clienți din întreaga țară.
             </p>
+          </div>
+          
+          {/* Hero Image */}
+          <div className="max-w-4xl mx-auto mt-8">
+            <img 
+              src={aboutHero} 
+              alt="Depozit piese auto din dezmembrări Suceava" 
+              className="w-full h-64 md:h-80 object-cover rounded-2xl border border-border"
+            />
           </div>
         </div>
       </section>
@@ -44,7 +54,7 @@ const AboutPage = () => {
             </div>
             <div className="grid grid-cols-2 gap-4">
               {[
-                { value: "25+", label: "Ani de experiență" },
+                { value: "15+", label: "Ani de experiență" },
                 { value: "10K+", label: "Clienți mulțumiți" },
                 { value: "50K+", label: "Piese în stoc" },
                 { value: "4", label: "Țări de import" },
@@ -110,7 +120,7 @@ const AboutPage = () => {
         </div>
       </section>
 
-      {/* Import Countries */}
+      {/* Import Countries with Flags - visible on mobile and desktop */}
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
           <div className="text-center mb-14">
@@ -119,7 +129,7 @@ const AboutPage = () => {
             </h2>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 max-w-3xl mx-auto">
             {[
               { country: "Belgia", flag: "🇧🇪" },
               { country: "Spania", flag: "🇪🇸" },
@@ -128,10 +138,10 @@ const AboutPage = () => {
             ].map((item, index) => (
               <div
                 key={index}
-                className="bg-card p-6 rounded-2xl border border-border text-center hover:border-accent/50 hover-lift transition-all duration-300"
+                className="bg-card p-4 md:p-6 rounded-2xl border border-border text-center hover:border-accent/50 hover-lift transition-all duration-300"
               >
-                <div className="text-5xl mb-3">{item.flag}</div>
-                <div className="font-display text-lg text-foreground">{item.country}</div>
+                <div className="text-4xl md:text-5xl mb-2 md:mb-3">{item.flag}</div>
+                <div className="font-display text-sm md:text-lg text-foreground">{item.country}</div>
               </div>
             ))}
           </div>
@@ -150,7 +160,7 @@ const AboutPage = () => {
 
             <ul className="space-y-4">
               {[
-                "Experiență de peste 25 de ani în domeniul dezmembrărilor auto",
+                "Experiență de peste 15 de ani în domeniul dezmembrărilor auto",
                 "Piese originale, second-hand, în stare foarte bună de funcționare",
                 "Piesele beneficiază de garanție și posibilitatea returului în cazul în care piesa nu este compatibilă",
                 "Livrare rapidă în toată România prin curier",
