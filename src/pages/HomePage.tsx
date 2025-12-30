@@ -2,31 +2,47 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Check, Truck, Shield, Euro, Wrench, Car, Cog, MessageCircle, ArrowRight, Phone } from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
-const benefits = [{
-  icon: Euro,
-  title: "Prețuri Accesibile",
-  description: "Economisești față de piesele noi, cu aceeași calitate."
-}, {
-  icon: Shield,
-  title: "Piese Originale",
-  description: "Toate piesele sunt originale, provenite din autoturisme importate."
-}, {
-  icon: Truck,
-  title: "Livrare Rapidă",
-  description: "Livrăm în toată România în 24-48 ore prin curier."
-}, {
-  icon: Check,
-  title: "Garanție & Retur",
-  description: "Piesele beneficiază de garanție și posibilitatea returului în cazul în care piesa nu este compatibilă."
-}];
-const carBrands = ["Volkswagen", "Audi", "BMW", "Mercedes", "Opel", "Ford", "Renault", "Peugeot", "Skoda", "Seat", "Toyota", "Hyundai"];
+
+const benefits = [
+  {
+    icon: Euro,
+    title: "Prețuri Accesibile",
+    description: "Economisești față de piesele noi, cu aceeași calitate.",
+  },
+  {
+    icon: Shield,
+    title: "Piese Originale",
+    description: "Toate piesele sunt originale, provenite din autoturisme importate.",
+  },
+  {
+    icon: Truck,
+    title: "Livrare Rapidă",
+    description: "Livrăm în toată România în 24-48 ore prin curier.",
+  },
+  {
+    icon: Check,
+    title: "Garanție & Retur",
+    description: "Piesele beneficiază de garanție și posibilitatea returului în cazul în care piesa nu este compatibilă.",
+  },
+];
+
+const carBrands = [
+  "Volkswagen", "Audi", "BMW", "Mercedes", "Opel", "Ford",
+  "Renault", "Peugeot", "Skoda", "Seat", "Toyota", "Hyundai"
+];
+
 const HomePage = () => {
-  return <div className="min-h-screen">
+  return (
+    <div className="min-h-screen">
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         {/* Background */}
         <div className="absolute inset-0">
-          <img src={heroBg} alt="Piese auto din dezmembrări Suceava" className="w-full h-full object-cover" />
+          <img
+            src={heroBg}
+            alt="Piese auto din dezmembrări Suceava"
+            className="w-full h-full object-cover"
+          />
           <div className="hero-overlay absolute inset-0" />
         </div>
 
@@ -47,16 +63,12 @@ const HomePage = () => {
             <span className="text-gradient">Pentru Toate Mărcile</span>
           </h1>
           
-          <p className="text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto mb-10 animate-fade-up" style={{
-          animationDelay: "0.1s"
-        }}>
+          <p className="text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto mb-10 animate-fade-up" style={{ animationDelay: "0.1s" }}>
             Piese auto second-hand originale și garantate. 
             Găsește piesa potrivită la cel mai bun preț.
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-up" style={{
-          animationDelay: "0.2s"
-        }}>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-up" style={{ animationDelay: "0.2s" }}>
             <Button variant="hero" size="xl" asChild>
               <Link to="/contact">
                 Cere ofertă
@@ -72,25 +84,18 @@ const HomePage = () => {
           </div>
 
           {/* Quick stats */}
-          <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto animate-fade-up" style={{
-          animationDelay: "0.3s"
-        }}>
-            {[{
-            value: "15+",
-            label: "Ani experiență"
-          }, {
-            value: "10K+",
-            label: "Clienți mulțumiți"
-          }, {
-            value: "50K+",
-            label: "Piese în stoc"
-          }, {
-            value: "100%",
-            label: "Piese originale"
-          }].map((stat, index) => <div key={index} className="p-4 rounded-2xl bg-foreground/5 backdrop-blur-sm border border-foreground/10">
+          <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto animate-fade-up" style={{ animationDelay: "0.3s" }}>
+            {[
+              { value: "15+", label: "Ani experiență" },
+              { value: "10K+", label: "Clienți mulțumiți" },
+              { value: "50K+", label: "Piese în stoc" },
+              { value: "100%", label: "Piese originale" },
+            ].map((stat, index) => (
+              <div key={index} className="p-4 rounded-2xl bg-foreground/5 backdrop-blur-sm border border-foreground/10">
                 <div className="font-display text-3xl md:text-4xl text-accent">{stat.value}</div>
                 <div className="text-muted-foreground text-sm mt-1">{stat.label}</div>
-              </div>)}
+              </div>
+            ))}
           </div>
         </div>
 
@@ -115,7 +120,11 @@ const HomePage = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {benefits.map((benefit, index) => <div key={index} className="card-glass p-6 rounded-2xl border border-border/50 hover-lift group">
+            {benefits.map((benefit, index) => (
+              <div
+                key={index}
+                className="card-glass p-6 rounded-2xl border border-border/50 hover-lift group"
+              >
                 <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300">
                   <benefit.icon className="w-7 h-7 text-primary" />
                 </div>
@@ -125,7 +134,8 @@ const HomePage = () => {
                 <p className="text-muted-foreground text-sm leading-relaxed">
                   {benefit.description}
                 </p>
-              </div>)}
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -141,23 +151,16 @@ const HomePage = () => {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[{
-            icon: Cog,
-            title: "Piese Motor",
-            items: ["Motoare complete", "Injectoare", "Turbine", "Pompe"]
-          }, {
-            icon: Car,
-            title: "Transmisie",
-            items: ["Cutii de viteze", "Ambreiaje", "Cardane", "Diferențiale"]
-          }, {
-            icon: Shield,
-            title: "Caroserie",
-            items: ["Uși", "Capote", "Aripi", "Bare"]
-          }, {
-            icon: Wrench,
-            title: "Electronice",
-            items: ["ECU", "Senzori", "Calculatoare", "Module"]
-          }].map((category, index) => <div key={index} className="bg-card p-6 rounded-2xl border border-border hover:border-accent/50 transition-all duration-300 group hover-lift">
+            {[
+              { icon: Cog, title: "Piese Motor", items: ["Motoare complete", "Injectoare", "Turbine", "Pompe"] },
+              { icon: Car, title: "Transmisie", items: ["Cutii de viteze", "Ambreiaje", "Cardane", "Diferențiale"] },
+              { icon: Shield, title: "Caroserie", items: ["Uși", "Capote", "Aripi", "Bare"] },
+              { icon: Wrench, title: "Electronice", items: ["ECU", "Senzori", "Calculatoare", "Module"] },
+            ].map((category, index) => (
+              <div
+                key={index}
+                className="bg-card p-6 rounded-2xl border border-border hover:border-accent/50 transition-all duration-300 group hover-lift"
+              >
                 <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-accent to-accent/80 flex items-center justify-center mb-5">
                   <category.icon className="w-6 h-6 text-accent-foreground" />
                 </div>
@@ -165,12 +168,15 @@ const HomePage = () => {
                   {category.title}
                 </h3>
                 <ul className="space-y-2.5">
-                  {category.items.map((item, i) => <li key={i} className="flex items-center gap-2 text-sm text-muted-foreground">
+                  {category.items.map((item, i) => (
+                    <li key={i} className="flex items-center gap-2 text-sm text-muted-foreground">
                       <div className="w-1.5 h-1.5 rounded-full bg-accent" />
                       {item}
-                    </li>)}
+                    </li>
+                  ))}
                 </ul>
-              </div>)}
+              </div>
+            ))}
           </div>
 
           <div className="text-center mt-12">
@@ -191,9 +197,14 @@ const HomePage = () => {
             Mărci auto disponibile
           </h2>
           <div className="flex flex-wrap justify-center gap-3">
-            {carBrands.map((brand, index) => <div key={index} className="px-5 py-3 bg-secondary rounded-xl text-foreground text-sm font-medium hover:bg-accent hover:text-accent-foreground transition-all duration-300 cursor-default">
+            {carBrands.map((brand, index) => (
+              <div
+                key={index}
+                className="px-5 py-3 bg-secondary rounded-xl text-foreground text-sm font-medium hover:bg-accent hover:text-accent-foreground transition-all duration-300 cursor-default"
+              >
                 {brand}
-              </div>)}
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -212,7 +223,20 @@ const HomePage = () => {
           </p>
           
           {/* Phone numbers stacked vertically */}
-          
+          <div className="flex flex-col items-center gap-3 mb-10">
+            <a href="tel:0749707694" className="flex items-center gap-2 text-foreground hover:text-primary transition-colors">
+              <Phone className="w-5 h-5 text-primary" />
+              <span className="font-medium">0749 707 694</span>
+            </a>
+            <a href="tel:0748951120" className="flex items-center gap-2 text-foreground hover:text-primary transition-colors">
+              <Phone className="w-5 h-5 text-primary" />
+              <span className="font-medium">0748 951 120</span>
+            </a>
+            <a href="tel:0742934231" className="flex items-center gap-2 text-foreground hover:text-primary transition-colors">
+              <Phone className="w-5 h-5 text-primary" />
+              <span className="font-medium">0742 934 231</span>
+            </a>
+          </div>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Button variant="hero" size="xl" asChild>
@@ -230,6 +254,8 @@ const HomePage = () => {
           </div>
         </div>
       </section>
-    </div>;
+    </div>
+  );
 };
+
 export default HomePage;
