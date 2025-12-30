@@ -125,7 +125,7 @@ const ContactPage = () => {
                     <Phone className="w-5 h-5 text-primary" />
                   </div>
                   <div>
-                    <div className="text-muted-foreground text-xs uppercase tracking-wider">Telefon principal</div>
+                    <div className="text-muted-foreground text-xs uppercase tracking-wider">Telefon </div>
                     <div className="text-foreground font-medium">0749 707 694</div>
                   </div>
                 </a>
@@ -135,7 +135,7 @@ const ContactPage = () => {
                     <Phone className="w-5 h-5 text-primary" />
                   </div>
                   <div>
-                    <div className="text-muted-foreground text-xs uppercase tracking-wider">Telefon secundar</div>
+                    <div className="text-muted-foreground text-xs uppercase tracking-wider">Telefon</div>
                     <div className="text-foreground font-medium">0748 951 120</div>
                   </div>
                 </a>
