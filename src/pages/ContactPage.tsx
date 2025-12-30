@@ -5,6 +5,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { Phone, Mail, MapPin, Clock, MessageCircle, Send } from "lucide-react";
 import { z } from "zod";
+import contactHero from "@/assets/contact-hero.jpg";
 
 const formSchema = z.object({
   name: z.string().trim().min(2, "Numele trebuie să aibă minim 2 caractere").max(100, "Numele este prea lung"),
@@ -95,9 +96,18 @@ const ContactPage = () => {
             <h1 className="font-display text-4xl md:text-5xl lg:text-6xl text-foreground mb-6">
               <span className="text-primary">Contactează</span>-ne
             </h1>
-            <p className="text-muted-foreground text-lg leading-relaxed">
+            <p className="text-muted-foreground text-lg leading-relaxed mb-10">
               Ai nevoie de o piesă auto? Trimite-ne o cerere și îți răspundem în cel mai scurt timp.
             </p>
+          </div>
+          
+          {/* Hero Image */}
+          <div className="max-w-4xl mx-auto mt-4">
+            <img 
+              src={contactHero} 
+              alt="Contact Auto Har Suceava" 
+              className="w-full h-64 md:h-80 object-cover rounded-2xl border border-border"
+            />
           </div>
         </div>
       </section>
@@ -116,7 +126,7 @@ const ContactPage = () => {
               </div>
 
               <div className="space-y-4">
-                <a href="tel:+40749707694" className="flex items-center gap-4 p-4 bg-card rounded-2xl border border-border hover:border-primary/50 transition-all duration-300 group">
+                <a href="tel:0749707694" className="flex items-center gap-4 p-4 bg-card rounded-2xl border border-border hover:border-primary/50 transition-all duration-300 group">
                   <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center group-hover:scale-110 transition-transform">
                     <Phone className="w-5 h-5 text-primary" />
                   </div>
@@ -126,13 +136,23 @@ const ContactPage = () => {
                   </div>
                 </a>
 
-                <a href="tel:+40748951120" className="flex items-center gap-4 p-4 bg-card rounded-2xl border border-border hover:border-primary/50 transition-all duration-300 group">
+                <a href="tel:0748951120" className="flex items-center gap-4 p-4 bg-card rounded-2xl border border-border hover:border-primary/50 transition-all duration-300 group">
                   <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center group-hover:scale-110 transition-transform">
                     <Phone className="w-5 h-5 text-primary" />
                   </div>
                   <div>
                     <div className="text-muted-foreground text-xs uppercase tracking-wider">Telefon secundar</div>
                     <div className="text-foreground font-medium">0748 951 120</div>
+                  </div>
+                </a>
+
+                <a href="tel:0742934231" className="flex items-center gap-4 p-4 bg-card rounded-2xl border border-border hover:border-primary/50 transition-all duration-300 group">
+                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <Phone className="w-5 h-5 text-primary" />
+                  </div>
+                  <div>
+                    <div className="text-muted-foreground text-xs uppercase tracking-wider">Telefon</div>
+                    <div className="text-foreground font-medium">0742 934 231</div>
                   </div>
                 </a>
 
@@ -342,7 +362,7 @@ const ContactPage = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button variant="outline" size="lg" asChild>
-              <a href="tel:+40749707694">
+              <a href="tel:0749707694">
                 <Phone className="w-5 h-5" />
                 Sună acum
               </a>

@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Check, Cog, Car, Wrench, Cpu, Settings, MessageCircle, ArrowRight } from "lucide-react";
+import partsHero from "@/assets/parts-hero.jpg";
 
 const partsCategories = [
   {
@@ -106,6 +107,15 @@ const PartsPage = () => {
                 </a>
               </Button>
             </div>
+          </div>
+          
+          {/* Hero Image */}
+          <div className="max-w-4xl mx-auto mt-10">
+            <img 
+              src={partsHero} 
+              alt="Depozit piese auto din dezmembrări" 
+              className="w-full h-64 md:h-80 object-cover rounded-2xl border border-border"
+            />
           </div>
         </div>
       </section>

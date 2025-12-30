@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Check, Truck, Shield, Euro, Wrench, Car, Cog, MessageCircle, ArrowRight } from "lucide-react";
+import { Check, Truck, Shield, Euro, Wrench, Car, Cog, MessageCircle, ArrowRight, Phone } from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
 
 const benefits = [
@@ -86,7 +86,7 @@ const HomePage = () => {
           {/* Quick stats */}
           <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto animate-fade-up" style={{ animationDelay: "0.3s" }}>
             {[
-              { value: "25+", label: "Ani experiență" },
+              { value: "15+", label: "Ani experiență" },
               { value: "10K+", label: "Clienți mulțumiți" },
               { value: "50K+", label: "Piese în stoc" },
               { value: "100%", label: "Piese originale" },
@@ -99,10 +99,12 @@ const HomePage = () => {
           </div>
         </div>
 
-        {/* Animated car icon */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-float">
-          <div className="w-16 h-16 rounded-full bg-accent/20 backdrop-blur-sm flex items-center justify-center border border-accent/30">
-            <Car className="w-8 h-8 text-accent" />
+        {/* Animated car icon - perfectly centered */}
+        <div className="absolute bottom-8 left-0 right-0 flex justify-center">
+          <div className="animate-float">
+            <div className="w-16 h-16 rounded-full bg-accent/20 backdrop-blur-sm flex items-center justify-center border border-accent/30">
+              <Car className="w-8 h-8 text-accent" />
+            </div>
           </div>
         </div>
       </section>
@@ -207,7 +209,7 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
+      {/* CTA Section with Contact Info */}
       <section className="py-24 bg-background relative overflow-hidden">
         <div className="absolute inset-0">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[150px]" />
@@ -216,9 +218,26 @@ const HomePage = () => {
           <h2 className="font-display text-3xl md:text-5xl text-foreground mb-6">
             Ai nevoie de o <span className="text-gradient">piesă auto</span>?
           </h2>
-          <p className="text-muted-foreground max-w-xl mx-auto mb-10 text-lg">
+          <p className="text-muted-foreground max-w-xl mx-auto mb-8 text-lg">
             Trimite-ne o cerere de ofertă și îți răspundem în cel mai scurt timp cu cel mai bun preț.
           </p>
+          
+          {/* Phone numbers stacked vertically */}
+          <div className="flex flex-col items-center gap-3 mb-10">
+            <a href="tel:0749707694" className="flex items-center gap-2 text-foreground hover:text-primary transition-colors">
+              <Phone className="w-5 h-5 text-primary" />
+              <span className="font-medium">0749 707 694</span>
+            </a>
+            <a href="tel:0748951120" className="flex items-center gap-2 text-foreground hover:text-primary transition-colors">
+              <Phone className="w-5 h-5 text-primary" />
+              <span className="font-medium">0748 951 120</span>
+            </a>
+            <a href="tel:0742934231" className="flex items-center gap-2 text-foreground hover:text-primary transition-colors">
+              <Phone className="w-5 h-5 text-primary" />
+              <span className="font-medium">0742 934 231</span>
+            </a>
+          </div>
+
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Button variant="hero" size="xl" asChild>
               <Link to="/contact">
