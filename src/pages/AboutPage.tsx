@@ -2,10 +2,8 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Check, Award, Users, Globe, Handshake, MessageCircle, ArrowRight } from "lucide-react";
 import aboutHero from "@/assets/about-hero.jpg";
-
 const AboutPage = () => {
-  return (
-    <div className="min-h-screen pt-20">
+  return <div className="min-h-screen pt-20">
       {/* Hero */}
       <section className="py-20 md:py-28 bg-card relative overflow-hidden">
         <div className="absolute top-0 right-0 w-96 h-96 bg-primary/10 rounded-full blur-[120px]" />
@@ -23,11 +21,7 @@ const AboutPage = () => {
           
           {/* Hero Image */}
           <div className="max-w-4xl mx-auto mt-8">
-            <img 
-              src={aboutHero} 
-              alt="Depozit piese auto din dezmembrări Suceava" 
-              className="w-full h-64 md:h-80 object-cover rounded-2xl border border-border"
-            />
+            
           </div>
         </div>
       </section>
@@ -53,20 +47,22 @@ const AboutPage = () => {
               </div>
             </div>
             <div className="grid grid-cols-2 gap-4">
-              {[
-                { value: "15+", label: "Ani de experiență" },
-                { value: "10K+", label: "Clienți mulțumiți" },
-                { value: "50K+", label: "Piese în stoc" },
-                { value: "4", label: "Țări de import" },
-              ].map((stat, index) => (
-                <div
-                  key={index}
-                  className="bg-card p-6 rounded-2xl border border-border text-center hover-lift"
-                >
+              {[{
+              value: "15+",
+              label: "Ani de experiență"
+            }, {
+              value: "10K+",
+              label: "Clienți mulțumiți"
+            }, {
+              value: "50K+",
+              label: "Piese în stoc"
+            }, {
+              value: "4",
+              label: "Țări de import"
+            }].map((stat, index) => <div key={index} className="bg-card p-6 rounded-2xl border border-border text-center hover-lift">
                   <div className="font-display text-4xl text-primary mb-2">{stat.value}</div>
                   <div className="text-muted-foreground text-sm">{stat.label}</div>
-                </div>
-              ))}
+                </div>)}
             </div>
           </div>
         </div>
@@ -83,39 +79,29 @@ const AboutPage = () => {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              {
-                icon: Award,
-                title: "Calitate",
-                description: "Piese auto originale din dezmembrări, selectate pentru a oferi un raport corect între preț și funcționalitate.",
-              },
-              {
-                icon: Handshake,
-                title: "Seriozitate",
-                description: "Respectăm fiecare angajament și livrăm la timp.",
-              },
-              {
-                icon: Users,
-                title: "Suport",
-                description: "Suntem disponibili pentru informații rapide și comunicare eficientă pe tot parcursul procesului de comandă.",
-              },
-              {
-                icon: Globe,
-                title: "Transparență",
-                description: "Prețuri corecte și informații complete despre fiecare piesă.",
-              },
-            ].map((value, index) => (
-              <div
-                key={index}
-                className="card-glass p-6 rounded-2xl border border-border/50 hover-lift group text-center"
-              >
+            {[{
+            icon: Award,
+            title: "Calitate",
+            description: "Piese auto originale din dezmembrări, selectate pentru a oferi un raport corect între preț și funcționalitate."
+          }, {
+            icon: Handshake,
+            title: "Seriozitate",
+            description: "Respectăm fiecare angajament și livrăm la timp."
+          }, {
+            icon: Users,
+            title: "Suport",
+            description: "Suntem disponibili pentru informații rapide și comunicare eficientă pe tot parcursul procesului de comandă."
+          }, {
+            icon: Globe,
+            title: "Transparență",
+            description: "Prețuri corecte și informații complete despre fiecare piesă."
+          }].map((value, index) => <div key={index} className="card-glass p-6 rounded-2xl border border-border/50 hover-lift group text-center">
                 <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-accent/20 to-accent/5 flex items-center justify-center mx-auto mb-5 group-hover:scale-110 transition-transform duration-300">
                   <value.icon className="w-8 h-8 text-accent" />
                 </div>
                 <h3 className="font-display text-xl text-foreground mb-2">{value.title}</h3>
                 <p className="text-muted-foreground text-sm">{value.description}</p>
-              </div>
-            ))}
+              </div>)}
           </div>
         </div>
       </section>
@@ -130,20 +116,22 @@ const AboutPage = () => {
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 max-w-3xl mx-auto">
-            {[
-              { country: "Belgia", flag: "🇧🇪" },
-              { country: "Spania", flag: "🇪🇸" },
-              { country: "Germania", flag: "🇩🇪" },
-              { country: "Italia", flag: "🇮🇹" },
-            ].map((item, index) => (
-              <div
-                key={index}
-                className="bg-card p-4 md:p-6 rounded-2xl border border-border text-center hover:border-accent/50 hover-lift transition-all duration-300"
-              >
+            {[{
+            country: "Belgia",
+            flag: "🇧🇪"
+          }, {
+            country: "Spania",
+            flag: "🇪🇸"
+          }, {
+            country: "Germania",
+            flag: "🇩🇪"
+          }, {
+            country: "Italia",
+            flag: "🇮🇹"
+          }].map((item, index) => <div key={index} className="bg-card p-4 md:p-6 rounded-2xl border border-border text-center hover:border-accent/50 hover-lift transition-all duration-300">
                 <div className="text-4xl md:text-5xl mb-2 md:mb-3">{item.flag}</div>
                 <div className="font-display text-sm md:text-lg text-foreground">{item.country}</div>
-              </div>
-            ))}
+              </div>)}
           </div>
         </div>
       </section>
@@ -159,24 +147,12 @@ const AboutPage = () => {
             </div>
 
             <ul className="space-y-4">
-              {[
-                "Experiență de peste 15 de ani în domeniul dezmembrărilor auto",
-                "Piese originale, second-hand, în stare foarte bună de funcționare",
-                "Piesele beneficiază de garanție și posibilitatea returului în cazul în care piesa nu este compatibilă",
-                "Livrare rapidă în toată România prin curier",
-                "Stoc vast de piese pentru cele mai populare mărci auto",
-                "Suport clienți disponibil prin telefon, email și WhatsApp",
-              ].map((item, index) => (
-                <li
-                  key={index}
-                  className="flex items-start gap-4 p-4 bg-background rounded-xl border border-border hover:border-accent/30 transition-colors"
-                >
+              {["Experiență de peste 15 de ani în domeniul dezmembrărilor auto", "Piese originale, second-hand, în stare foarte bună de funcționare", "Piesele beneficiază de garanție și posibilitatea returului în cazul în care piesa nu este compatibilă", "Livrare rapidă în toată România prin curier", "Stoc vast de piese pentru cele mai populare mărci auto", "Suport clienți disponibil prin telefon, email și WhatsApp"].map((item, index) => <li key={index} className="flex items-start gap-4 p-4 bg-background rounded-xl border border-border hover:border-accent/30 transition-colors">
                   <div className="w-6 h-6 rounded-lg bg-gradient-to-br from-accent to-accent/80 flex items-center justify-center flex-shrink-0">
                     <Check className="w-4 h-4 text-accent-foreground" />
                   </div>
                   <span className="text-foreground">{item}</span>
-                </li>
-              ))}
+                </li>)}
             </ul>
           </div>
         </div>
@@ -210,8 +186,6 @@ const AboutPage = () => {
           </div>
         </div>
       </section>
-    </div>
-  );
+    </div>;
 };
-
 export default AboutPage;
