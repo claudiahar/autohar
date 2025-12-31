@@ -23,9 +23,9 @@ export const Header = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
-          <Link to="/" className="flex flex-col items-center gap-1 group">
-            <img src={logo} alt="Auto Har - Dezmembrări Suceava" className="h-8 md:h-10 w-auto object-contain" />
-            <span className="text-[9px] md:text-[10px] text-muted-foreground tracking-widest uppercase">Piese auto Suceava</span>
+          <Link to="/" className="flex items-center gap-3 group">
+            <img src={logo} alt="Auto Har - Dezmembrări Suceava" className="h-10 md:h-12 w-auto object-contain" />
+            <span className="text-lg md:text-xl font-bold text-foreground tracking-tight">Dezmembrări Suceava</span>
           </Link>
 
           {/* Desktop Navigation */}
