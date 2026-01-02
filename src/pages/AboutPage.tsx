@@ -117,21 +117,27 @@ const AboutPage = () => {
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 max-w-3xl mx-auto">
             {[{
-            country: "Belgia",
-            flag: "🇧🇪"
-          }, {
-            country: "Spania",
-            flag: "🇪🇸"
-          }, {
-            country: "Germania",
-            flag: "🇩🇪"
-          }, {
-            country: "Italia",
-            flag: "🇮🇹"
-          }].map((item, index) => <div key={index} className="bg-card p-4 md:p-6 rounded-2xl border border-border text-center hover:border-accent/50 hover-lift transition-all duration-300">
-                <div className="text-4xl md:text-5xl mb-2 md:mb-3">{item.flag}</div>
+              country: "Belgia",
+              flag: "https://flagcdn.com/w80/be.png"
+            }, {
+              country: "Spania",
+              flag: "https://flagcdn.com/w80/es.png"
+            }, {
+              country: "Germania",
+              flag: "https://flagcdn.com/w80/de.png"
+            }, {
+              country: "Italia",
+              flag: "https://flagcdn.com/w80/it.png"
+            }].map((item, index) => (
+              <div key={index} className="bg-card p-4 md:p-6 rounded-2xl border border-border text-center hover:border-accent/50 hover-lift transition-all duration-300">
+                <img 
+                  src={item.flag} 
+                  alt={`Steag ${item.country}`} 
+                  className="w-12 h-8 md:w-16 md:h-12 object-cover rounded mx-auto mb-2 md:mb-3 shadow-sm"
+                />
                 <div className="font-display text-sm md:text-lg text-foreground">{item.country}</div>
-              </div>)}
+              </div>
+            ))}
           </div>
         </div>
       </section>
