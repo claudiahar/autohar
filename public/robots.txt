@@ -13,4 +13,4 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://autohar.ro/sitemap.xml
+Sitemap: https://pieseautohar.ro/sitemap.xml
