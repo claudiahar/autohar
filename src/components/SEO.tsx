@@ -19,7 +19,7 @@ export const SEO = ({
   image = '/og-image.jpg',
   jsonLd
 }: SEOProps) => {
-  const siteUrl = 'https://autohar.ro';
+  const siteUrl = 'https://pieseautohar.ro';
   const fullCanonical = canonical ? `${siteUrl}${canonical}` : siteUrl;
   const fullTitle = `${title} | Auto Har - Dezmembrări Auto Suceava`;
 
@@ -75,7 +75,7 @@ export const localBusinessJsonLd = {
   "name": "Auto Har - Piese Auto din Dezmembrări",
   "alternateName": "Auto Har Suceava",
   "description": "Piese auto din dezmembrări Suceava - piese originale second-hand pentru toate mărcile. Import din Belgia, Spania, Germania, Italia. Garanție și livrare rapidă.",
-  "url": "https://autohar.ro",
+  "url": "https://pieseautohar.ro",
   "telephone": ["+40749707694", "+40748951120", "+40742934231"],
   "email": "autohargrup@gmail.com",
   "address": {
