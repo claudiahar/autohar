@@ -4,7 +4,10 @@ import path from "path";
 import { componentTagger } from "lovable-tagger";
 
 export default defineConfig(({ mode }) => ({
-  base: "/",
+  base: "/", // IMPORTANT pentru domeniu personalizat
+  build: {
+    outDir: "dist",
+  },
   server: {
     host: "::",
     port: 8080,
@@ -17,9 +20,5 @@ export default defineConfig(({ mode }) => ({
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
-  },
-  build: {
-    outDir: "docs",
-    emptyOutDir: true,
   },
 }));
