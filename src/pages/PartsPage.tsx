@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Check, Cog, Car, Wrench, Cpu, Settings, MessageCircle, ArrowRight } from "lucide-react";
+import { SEO, localBusinessJsonLd } from "@/components/SEO";
 import partsHero from "@/assets/parts-hero.jpg";
 const partsCategories = [{
   icon: Cog,
@@ -30,7 +31,16 @@ const partsCategories = [{
 }];
 const brands = ["Volkswagen", "Audi", "BMW", "Mercedes-Benz", "Opel", "Ford", "Renault", "Peugeot", "Citroën", "Skoda", "Seat", "Toyota", "Honda", "Mazda", "Hyundai", "Kia", "Volvo", "Fiat", "Alfa Romeo", "Dacia"];
 const PartsPage = () => {
-  return <div className="min-h-screen pt-20">
+  return (
+    <>
+      <SEO
+        title="Piese Auto din Dezmembrări - Catalog Complet"
+        description="Piese auto second-hand originale din dezmembrări Suceava: motoare, cutii de viteze, caroserie, electronice. Stoc vast pentru VW, Audi, BMW, Mercedes, Opel, Ford. Garanție și livrare rapidă."
+        keywords="piese auto second-hand Suceava, piese motor dezmembrări, cutii de viteze second-hand, piese caroserie, electronice auto, piese VW, piese Audi, piese BMW"
+        canonical="/piese-auto"
+        jsonLd={localBusinessJsonLd}
+      />
+      <div className="min-h-screen pt-20">
       {/* Hero */}
       <section className="py-20 md:py-28 bg-card relative overflow-hidden">
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-[120px]" />
@@ -194,6 +204,8 @@ const PartsPage = () => {
           </div>
         </div>
       </section>
-    </div>;
+      </div>
+    </>
+  );
 };
 export default PartsPage;

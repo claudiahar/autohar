@@ -1,9 +1,20 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Check, Award, Users, Globe, Handshake, MessageCircle, ArrowRight } from "lucide-react";
+import { SEO, localBusinessJsonLd } from "@/components/SEO";
 import aboutHero from "@/assets/about-hero.jpg";
+
 const AboutPage = () => {
-  return <div className="min-h-screen pt-20">
+  return (
+    <>
+      <SEO
+        title="Despre Noi - Dezmembrări Auto cu Experiență de 15+ Ani"
+        description="Auto Har - dezmembrări auto Suceava cu peste 15 ani experiență. Importăm piese auto din Belgia, Spania, Germania și Italia. Piese originale second-hand cu garanție."
+        keywords="dezmembrări auto Suceava, Auto Har, piese auto originale, import piese auto Europa, piese second-hand garanție"
+        canonical="/despre-noi"
+        jsonLd={localBusinessJsonLd}
+      />
+      <div className="min-h-screen pt-20">
       {/* Hero */}
       <section className="py-20 md:py-28 bg-card relative overflow-hidden">
         <div className="absolute top-0 right-0 w-96 h-96 bg-primary/10 rounded-full blur-[120px]" />
@@ -192,6 +203,8 @@ const AboutPage = () => {
           </div>
         </div>
       </section>
-    </div>;
+      </div>
+    </>
+  );
 };
 export default AboutPage;

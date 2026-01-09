@@ -5,6 +5,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { Phone, Mail, MapPin, Clock, MessageCircle, Send } from "lucide-react";
 import { z } from "zod";
+import { SEO, localBusinessJsonLd } from "@/components/SEO";
 import contactHero from "@/assets/contact-hero.jpg";
 const formSchema = z.object({
   name: z.string().trim().min(2, "Numele trebuie să aibă minim 2 caractere").max(100, "Numele este prea lung"),
@@ -84,7 +85,16 @@ const ContactPage = () => {
       setIsSubmitting(false);
     }
   };
-  return <div className="min-h-screen pt-20">
+  return (
+    <>
+      <SEO
+        title="Contact - Cere Ofertă pentru Piese Auto"
+        description="Contactează Auto Har pentru piese auto din dezmembrări Suceava. Telefon: 0749 707 694. Adresă: Strada Traian Popovici 156, Suceava. Răspundem rapid la cereri!"
+        keywords="contact dezmembrări auto Suceava, telefon piese auto Suceava, adresa Auto Har, cere oferta piese auto"
+        canonical="/contact"
+        jsonLd={localBusinessJsonLd}
+      />
+      <div className="min-h-screen pt-20">
       {/* Hero */}
       <section className="py-20 md:py-28 bg-card relative overflow-hidden">
         <div className="absolute top-0 right-1/4 w-96 h-96 bg-primary/10 rounded-full blur-[120px]" />
@@ -343,6 +353,8 @@ const ContactPage = () => {
           </div>
         </div>
       </section>
-    </div>;
+      </div>
+    </>
+  );
 };
 export default ContactPage;
