@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Check, Truck, Shield, Euro, Wrench, Car, Cog, MessageCircle, ArrowRight, Phone } from "lucide-react";
+import { SEO, localBusinessJsonLd } from "@/components/SEO";
 import heroBg from "@/assets/hero-bg.jpg";
+
 const benefits = [{
   icon: Euro,
   title: "Prețuri Accesibile",
@@ -19,9 +21,20 @@ const benefits = [{
   title: "Garanție & Retur",
   description: "Piesele beneficiază de garanție și posibilitatea returului în cazul în care piesa nu este compatibilă."
 }];
+
 const carBrands = ["Volkswagen", "Audi", "BMW", "Mercedes", "Opel", "Ford", "Renault", "Peugeot", "Skoda", "Seat", "Toyota", "Hyundai"];
+
 const HomePage = () => {
-  return <div className="min-h-screen">
+  return (
+    <>
+      <SEO
+        title="Piese Auto din Dezmembrări Suceava"
+        description="Piese auto din dezmembrări Suceava - Auto Har oferă piese originale second-hand pentru toate mărcile. Import din Belgia, Spania, Germania, Italia. Garanție și livrare rapidă în toată România."
+        keywords="piese auto din dezmembrări Suceava, dezmembrări auto Suceava, piese auto second-hand Suceava, piese auto originale din dezmembrări, piese auto Suceava, Auto Har"
+        canonical="/"
+        jsonLd={localBusinessJsonLd}
+      />
+      <div className="min-h-screen">
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         {/* Background */}
@@ -230,6 +243,8 @@ const HomePage = () => {
           </div>
         </div>
       </section>
-    </div>;
+      </div>
+    </>
+  );
 };
 export default HomePage;
