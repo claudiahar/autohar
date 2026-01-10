@@ -1,54 +1,116 @@
 <!doctype html>
 <html lang="ro">
   <head>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-806DL60HS1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-806DL60HS1');
-</script>
-    
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>Piese Auto din Dezmembrări Suceava | Auto Har - Piese Originale Second-Hand</title>
+
     <meta name="description" content="Piese auto din dezmembrări Suceava - Auto Har oferă piese originale second-hand pentru toate mărcile. Import din Belgia, Spania, Germania, Italia. Garanție și livrare rapidă." />
     <meta name="author" content="Auto Har" />
     <meta name="keywords" content="piese auto din dezmembrări Suceava, dezmembrări auto Suceava, piese auto second-hand Suceava, piese auto originale din dezmembrări, piese auto Suceava" />
-    
+
     <!-- Indexing -->
-    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="robots" content="index, follow" />
     <meta name="googlebot" content="index, follow" />
-    
+
     <!-- Open Graph -->
     <meta property="og:title" content="Piese Auto din Dezmembrări Suceava | Auto Har" />
-    <meta property="og:description" content="Piese auto originale second-hand pentru toate mărcile. Import din Europa, garanție și livrare rapidă în toată România." />
+    <meta property="og:description" content="Piese auto originale second-hand pentru toate mărcile. Import din Europa, garanție și livrare rapidă." />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="ro_RO" />
-    <meta property="og:site_name" content="Auto Har - Piese Auto din Dezmembrări" />
+    <meta property="og:site_name" content="Auto Har" />
     <meta property="og:url" content="https://pieseautohar.ro" />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Piese Auto din Dezmembrări Suceava | Auto Har" />
-    <meta name="twitter:description" content="Piese auto originale second-hand pentru toate mărcile. Import din Europa, garanție și livrare rapidă." />
 
-    <!-- Geo Tags for Local SEO -->
+    <!-- Local SEO -->
     <meta name="geo.region" content="RO-SV" />
     <meta name="geo.placename" content="Suceava" />
     <meta name="geo.position" content="47.6517;26.2458" />
     <meta name="ICBM" content="47.6517, 26.2458" />
 
     <link rel="canonical" href="https://pieseautohar.ro" />
-    
-    <!-- Preconnect for performance -->
+
+    <!-- Performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Google Analytics – încărcat DOAR după accept cookies -->
+    <script>
+      function loadGoogleAnalytics() {
+        if (window.gaLoaded) return;
+        window.gaLoaded = true;
+
+        const s = document.createElement("script");
+        s.async = true;
+        s.src = "https://www.googletagmanager.com/gtag/js?id=G-806DL60HS1";
+        document.head.appendChild(s);
+
+        s.onload = () => {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          window.gtag = gtag;
+          gtag("js", new Date());
+          gtag("config", "G-806DL60HS1");
+        };
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        if (localStorage.getItem("cookiesAccepted") === "true") {
+          loadGoogleAnalytics();
+        }
+      });
+    </script>
   </head>
 
   <body>
+    <!-- Cookie Banner GDPR -->
+    <div id="cookie-banner" style="
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: #1f2937;
+      color: #ffffff;
+      padding: 14px;
+      font-size: 14px;
+      display: none;
+      z-index: 9999;
+      text-align: center;
+    ">
+      Acest site folosește cookie-uri pentru analiză și funcționalitate.
+      <button id="accept-cookies" style="
+        margin-left: 12px;
+        background: #dc2626;
+        color: #fff;
+        border: none;
+        padding: 8px 14px;
+        border-radius: 4px;
+        cursor: pointer;
+      ">
+        Accept
+      </button>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const banner = document.getElementById("cookie-banner");
+        const btn = document.getElementById("accept-cookies");
+
+        if (!localStorage.getItem("cookiesAccepted")) {
+          banner.style.display = "block";
+        }
+
+        btn.addEventListener("click", function () {
+          localStorage.setItem("cookiesAccepted", "true");
+          banner.style.display = "none";
+          loadGoogleAnalytics();
+        });
+      });
+    </script>
+
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
