@@ -79,7 +79,14 @@ export const Footer = () => {
                 <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors flex-shrink-0">
                   <MapPin className="w-4 h-4 text-primary" />
                 </div>
-                <span>Strada Traian Popovici 156, Suceava</span>
+                <a 
+                  href="https://www.google.com/maps/search/?api=1&query=Strada+Traian+Popovici+156,+Suceava,+Romania" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="hover:text-primary transition-colors"
+                >
+                  Strada Traian Popovici 156, Suceava
+                </a>
               </li>
             </ul>
           </div>
