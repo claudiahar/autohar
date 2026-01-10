@@ -130,7 +130,7 @@ const ContactPage = () => {
               </div>
 
               <div className="space-y-4">
-                <a href="tel:0749707694" className="flex items-center gap-4 p-4 bg-card rounded-2xl border border-border hover:border-primary/50 transition-all duration-300 group">
+                <a href="tel:+40749707694" className="flex items-center gap-4 p-4 bg-card rounded-2xl border border-border hover:border-primary/50 transition-all duration-300 group">
                   <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center group-hover:scale-110 transition-transform">
                     <Phone className="w-5 h-5 text-primary" />
                   </div>
@@ -140,7 +140,7 @@ const ContactPage = () => {
                   </div>
                 </a>
 
-                <a href="tel:0748951120" className="flex items-center gap-4 p-4 bg-card rounded-2xl border border-border hover:border-primary/50 transition-all duration-300 group">
+                <a href="tel:+40748951120" className="flex items-center gap-4 p-4 bg-card rounded-2xl border border-border hover:border-primary/50 transition-all duration-300 group">
                   <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center group-hover:scale-110 transition-transform">
                     <Phone className="w-5 h-5 text-primary" />
                   </div>
@@ -150,7 +150,7 @@ const ContactPage = () => {
                   </div>
                 </a>
 
-                <a href="tel:0742934231" className="flex items-center gap-4 p-4 bg-card rounded-2xl border border-border hover:border-primary/50 transition-all duration-300 group">
+                <a href="tel:+40742934231" className="flex items-center gap-4 p-4 bg-card rounded-2xl border border-border hover:border-primary/50 transition-all duration-300 group">
                   <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center group-hover:scale-110 transition-transform">
                     <Phone className="w-5 h-5 text-primary" />
                   </div>
@@ -339,7 +339,7 @@ const ContactPage = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button variant="outline" size="lg" asChild>
-              <a href="tel:0749707694">
+              <a href="tel:+40749707694">
                 <Phone className="w-5 h-5" />
                 Sună acum
               </a>
