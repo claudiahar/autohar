@@ -48,10 +48,10 @@ export const Footer = () => {
           <div>
             <h3 className="font-display text-base text-foreground mb-5">Categorii piese</h3>
             <ul className="space-y-3 text-sm text-muted-foreground">
-              <li className="hover:text-accent transition-colors cursor-default">Piese motor</li>
-              <li className="hover:text-accent transition-colors cursor-default">Cutii de viteze</li>
-              <li className="hover:text-accent transition-colors cursor-default">Elemente caroserie</li>
-              <li className="hover:text-accent transition-colors cursor-default">Electronice & senzori</li>
+              <li>Piese motor</li>
+              <li>Cutii de viteze</li>
+              <li>Elemente caroserie</li>
+              <li>Electronice & senzori</li>
             </ul>
           </div>
 
