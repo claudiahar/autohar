@@ -89,7 +89,7 @@ const ContactPage = () => {
     <>
       <SEO
         title="Contact - Cere Ofertă pentru Piese Auto"
-        description="Contactează Auto Har pentru piese auto din dezmembrări Suceava. Telefon: 0749 707 694. Adresă: Strada Traian Popovici 156, Suceava. Răspundem rapid la cereri!"
+        description="Contactează Auto Har pentru piese auto din dezmembrări Suceava. Telefon: +40 749 707 694. Adresă: Strada Traian Popovici 156, Suceava. Răspundem rapid la cereri!"
         keywords="contact dezmembrări auto Suceava, telefon piese auto Suceava, adresa Auto Har, cere oferta piese auto"
         canonical="/contact"
         jsonLd={localBusinessJsonLd}
@@ -136,7 +136,7 @@ const ContactPage = () => {
                   </div>
                   <div>
                     <div className="text-muted-foreground text-xs uppercase tracking-wider">Telefon </div>
-                    <div className="text-foreground font-medium">0749 707 694</div>
+                    <div className="text-foreground font-medium">+40 749 707 694</div>
                   </div>
                 </a>
 
@@ -146,7 +146,7 @@ const ContactPage = () => {
                   </div>
                   <div>
                     <div className="text-muted-foreground text-xs uppercase tracking-wider">Telefon</div>
-                    <div className="text-foreground font-medium">0748 951 120</div>
+                    <div className="text-foreground font-medium">+40 748 951 120</div>
                   </div>
                 </a>
 
@@ -156,7 +156,7 @@ const ContactPage = () => {
                   </div>
                   <div>
                     <div className="text-muted-foreground text-xs uppercase tracking-wider">Telefon</div>
-                    <div className="text-foreground font-medium">0742 934 231</div>
+                    <div className="text-foreground font-medium">+40 742 934 231</div>
                   </div>
                 </a>
 
@@ -166,7 +166,7 @@ const ContactPage = () => {
                   </div>
                   <div>
                     <div className="text-muted-foreground text-xs uppercase tracking-wider">WhatsApp</div>
-                    <div className="text-foreground font-medium">0749 707 694</div>
+                    <div className="text-foreground font-medium">+40 749 707 694</div>
                   </div>
                 </a>
 
@@ -232,7 +232,7 @@ const ContactPage = () => {
                       <label className="block text-sm text-muted-foreground mb-2">
                         Telefon *
                       </label>
-                      <Input name="phone" value={formData.phone} onChange={handleChange} placeholder="0721 234 567" className={`rounded-xl h-12 ${errors.phone ? "border-destructive" : ""}`} />
+                      <Input name="phone" value={formData.phone} onChange={handleChange} placeholder="+40 721 234 567" className={`rounded-xl h-12 ${errors.phone ? "border-destructive" : ""}`} />
                       {errors.phone && <p className="text-destructive text-sm mt-1">{errors.phone}</p>}
                     </div>
                   </div>
