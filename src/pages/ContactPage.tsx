@@ -7,6 +7,7 @@ import { Phone, Mail, MapPin, Clock, MessageCircle, Send } from "lucide-react";
 import { z } from "zod";
 import { SEO, localBusinessJsonLd } from "@/components/SEO";
 import contactHero from "@/assets/contact-hero.jpg";
+import { supabase } from "@/integrations/supabase/client";
 const formSchema = z.object({
   name: z.string().trim().min(2, "Numele trebuie să aibă minim 2 caractere").max(100, "Numele este prea lung"),
   phone: z.string().trim().min(10, "Numărul de telefon nu este valid").max(15, "Numărul de telefon este prea lung"),
@@ -55,7 +56,16 @@ const ContactPage = () => {
     setIsSubmitting(true);
     try {
       formSchema.parse(formData);
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      // Call edge function to send email
+      const { data, error } = await supabase.functions.invoke('send-quote-request', {
+        body: formData
+      });
+
+      if (error) {
+        throw new Error(error.message);
+      }
+
       toast({
         title: "Cerere trimisă cu succes!",
         description: "Vă vom contacta în cel mai scurt timp cu oferta noastră."
@@ -88,9 +98,9 @@ const ContactPage = () => {
   return (
     <>
       <SEO
-        title="Contact - Cere Ofertă pentru Piese Auto"
-        description="Contactează Auto Har pentru piese auto din dezmembrări Suceava. Telefon: +40 749 707 694. Adresă: Strada Traian Popovici 156, Suceava. Răspundem rapid la cereri!"
-        keywords="contact dezmembrări auto Suceava, telefon piese auto Suceava, adresa Auto Har, cere oferta piese auto"
+        title="Contact - Cere Ofertă Piese Auto | Suceava, Botoșani, Piatra Neamț, Iași"
+        description="Contactează Auto Har pentru piese auto din dezmembrări. Telefon: +40 749 707 694. Livrare rapidă în Suceava, Botoșani, Piatra Neamț, Iași și toată Moldova. Răspundem în cel mai scurt timp!"
+        keywords="contact dezmembrări auto Suceava, telefon piese auto, cere oferta piese auto, piese auto Botoșani, piese auto Piatra Neamț, piese auto Iași"
         canonical="/contact"
         jsonLd={localBusinessJsonLd}
       />
@@ -150,15 +160,6 @@ const ContactPage = () => {
                   </div>
                 </a>
 
-                <a href="tel:+40742934231" className="flex items-center gap-4 p-4 bg-card rounded-2xl border border-border hover:border-primary/50 transition-all duration-300 group">
-                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center group-hover:scale-110 transition-transform">
-                    <Phone className="w-5 h-5 text-primary" />
-                  </div>
-                  <div>
-                    <div className="text-muted-foreground text-xs uppercase tracking-wider">Telefon</div>
-                    <div className="text-foreground font-medium">+40 742 934 231</div>
-                  </div>
-                </a>
 
                 <a href="https://wa.me/40749707694" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 p-4 bg-card rounded-2xl border border-border hover:border-accent/50 transition-all duration-300 group">
                   <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-accent/20 to-accent/5 flex items-center justify-center group-hover:scale-110 transition-transform">

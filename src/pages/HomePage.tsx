@@ -28,9 +28,9 @@ const HomePage = () => {
   return (
     <>
       <SEO
-        title="Piese Auto din Dezmembrări Suceava"
-        description="Piese auto din dezmembrări Suceava - Auto Har oferă piese originale second-hand pentru toate mărcile. Import din Belgia, Spania, Germania, Italia. Garanție și livrare rapidă în toată România."
-        keywords="piese auto din dezmembrări Suceava, dezmembrări auto Suceava, piese auto second-hand Suceava, piese auto originale din dezmembrări, piese auto Suceava, Auto Har"
+        title="Piese Auto din Dezmembrări Suceava | Livrare Botoșani, Piatra Neamț, Iași"
+        description="Piese auto din dezmembrări Suceava - Auto Har oferă piese originale second-hand pentru toate mărcile. Livrare rapidă în Suceava, Botoșani, Piatra Neamț, Iași și toată Moldova. Import din Belgia, Spania, Germania, Italia."
+        keywords="piese auto din dezmembrări Suceava, dezmembrări auto Suceava, piese auto Botoșani, piese auto Piatra Neamț, piese auto Iași, piese auto second-hand Moldova, Auto Har, dezmembrări Moldova"
         canonical="/"
         jsonLd={localBusinessJsonLd}
       />

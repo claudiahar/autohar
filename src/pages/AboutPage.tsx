@@ -8,9 +8,9 @@ const AboutPage = () => {
   return (
     <>
       <SEO
-        title="Despre Noi - Dezmembrări Auto cu Experiență de 15+ Ani"
-        description="Auto Har - dezmembrări auto Suceava cu peste 15 ani experiență. Importăm piese auto din Belgia, Spania, Germania și Italia. Piese originale second-hand cu garanție."
-        keywords="dezmembrări auto Suceava, Auto Har, piese auto originale, import piese auto Europa, piese second-hand garanție"
+        title="Despre Noi - Dezmembrări Auto Suceava | Livrare Moldova"
+        description="Auto Har - dezmembrări auto Suceava cu peste 15 ani experiență. Livrare rapidă în Suceava, Botoșani, Piatra Neamț, Iași. Importăm piese din Belgia, Spania, Germania, Italia. Garanție inclusă."
+        keywords="dezmembrări auto Suceava, dezmembrări auto Botoșani, piese auto Piatra Neamț, piese auto Iași, Auto Har, import piese auto Europa, dezmembrări Moldova"
         canonical="/despre-noi"
         jsonLd={localBusinessJsonLd}
       />
