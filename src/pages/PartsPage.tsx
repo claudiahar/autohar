@@ -34,9 +34,9 @@ const PartsPage = () => {
   return (
     <>
       <SEO
-        title="Piese Auto din Dezmembrări - Catalog Complet"
-        description="Piese auto second-hand originale din dezmembrări Suceava: motoare, cutii de viteze, caroserie, electronice. Stoc vast pentru VW, Audi, BMW, Mercedes, Opel, Ford. Garanție și livrare rapidă."
-        keywords="piese auto second-hand Suceava, piese motor dezmembrări, cutii de viteze second-hand, piese caroserie, electronice auto, piese VW, piese Audi, piese BMW"
+        title="Piese Auto din Dezmembrări Suceava | Livrare Botoșani, Piatra Neamț, Iași"
+        description="Piese auto second-hand originale din dezmembrări Suceava: motoare, cutii de viteze, caroserie, electronice. Livrare rapidă în Botoșani, Piatra Neamț, Iași și toată Moldova. Garanție inclusă."
+        keywords="piese auto Suceava, piese auto Botoșani, piese auto Piatra Neamț, piese auto Iași, piese motor dezmembrări, cutii de viteze second-hand, dezmembrări Moldova"
         canonical="/piese-auto"
         jsonLd={localBusinessJsonLd}
       />

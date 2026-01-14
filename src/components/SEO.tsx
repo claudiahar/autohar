@@ -73,10 +73,10 @@ export const localBusinessJsonLd = {
   "@context": "https://schema.org",
   "@type": "AutoPartsStore",
   "name": "Auto Har - Piese Auto din Dezmembrări",
-  "alternateName": "Auto Har Suceava",
-  "description": "Piese auto din dezmembrări Suceava - piese originale second-hand pentru toate mărcile. Import din Belgia, Spania, Germania, Italia. Garanție și livrare rapidă.",
+  "alternateName": ["Auto Har Suceava", "Dezmembrări Auto Suceava", "Piese Auto Botoșani", "Piese Auto Piatra Neamț", "Piese Auto Iași"],
+  "description": "Piese auto din dezmembrări Suceava - piese originale second-hand pentru toate mărcile. Livrare rapidă în Suceava, Botoșani, Piatra Neamț, Iași și toată Moldova. Import din Belgia, Spania, Germania, Italia. Garanție inclusă.",
   "url": "https://pieseautohar.ro",
-  "telephone": ["+40749707694", "+40748951120", "+40742934231"],
+  "telephone": ["+40749707694", "+40748951120"],
   "email": "autohargrup@gmail.com",
   "address": {
     "@type": "PostalAddress",
@@ -91,6 +91,32 @@ export const localBusinessJsonLd = {
     "latitude": 47.6517,
     "longitude": 26.2458
   },
+  "areaServed": [
+    {
+      "@type": "City",
+      "name": "Suceava",
+      "@id": "https://www.wikidata.org/wiki/Q189179"
+    },
+    {
+      "@type": "City",
+      "name": "Botoșani",
+      "@id": "https://www.wikidata.org/wiki/Q191458"
+    },
+    {
+      "@type": "City",
+      "name": "Piatra Neamț",
+      "@id": "https://www.wikidata.org/wiki/Q192022"
+    },
+    {
+      "@type": "City",
+      "name": "Iași",
+      "@id": "https://www.wikidata.org/wiki/Q182136"
+    },
+    {
+      "@type": "AdministrativeArea",
+      "name": "Moldova, România"
+    }
+  ],
   "openingHoursSpecification": [
     {
       "@type": "OpeningHoursSpecification",
@@ -108,10 +134,6 @@ export const localBusinessJsonLd = {
   "priceRange": "$$",
   "currenciesAccepted": "RON",
   "paymentAccepted": "Cash, Card",
-  "areaServed": {
-    "@type": "Country",
-    "name": "Romania"
-  },
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
     "name": "Piese Auto din Dezmembrări",

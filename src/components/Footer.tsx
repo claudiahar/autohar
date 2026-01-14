@@ -66,7 +66,6 @@ export const Footer = () => {
                 <div className="flex flex-col gap-1">
                   <a href="tel:+40749707694" className="hover:text-primary transition-colors">+40 749 707 694</a>
                   <a href="tel:+40748951120" className="hover:text-primary transition-colors">+40 748 951 120</a>
-                  <a href="tel:+40742934231" className="hover:text-primary transition-colors">+40 742 934 231</a>
                 </div>
               </li>
               <li className="flex items-center gap-3 text-sm text-muted-foreground group">
