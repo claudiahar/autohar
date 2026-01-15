@@ -364,7 +364,7 @@ const ContactPage = () => {
           </div>
           <div className="rounded-2xl overflow-hidden border border-border shadow-lg relative">
             <iframe
-              src="https://www.google.com/maps?q=Strada%20Traian%20Popovici%20156%2C%20Suceava&output=embed"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2637.8!2d26.2556!3d47.6439!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4734fc5a3e64e2a7%3A0x8e2c6c9b4a3d5e1f!2sStrada%20Traian%20Popovici%20156%2C%20Suceava!5e0!3m2!1sro!2sro!4v1"
               width="100%"
               height="450"
               style={{ border: 0 }}
@@ -374,7 +374,7 @@ const ContactPage = () => {
               className="w-full pointer-events-none"
             />
             <a
-              href="https://www.google.com/maps/search/?api=1&query=47.6517%2C26.2458"
+              href="https://www.google.com/maps/search/?api=1&query=Strada+Traian+Popovici+156%2C+Suceava%2C+Romania"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Deschide locația Auto Har în Google Maps"
@@ -383,7 +383,7 @@ const ContactPage = () => {
           </div>
           <p className="text-center text-muted-foreground mt-4">
             <a
-              href="https://www.google.com/maps/search/?api=1&query=47.6517%2C26.2458"
+              href="https://www.google.com/maps/search/?api=1&query=Strada+Traian+Popovici+156%2C+Suceava%2C+Romania"
               target="_blank"
               rel="noopener noreferrer"
               className="underline underline-offset-4"
