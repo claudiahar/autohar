@@ -24,6 +24,7 @@ const ContactPage = () => {
     toast
   } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
   const [formData, setFormData] = useState<FormData>({
     name: "",
     phone: "",
@@ -63,13 +64,27 @@ const ContactPage = () => {
       });
 
       if (error) {
-        throw new Error(error.message);
+        console.error("Edge function error:", error);
+        toast({
+          title: "Eroare la trimitere",
+          description: "A apărut o problemă. Încercați din nou sau sunați-ne direct.",
+          variant: "destructive"
+        });
+        return;
       }
 
-      toast({
-        title: "Cerere trimisă cu succes!",
-        description: "Vă vom contacta în cel mai scurt timp cu oferta noastră."
-      });
+      // Check if the response contains an error
+      if (data?.error) {
+        console.error("Email send error:", data.error);
+        toast({
+          title: "Eroare la trimitere",
+          description: "A apărut o problemă. Încercați din nou sau sunați-ne direct.",
+          variant: "destructive"
+        });
+        return;
+      }
+
+      // Success - clear form and show success state
       setFormData({
         name: "",
         phone: "",
@@ -81,6 +96,7 @@ const ContactPage = () => {
         partNeeded: ""
       });
       setErrors({});
+      setIsSubmitted(true);
     } catch (error) {
       if (error instanceof z.ZodError) {
         const fieldErrors: Partial<Record<keyof FormData, string>> = {};
@@ -90,6 +106,13 @@ const ContactPage = () => {
           }
         });
         setErrors(fieldErrors);
+      } else {
+        console.error("Unexpected error:", error);
+        toast({
+          title: "Eroare la trimitere",
+          description: "A apărut o problemă. Încercați din nou sau sunați-ne direct.",
+          variant: "destructive"
+        });
       }
     } finally {
       setIsSubmitting(false);
@@ -213,92 +236,115 @@ const ContactPage = () => {
             {/* Form */}
             <div className="lg:col-span-2">
               <div className="bg-card p-6 md:p-8 rounded-2xl border border-border">
-                <div className="mb-8">
-                  <h2 className="font-display text-2xl text-foreground">
-                    Cerere de <span className="text-primary">ofertă</span>
-                  </h2>
-                </div>
-
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  {/* Personal Info */}
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-sm text-muted-foreground mb-2">
-                        Nume complet *
-                      </label>
-                      <Input name="name" value={formData.name} onChange={handleChange} placeholder="Ion Popescu" className={`rounded-xl h-12 ${errors.name ? "border-destructive" : ""}`} />
-                      {errors.name && <p className="text-destructive text-sm mt-1">{errors.name}</p>}
+                {isSubmitted ? (
+                  <div className="flex flex-col items-center justify-center py-16 text-center">
+                    <div className="w-20 h-20 rounded-full bg-gradient-to-br from-accent/20 to-accent/5 flex items-center justify-center mb-6">
+                      <Send className="w-10 h-10 text-accent" />
                     </div>
-                    <div>
-                      <label className="block text-sm text-muted-foreground mb-2">
-                        Telefon *
-                      </label>
-                      <Input name="phone" value={formData.phone} onChange={handleChange} placeholder="+40 721 234 567" className={`rounded-xl h-12 ${errors.phone ? "border-destructive" : ""}`} />
-                      {errors.phone && <p className="text-destructive text-sm mt-1">{errors.phone}</p>}
+                    <h2 className="font-display text-2xl md:text-3xl text-foreground mb-4">
+                      Cerere <span className="text-accent">trimisă</span> cu succes!
+                    </h2>
+                    <p className="text-muted-foreground text-lg mb-8 max-w-md">
+                      Vă mulțumim! Vă vom contacta în cel mai scurt timp cu oferta noastră.
+                    </p>
+                    <Button 
+                      variant="outline" 
+                      size="lg"
+                      onClick={() => setIsSubmitted(false)}
+                    >
+                      Trimite altă cerere
+                    </Button>
+                  </div>
+                ) : (
+                  <>
+                    <div className="mb-8">
+                      <h2 className="font-display text-2xl text-foreground">
+                        Cerere de <span className="text-primary">ofertă</span>
+                      </h2>
                     </div>
-                  </div>
 
-                  <div>
-                    <label className="block text-sm text-muted-foreground mb-2">
-                      Email (opțional)
-                    </label>
-                    <Input name="email" type="email" value={formData.email} onChange={handleChange} placeholder="email@exemplu.ro" className={`rounded-xl h-12 ${errors.email ? "border-destructive" : ""}`} />
-                    {errors.email && <p className="text-destructive text-sm mt-1">{errors.email}</p>}
-                  </div>
+                    <form onSubmit={handleSubmit} className="space-y-6">
+                      {/* Personal Info */}
+                      <div className="grid md:grid-cols-2 gap-4">
+                        <div>
+                          <label className="block text-sm text-muted-foreground mb-2">
+                            Nume complet *
+                          </label>
+                          <Input name="name" value={formData.name} onChange={handleChange} placeholder="Ion Popescu" className={`rounded-xl h-12 ${errors.name ? "border-destructive" : ""}`} />
+                          {errors.name && <p className="text-destructive text-sm mt-1">{errors.name}</p>}
+                        </div>
+                        <div>
+                          <label className="block text-sm text-muted-foreground mb-2">
+                            Telefon *
+                          </label>
+                          <Input name="phone" value={formData.phone} onChange={handleChange} placeholder="+40 721 234 567" className={`rounded-xl h-12 ${errors.phone ? "border-destructive" : ""}`} />
+                          {errors.phone && <p className="text-destructive text-sm mt-1">{errors.phone}</p>}
+                        </div>
+                      </div>
 
-                  {/* Car Info */}
-                  <div className="border-t border-border pt-6">
-                    <h3 className="font-display text-lg text-foreground mb-5">
-                      Detalii autoturism
-                    </h3>
-                    <div className="grid md:grid-cols-2 gap-4">
                       <div>
                         <label className="block text-sm text-muted-foreground mb-2">
-                          Marcă auto *
+                          Email (opțional)
                         </label>
-                        <Input name="carBrand" value={formData.carBrand} onChange={handleChange} placeholder="Ex: Volkswagen" className={`rounded-xl h-12 ${errors.carBrand ? "border-destructive" : ""}`} />
-                        {errors.carBrand && <p className="text-destructive text-sm mt-1">{errors.carBrand}</p>}
+                        <Input name="email" type="email" value={formData.email} onChange={handleChange} placeholder="email@exemplu.ro" className={`rounded-xl h-12 ${errors.email ? "border-destructive" : ""}`} />
+                        {errors.email && <p className="text-destructive text-sm mt-1">{errors.email}</p>}
                       </div>
-                      <div>
-                        <label className="block text-sm text-muted-foreground mb-2">
-                          Model *
-                        </label>
-                        <Input name="carModel" value={formData.carModel} onChange={handleChange} placeholder="Ex: Golf 7" className={`rounded-xl h-12 ${errors.carModel ? "border-destructive" : ""}`} />
-                        {errors.carModel && <p className="text-destructive text-sm mt-1">{errors.carModel}</p>}
-                      </div>
-                      <div>
-                        <label className="block text-sm text-muted-foreground mb-2">
-                          An fabricație *
-                        </label>
-                        <Input name="year" value={formData.year} onChange={handleChange} placeholder="Ex: 2018" className={`rounded-xl h-12 ${errors.year ? "border-destructive" : ""}`} />
-                        {errors.year && <p className="text-destructive text-sm mt-1">{errors.year}</p>}
-                      </div>
-                      <div>
-                        <label className="block text-sm text-muted-foreground mb-2">
-                          Motorizare
-                        </label>
-                        <Input name="engine" value={formData.engine} onChange={handleChange} placeholder="Ex: 1.6 TDI 115 CP" className={`rounded-xl h-12 ${errors.engine ? "border-destructive" : ""}`} />
-                        {errors.engine && <p className="text-destructive text-sm mt-1">{errors.engine}</p>}
-                      </div>
-                    </div>
-                  </div>
 
-                  {/* Part Needed */}
-                  <div className="border-t border-border pt-6">
-                    <label className="block text-sm text-muted-foreground mb-2">
-                      Piesa dorită *
-                    </label>
-                    <Textarea name="partNeeded" value={formData.partNeeded} onChange={handleChange} placeholder="Descrieți piesa de care aveți nevoie (ex: cutie de viteze manuală 6 trepte, turbosuflantă, calculator motor, etc.)" rows={4} className={`rounded-xl resize-none ${errors.partNeeded ? "border-destructive" : ""}`} />
-                    {errors.partNeeded && <p className="text-destructive text-sm mt-1">{errors.partNeeded}</p>}
-                  </div>
+                      {/* Car Info */}
+                      <div className="border-t border-border pt-6">
+                        <h3 className="font-display text-lg text-foreground mb-5">
+                          Detalii autoturism
+                        </h3>
+                        <div className="grid md:grid-cols-2 gap-4">
+                          <div>
+                            <label className="block text-sm text-muted-foreground mb-2">
+                              Marcă auto *
+                            </label>
+                            <Input name="carBrand" value={formData.carBrand} onChange={handleChange} placeholder="Ex: Volkswagen" className={`rounded-xl h-12 ${errors.carBrand ? "border-destructive" : ""}`} />
+                            {errors.carBrand && <p className="text-destructive text-sm mt-1">{errors.carBrand}</p>}
+                          </div>
+                          <div>
+                            <label className="block text-sm text-muted-foreground mb-2">
+                              Model *
+                            </label>
+                            <Input name="carModel" value={formData.carModel} onChange={handleChange} placeholder="Ex: Golf 7" className={`rounded-xl h-12 ${errors.carModel ? "border-destructive" : ""}`} />
+                            {errors.carModel && <p className="text-destructive text-sm mt-1">{errors.carModel}</p>}
+                          </div>
+                          <div>
+                            <label className="block text-sm text-muted-foreground mb-2">
+                              An fabricație *
+                            </label>
+                            <Input name="year" value={formData.year} onChange={handleChange} placeholder="Ex: 2018" className={`rounded-xl h-12 ${errors.year ? "border-destructive" : ""}`} />
+                            {errors.year && <p className="text-destructive text-sm mt-1">{errors.year}</p>}
+                          </div>
+                          <div>
+                            <label className="block text-sm text-muted-foreground mb-2">
+                              Motorizare
+                            </label>
+                            <Input name="engine" value={formData.engine} onChange={handleChange} placeholder="Ex: 1.6 TDI 115 CP" className={`rounded-xl h-12 ${errors.engine ? "border-destructive" : ""}`} />
+                            {errors.engine && <p className="text-destructive text-sm mt-1">{errors.engine}</p>}
+                          </div>
+                        </div>
+                      </div>
 
-                  <Button type="submit" variant="hero" size="xl" className="w-full md:w-auto" disabled={isSubmitting}>
-                    {isSubmitting ? "Se trimite..." : <>
-                        Trimite cererea
-                        <Send className="w-5 h-5" />
-                      </>}
-                  </Button>
-                </form>
+                      {/* Part Needed */}
+                      <div className="border-t border-border pt-6">
+                        <label className="block text-sm text-muted-foreground mb-2">
+                          Piesa dorită *
+                        </label>
+                        <Textarea name="partNeeded" value={formData.partNeeded} onChange={handleChange} placeholder="Descrieți piesa de care aveți nevoie (ex: cutie de viteze manuală 6 trepte, turbosuflantă, calculator motor, etc.)" rows={4} className={`rounded-xl resize-none ${errors.partNeeded ? "border-destructive" : ""}`} />
+                        {errors.partNeeded && <p className="text-destructive text-sm mt-1">{errors.partNeeded}</p>}
+                      </div>
+
+                      <Button type="submit" variant="hero" size="xl" className="w-full md:w-auto" disabled={isSubmitting}>
+                        {isSubmitting ? "Se trimite..." : <>
+                            Trimite cererea
+                            <Send className="w-5 h-5" />
+                          </>}
+                      </Button>
+                    </form>
+                  </>
+                )}
               </div>
             </div>
           </div>
