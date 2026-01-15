@@ -57,14 +57,13 @@ const HomePage = () => {
           <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-foreground mb-6 animate-fade-up leading-tight">
             Piese Auto din Dezmembrări
             <br />
-            <span className="text-gradient">Pentru Toate Mărcile</span>
+            <span className="text-gradient">Suceava • Botoșani • Piatra Neamț • Iași</span>
           </h1>
           
           <p className="text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto mb-10 animate-fade-up" style={{
           animationDelay: "0.1s"
         }}>
-            Piese auto second-hand originale și garantate. 
-            Găsește piesa potrivită la cel mai bun preț.
+            Piese auto second-hand originale și garantate, cu livrare rapidă în toată Moldova.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-up" style={{
@@ -112,6 +111,28 @@ const HomePage = () => {
           <div className="animate-float">
             <div className="w-16 h-16 rounded-full bg-accent/20 backdrop-blur-sm flex items-center justify-center border border-accent/30">
               <Car className="w-8 h-8 text-accent" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Service Area Section */}
+      <section className="py-16 bg-background">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="font-display text-2xl md:text-3xl text-foreground mb-4">
+              Livrare rapidă în <span className="text-primary">Suceava</span>, <span className="text-accent">Botoșani</span>, Piatra Neamț și Iași
+            </h2>
+            <p className="text-muted-foreground text-lg leading-relaxed">
+              Suntem în Suceava, dar expediem zilnic prin curier în județele vecine și în toată România. Trimite o cerere de ofertă cu detaliile piesei și îți răspundem rapid.
+            </p>
+            <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+              <Button variant="hero" size="lg" asChild>
+                <Link to="/contact">Cere ofertă</Link>
+              </Button>
+              <Button variant="outline" size="lg" asChild>
+                <Link to="/piese-auto">Vezi categorii piese</Link>
+              </Button>
             </div>
           </div>
         </div>

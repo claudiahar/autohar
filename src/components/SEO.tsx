@@ -72,10 +72,12 @@ export const SEO = ({
 export const localBusinessJsonLd = {
   "@context": "https://schema.org",
   "@type": "AutoPartsStore",
+  "@id": "https://pieseautohar.ro/#auto-har",
   "name": "Auto Har - Piese Auto din Dezmembrări",
   "alternateName": ["Auto Har Suceava", "Dezmembrări Auto Suceava", "Piese Auto Botoșani", "Piese Auto Piatra Neamț", "Piese Auto Iași"],
   "description": "Piese auto din dezmembrări Suceava - piese originale second-hand pentru toate mărcile. Livrare rapidă în Suceava, Botoșani, Piatra Neamț, Iași și toată Moldova. Import din Belgia, Spania, Germania, Italia. Garanție inclusă.",
   "url": "https://pieseautohar.ro",
+  "hasMap": "https://www.google.com/maps/search/?api=1&query=47.6517%2C26.2458",
   "telephone": ["+40749707694", "+40748951120"],
   "email": "autohargrup@gmail.com",
   "address": {

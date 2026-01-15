@@ -50,6 +50,8 @@ const handler = async (req: Request): Promise<Response> => {
         from: "Auto Har <onboarding@resend.dev>",
         to: ["autohargrup@gmail.com"],
         subject: `Cerere nouă de ofertă - ${data.carBrand} ${data.carModel}`,
+        reply_to: data.email || undefined,
+        text: `Cerere nouă de ofertă\n\nDate contact\nNume: ${data.name}\nTelefon: ${data.phone}${data.email ? `\nEmail: ${data.email}` : ""}\n\nDetalii autoturism\nMarcă: ${data.carBrand}\nModel: ${data.carModel}\nAn fabricație: ${data.year}${data.engine ? `\nMotorizare: ${data.engine}` : ""}\n\nPiesa solicitată\n${data.partNeeded}`,
         html: `
           <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
             <h1 style="color: #1a1a1a; border-bottom: 2px solid #f97316; padding-bottom: 10px;">
@@ -79,8 +81,8 @@ const handler = async (req: Request): Promise<Response> => {
             <div style="margin-top: 30px; padding: 15px; background: #e8f5e9; border-radius: 8px;">
               <p style="margin: 0;">
                 <strong>Acțiuni rapide:</strong><br>
-                <a href="tel:${data.phone}" style="color: #f97316; margin-right: 15px;">📞 Sună clientul</a>
-                <a href="https://wa.me/${data.phone.replace(/\D/g, '')}" style="color: #25d366;">💬 WhatsApp</a>
+                <a href="tel:${data.phone}" style="color: #f97316; margin-right: 15px;">Sună clientul</a>
+                <a href="https://wa.me/${data.phone.replace(/\D/g, '')}" style="color: #25d366;">WhatsApp</a>
               </p>
             </div>
             

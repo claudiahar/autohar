@@ -52,7 +52,8 @@ const PartsPage = () => {
             </h1>
             <p className="text-muted-foreground text-lg leading-relaxed mb-10">
               Dispunem de un stoc vast de piese auto originale, second-hand, 
-              în stare foarte bună de funcționare. Piesele beneficiază de garanție și posibilitatea returului în cazul în care piesa nu este compatibilă.
+              în stare foarte bună de funcționare, cu livrare rapidă în Suceava, Botoșani, Piatra Neamț și Iași.
+              Piesele beneficiază de garanție și posibilitatea returului în cazul în care piesa nu este compatibilă.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button variant="hero" size="xl" asChild>
