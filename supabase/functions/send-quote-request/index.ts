@@ -8,6 +8,69 @@ const corsHeaders = {
     "authorization, x-client-info, apikey, content-type",
 };
 
+// Rate limiting configuration
+const RATE_LIMIT_WINDOW_MS = 60 * 1000; // 1 minute
+const MAX_REQUESTS_PER_WINDOW = 5; // Max 5 requests per minute per IP
+
+// In-memory rate limit store
+const rateLimitStore = new Map<string, { count: number; resetTime: number }>();
+
+// Clean up expired entries periodically
+const cleanupRateLimitStore = () => {
+  const now = Date.now();
+  for (const [key, value] of rateLimitStore.entries()) {
+    if (now > value.resetTime) {
+      rateLimitStore.delete(key);
+    }
+  }
+};
+
+// Check rate limit for an IP
+const checkRateLimit = (ip: string): { allowed: boolean; remaining: number; resetIn: number } => {
+  cleanupRateLimitStore();
+  
+  const now = Date.now();
+  const record = rateLimitStore.get(ip);
+  
+  if (!record || now > record.resetTime) {
+    // New window
+    rateLimitStore.set(ip, { count: 1, resetTime: now + RATE_LIMIT_WINDOW_MS });
+    return { allowed: true, remaining: MAX_REQUESTS_PER_WINDOW - 1, resetIn: RATE_LIMIT_WINDOW_MS };
+  }
+  
+  if (record.count >= MAX_REQUESTS_PER_WINDOW) {
+    // Rate limit exceeded
+    return { allowed: false, remaining: 0, resetIn: record.resetTime - now };
+  }
+  
+  // Increment count
+  record.count++;
+  rateLimitStore.set(ip, record);
+  return { allowed: true, remaining: MAX_REQUESTS_PER_WINDOW - record.count, resetIn: record.resetTime - now };
+};
+
+// Get client IP from request headers
+const getClientIP = (req: Request): string => {
+  // Try various headers that might contain the real IP
+  const forwardedFor = req.headers.get("x-forwarded-for");
+  if (forwardedFor) {
+    return forwardedFor.split(",")[0].trim();
+  }
+  
+  const realIP = req.headers.get("x-real-ip");
+  if (realIP) {
+    return realIP;
+  }
+  
+  const cfConnectingIP = req.headers.get("cf-connecting-ip");
+  if (cfConnectingIP) {
+    return cfConnectingIP;
+  }
+  
+  // Fallback
+  return "unknown";
+};
+
 interface QuoteRequest {
   name: string;
   phone: string;
@@ -25,6 +88,38 @@ const handler = async (req: Request): Promise<Response> => {
     return new Response(null, { headers: corsHeaders });
   }
 
+  // Get client IP and check rate limit
+  const clientIP = getClientIP(req);
+  const rateLimit = checkRateLimit(clientIP);
+  
+  console.log(`Rate limit check for IP ${clientIP}: allowed=${rateLimit.allowed}, remaining=${rateLimit.remaining}`);
+  
+  // Add rate limit headers to all responses
+  const rateLimitHeaders = {
+    "X-RateLimit-Limit": MAX_REQUESTS_PER_WINDOW.toString(),
+    "X-RateLimit-Remaining": rateLimit.remaining.toString(),
+    "X-RateLimit-Reset": Math.ceil(rateLimit.resetIn / 1000).toString(),
+  };
+
+  if (!rateLimit.allowed) {
+    console.warn(`Rate limit exceeded for IP: ${clientIP}`);
+    return new Response(
+      JSON.stringify({ 
+        error: "Prea multe cereri. Vă rugăm să așteptați un minut înainte de a încerca din nou.",
+        retryAfter: Math.ceil(rateLimit.resetIn / 1000)
+      }),
+      {
+        status: 429,
+        headers: { 
+          "Content-Type": "application/json", 
+          "Retry-After": Math.ceil(rateLimit.resetIn / 1000).toString(),
+          ...rateLimitHeaders,
+          ...corsHeaders 
+        },
+      }
+    );
+  }
+
   try {
     const data: QuoteRequest = await req.json();
 
@@ -34,7 +129,18 @@ const handler = async (req: Request): Promise<Response> => {
         JSON.stringify({ error: "Toate câmpurile obligatorii trebuie completate" }),
         {
           status: 400,
-          headers: { "Content-Type": "application/json", ...corsHeaders },
+          headers: { "Content-Type": "application/json", ...rateLimitHeaders, ...corsHeaders },
+        }
+      );
+    }
+
+    // Basic input validation
+    if (data.name.length > 100 || data.phone.length > 20 || (data.email && data.email.length > 255)) {
+      return new Response(
+        JSON.stringify({ error: "Datele introduse depășesc lungimea maximă permisă" }),
+        {
+          status: 400,
+          headers: { "Content-Type": "application/json", ...rateLimitHeaders, ...corsHeaders },
         }
       );
     }
@@ -107,6 +213,7 @@ const handler = async (req: Request): Promise<Response> => {
       status: 200,
       headers: {
         "Content-Type": "application/json",
+        ...rateLimitHeaders,
         ...corsHeaders,
       },
     });
@@ -116,7 +223,7 @@ const handler = async (req: Request): Promise<Response> => {
       JSON.stringify({ error: error.message }),
       {
         status: 500,
-        headers: { "Content-Type": "application/json", ...corsHeaders },
+        headers: { "Content-Type": "application/json", ...rateLimitHeaders, ...corsHeaders },
       }
     );
   }
