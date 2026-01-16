@@ -12,7 +12,7 @@ export const Footer = () => {
             <Link to="/" className="block">
               <img 
                 src={logo} 
-                alt="Auto Har - Dezmembrări Suceava" 
+                alt="Auto Har - Dezmembrări Auto"
                 className="h-16 w-auto object-contain"
               />
             </Link>

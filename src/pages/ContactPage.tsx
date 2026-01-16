@@ -121,9 +121,9 @@ const ContactPage = () => {
   return (
     <>
       <SEO
-        title="Contact - Cere Ofertă Piese Auto | Suceava, Botoșani, Piatra Neamț, Iași"
-        description="Contactează Auto Har pentru piese auto din dezmembrări. Telefon: +40 749 707 694. Livrare rapidă în Suceava, Botoșani, Piatra Neamț, Iași și toată Moldova. Răspundem în cel mai scurt timp!"
-        keywords="contact dezmembrări auto Suceava, telefon piese auto, cere oferta piese auto, piese auto Botoșani, piese auto Piatra Neamț, piese auto Iași"
+        title="Contact - Cere Ofertă Piese Auto | Livrare în Toată Țara"
+        description="Contactează Auto Har pentru piese auto din dezmembrări. Telefon: +40 749 707 694. Livrare rapidă în toată țara. Răspundem în cel mai scurt timp!"
+        keywords="contact dezmembrări auto, telefon piese auto, cere oferta piese auto, livrare toată țara"
         canonical="/contact"
         jsonLd={localBusinessJsonLd}
       />

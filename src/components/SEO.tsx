@@ -21,7 +21,7 @@ export const SEO = ({
 }: SEOProps) => {
   const siteUrl = 'https://pieseautohar.ro';
   const fullCanonical = canonical ? `${siteUrl}${canonical}` : siteUrl;
-  const fullTitle = `${title} | Auto Har - Dezmembrări Auto Suceava`;
+  const fullTitle = `${title} | Auto Har - Dezmembrări Auto`;
 
   return (
     <Helmet>
@@ -53,10 +53,10 @@ export const SEO = ({
       <meta name="twitter:image" content={`${siteUrl}${image}`} />
 
       {/* Geo Tags for Local SEO */}
-      <meta name="geo.region" content="RO-SV" />
-      <meta name="geo.placename" content="Suceava" />
-      <meta name="geo.position" content="47.6517;26.2458" />
-      <meta name="ICBM" content="47.6517, 26.2458" />
+      <meta name="geo.region" content="RO" />
+      <meta name="geo.placename" content="România" />
+      <meta name="geo.position" content="45.9432;24.9668" />
+      <meta name="ICBM" content="45.9432, 24.9668" />
 
       {/* JSON-LD Structured Data */}
       {jsonLd && (
@@ -74,10 +74,10 @@ export const localBusinessJsonLd = {
   "@type": "AutoPartsStore",
   "@id": "https://pieseautohar.ro/#auto-har",
   "name": "Auto Har - Piese Auto din Dezmembrări",
-  "alternateName": ["Auto Har Suceava", "Dezmembrări Auto Suceava", "Piese Auto Botoșani", "Piese Auto Piatra Neamț", "Piese Auto Iași"],
-  "description": "Piese auto din dezmembrări Suceava - piese originale second-hand pentru toate mărcile. Livrare rapidă în Suceava, Botoșani, Piatra Neamț, Iași și toată Moldova. Import din Belgia, Spania, Germania, Italia. Garanție inclusă.",
+  "alternateName": ["Auto Har", "Dezmembrări Auto", "Piese Auto România"],
+  "description": "Piese auto din dezmembrări - piese originale second-hand pentru toate mărcile. Livrare rapidă în toată țara. Import din Belgia, Spania, Germania, Italia. Garanție inclusă.",
   "url": "https://pieseautohar.ro",
-  "hasMap": "https://www.google.com/maps/search/?api=1&query=47.6517%2C26.2458",
+  "hasMap": "https://maps.app.goo.gl/vw2xepCXj4bJWZJ66",
   "telephone": ["+40749707694", "+40748951120"],
   "email": "autohargrup@gmail.com",
   "address": {
@@ -93,32 +93,11 @@ export const localBusinessJsonLd = {
     "latitude": 47.6517,
     "longitude": 26.2458
   },
-  "areaServed": [
-    {
-      "@type": "City",
-      "name": "Suceava",
-      "@id": "https://www.wikidata.org/wiki/Q189179"
-    },
-    {
-      "@type": "City",
-      "name": "Botoșani",
-      "@id": "https://www.wikidata.org/wiki/Q191458"
-    },
-    {
-      "@type": "City",
-      "name": "Piatra Neamț",
-      "@id": "https://www.wikidata.org/wiki/Q192022"
-    },
-    {
-      "@type": "City",
-      "name": "Iași",
-      "@id": "https://www.wikidata.org/wiki/Q182136"
-    },
-    {
-      "@type": "AdministrativeArea",
-      "name": "Moldova, România"
-    }
-  ],
+  "areaServed": {
+    "@type": "Country",
+    "name": "România",
+    "@id": "https://www.wikidata.org/wiki/Q218"
+  },
   "openingHoursSpecification": [
     {
       "@type": "OpeningHoursSpecification",

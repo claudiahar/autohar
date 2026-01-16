@@ -28,9 +28,9 @@ const HomePage = () => {
   return (
     <>
       <SEO
-        title="Piese Auto din Dezmembrări Suceava | Livrare Botoșani, Piatra Neamț, Iași"
-        description="Piese auto din dezmembrări Suceava - Auto Har oferă piese originale second-hand pentru toate mărcile. Livrare rapidă în Suceava, Botoșani, Piatra Neamț, Iași și toată Moldova. Import din Belgia, Spania, Germania, Italia."
-        keywords="piese auto din dezmembrări Suceava, dezmembrări auto Suceava, piese auto Botoșani, piese auto Piatra Neamț, piese auto Iași, piese auto second-hand Moldova, Auto Har, dezmembrări Moldova"
+        title="Piese Auto din Dezmembrări | Livrare în Toată Țara"
+        description="Piese auto din dezmembrări - Auto Har oferă piese originale second-hand pentru toate mărcile. Livrare rapidă în toată țara. Import din Belgia, Spania, Germania, Italia."
+        keywords="piese auto din dezmembrări, dezmembrări auto, piese auto second-hand, Auto Har, dezmembrări auto România, livrare toată țara"
         canonical="/"
         jsonLd={localBusinessJsonLd}
       />
@@ -57,7 +57,7 @@ const HomePage = () => {
           <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-foreground mb-6 animate-fade-up leading-tight">
             Piese Auto din Dezmembrări
             <br />
-            <span className="text-gradient">Suceava • Botoșani • Piatra Neamț • Iași</span>
+            <span className="text-gradient">Livrare în Toată Țara</span>
           </h1>
           
           <p className="text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto mb-10 animate-fade-up" style={{
@@ -121,10 +121,10 @@ const HomePage = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="font-display text-2xl md:text-3xl text-foreground mb-4">
-              Livrare rapidă în <span className="text-primary">Suceava</span>, <span className="text-accent">Botoșani</span>, Piatra Neamț și Iași
+              Livrare rapidă în <span className="text-primary">toată</span> <span className="text-accent">țara</span>
             </h2>
             <p className="text-muted-foreground text-lg leading-relaxed">
-              Suntem în Suceava, dar expediem zilnic prin curier în județele vecine și în toată România. Trimite o cerere de ofertă cu detaliile piesei și îți răspundem rapid.
+              Expediem zilnic prin curier în toată România. Trimite o cerere de ofertă cu detaliile piesei și îți răspundem rapid.
             </p>
             <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
               <Button variant="hero" size="lg" asChild>

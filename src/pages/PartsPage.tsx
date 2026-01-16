@@ -34,9 +34,9 @@ const PartsPage = () => {
   return (
     <>
       <SEO
-        title="Piese Auto din Dezmembrări Suceava | Livrare Botoșani, Piatra Neamț, Iași"
-        description="Piese auto second-hand originale din dezmembrări Suceava: motoare, cutii de viteze, caroserie, electronice. Livrare rapidă în Botoșani, Piatra Neamț, Iași și toată Moldova. Garanție inclusă."
-        keywords="piese auto Suceava, piese auto Botoșani, piese auto Piatra Neamț, piese auto Iași, piese motor dezmembrări, cutii de viteze second-hand, dezmembrări Moldova"
+        title="Piese Auto din Dezmembrări | Livrare în Toată Țara"
+        description="Piese auto second-hand originale din dezmembrări: motoare, cutii de viteze, caroserie, electronice. Livrare rapidă în toată țara. Garanție inclusă."
+        keywords="piese auto, piese motor dezmembrări, cutii de viteze second-hand, dezmembrări auto România, livrare toată țara"
         canonical="/piese-auto"
         jsonLd={localBusinessJsonLd}
       />
@@ -48,11 +48,11 @@ const PartsPage = () => {
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="font-display text-4xl md:text-5xl lg:text-6xl text-foreground mb-6">
-              Piese Auto din <span className="text-primary">Dezmembrări</span> Suceava
+              Piese Auto din <span className="text-primary">Dezmembrări</span>
             </h1>
             <p className="text-muted-foreground text-lg leading-relaxed mb-10">
               Dispunem de un stoc vast de piese auto originale, second-hand, 
-              în stare foarte bună de funcționare, cu livrare rapidă în Suceava, Botoșani, Piatra Neamț și Iași.
+              în stare foarte bună de funcționare, cu livrare rapidă în toată țara.
               Piesele beneficiază de garanție și posibilitatea returului în cazul în care piesa nu este compatibilă.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
