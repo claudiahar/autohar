@@ -15,7 +15,7 @@ const NotFound = () => {
     <>
       <SEO
         title="Pagina nu a fost găsită (404)"
-        description="Pagina pe care o cauți nu există. Întoarce-te la pagina principală Auto Har pentru piese auto din dezmembrări."
+        description="Pagina pe care o cauți nu există. Întoarce-te la pagina principală Auto Har pentru piese auto din dezmembrări Suceava."
         canonical={location.pathname}
       />
       <div className="flex min-h-screen items-center justify-center bg-background pt-20">

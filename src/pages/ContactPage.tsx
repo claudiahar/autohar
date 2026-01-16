@@ -121,9 +121,9 @@ const ContactPage = () => {
   return (
     <>
       <SEO
-        title="Contact - Cere Ofertă Piese Auto | Livrare în Toată Țara"
-        description="Contactează Auto Har pentru piese auto din dezmembrări. Telefon: +40 749 707 694. Livrare rapidă în toată țara. Răspundem în cel mai scurt timp!"
-        keywords="contact dezmembrări auto, telefon piese auto, cere oferta piese auto, livrare toată țara"
+        title="Contact - Cere Ofertă Piese Auto | Suceava, Botoșani, Piatra Neamț, Iași"
+        description="Contactează Auto Har pentru piese auto din dezmembrări. Telefon: +40 749 707 694. Livrare rapidă în Suceava, Botoșani, Piatra Neamț, Iași și toată Moldova. Răspundem în cel mai scurt timp!"
+        keywords="contact dezmembrări auto Suceava, telefon piese auto, cere oferta piese auto, piese auto Botoșani, piese auto Piatra Neamț, piese auto Iași"
         canonical="/contact"
         jsonLd={localBusinessJsonLd}
       />
@@ -362,35 +362,19 @@ const ContactPage = () => {
               Strada Traian Popovici 156, Suceava
             </p>
           </div>
-          <div className="rounded-2xl overflow-hidden border border-border shadow-lg relative">
+          <div className="rounded-2xl overflow-hidden border border-border shadow-lg">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2637.8!2d26.2556!3d47.6439!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4734fc5a3e64e2a7%3A0x8e2c6c9b4a3d5e1f!2sStrada%20Traian%20Popovici%20156%2C%20Suceava!5e0!3m2!1sro!2sro!4v1"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2635.8!2d26.2458!3d47.6517!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4734fc5f3bffffff%3A0x0!2sStrada%20Traian%20Popovici%20156%2C%20Suceava!5e0!3m2!1sro!2sro!4v1700000000000!5m2!1sro!2sro"
               width="100%"
               height="450"
               style={{ border: 0 }}
+              allowFullScreen
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              title="Locația Auto Har - Strada Traian Popovici 156, Suceava"
-              className="w-full pointer-events-none"
-            />
-            <a
-              href="https://maps.app.goo.gl/vw2xepCXj4bJWZJ66"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Deschide locația Auto Har în Google Maps"
-              className="absolute inset-0"
+              title="Locația Auto Har - Piese Auto Suceava"
+              className="w-full"
             />
           </div>
-          <p className="text-center text-muted-foreground mt-4">
-            <a
-              href="https://maps.app.goo.gl/vw2xepCXj4bJWZJ66"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="underline underline-offset-4"
-            >
-              Deschide în Google Maps
-            </a>
-          </p>
         </div>
       </section>
 
