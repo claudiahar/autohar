@@ -374,7 +374,7 @@ const ContactPage = () => {
               className="w-full pointer-events-none"
             />
             <a
-              href="https://www.google.com/maps/search/?api=1&query=Strada+Traian+Popovici+156%2C+Suceava%2C+Romania"
+              href="https://maps.app.goo.gl/vw2xepCXj4bJWZJ66"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Deschide locația Auto Har în Google Maps"
@@ -383,7 +383,7 @@ const ContactPage = () => {
           </div>
           <p className="text-center text-muted-foreground mt-4">
             <a
-              href="https://www.google.com/maps/search/?api=1&query=Strada+Traian+Popovici+156%2C+Suceava%2C+Romania"
+              href="https://maps.app.goo.gl/vw2xepCXj4bJWZJ66"
               target="_blank"
               rel="noopener noreferrer"
               className="underline underline-offset-4"
