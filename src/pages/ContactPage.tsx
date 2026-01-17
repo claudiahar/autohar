@@ -7,7 +7,8 @@ import { Phone, Mail, MapPin, Clock, MessageCircle, Send } from "lucide-react";
 import { z } from "zod";
 import { SEO, localBusinessJsonLd } from "@/components/SEO";
 import contactHero from "@/assets/contact-hero.jpg";
-import { supabase } from "@/integrations/supabase/client";
+import { supabase } from "@/integrations/supabase/browserClient";
+
 const formSchema = z.object({
   name: z.string().trim().min(2, "Numele trebuie să aibă minim 2 caractere").max(100, "Numele este prea lung"),
   phone: z.string().trim().min(10, "Numărul de telefon nu este valid").max(15, "Numărul de telefon este prea lung"),
