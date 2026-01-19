@@ -1,6 +1,9 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
 const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
+const SUPABASE_URL = Deno.env.get("SUPABASE_URL");
+const SUPABASE_SERVICE_ROLE_KEY = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -68,18 +71,57 @@ const handler = async (req: Request): Promise<Response> => {
       );
     }
 
-    // Sanitize and escape all user inputs for safe HTML embedding
-    const safeName = escapeHtml(data.name.trim());
-    const safePhone = sanitizePhone(data.phone.trim());
-    const safeEmail = data.email ? escapeHtml(data.email.trim()) : '';
-    const safeCarBrand = escapeHtml(data.carBrand.trim());
-    const safeCarModel = escapeHtml(data.carModel.trim());
-    const safeYear = escapeHtml(data.year.trim());
-    const safeEngine = data.engine ? escapeHtml(data.engine.trim()) : '';
-    const safePartNeeded = escapeHtml(data.partNeeded.trim());
+    // Sanitize inputs for database storage (trim whitespace)
+    const cleanName = data.name.trim();
+    const cleanPhone = sanitizePhone(data.phone.trim());
+    const cleanEmail = data.email ? data.email.trim() : null;
+    const cleanCarBrand = data.carBrand.trim();
+    const cleanCarModel = data.carModel.trim();
+    const cleanYear = data.year.trim();
+    const cleanEngine = data.engine ? data.engine.trim() : null;
+    const cleanPartNeeded = data.partNeeded.trim();
+
+    // Escape inputs for safe HTML embedding in email
+    const safeName = escapeHtml(cleanName);
+    const safePhone = escapeHtml(cleanPhone);
+    const safeEmail = cleanEmail ? escapeHtml(cleanEmail) : '';
+    const safeCarBrand = escapeHtml(cleanCarBrand);
+    const safeCarModel = escapeHtml(cleanCarModel);
+    const safeYear = escapeHtml(cleanYear);
+    const safeEngine = cleanEngine ? escapeHtml(cleanEngine) : '';
+    const safePartNeeded = escapeHtml(cleanPartNeeded);
 
     // Create safe phone link (digits only for href)
-    const phoneDigits = safePhone.replace(/\D/g, '');
+    const phoneDigits = cleanPhone.replace(/\D/g, '');
+
+    // Save quote request to database
+    if (SUPABASE_URL && SUPABASE_SERVICE_ROLE_KEY) {
+      const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY);
+      
+      const { error: dbError } = await supabase
+        .from('quote_requests')
+        .insert({
+          name: cleanName,
+          phone: cleanPhone,
+          email: cleanEmail,
+          car_brand: cleanCarBrand,
+          car_model: cleanCarModel,
+          year: cleanYear,
+          engine: cleanEngine,
+          part_needed: cleanPartNeeded,
+          status: 'pending'
+        });
+
+      if (dbError) {
+        console.error("[send-quote-request] Database error:", {
+          error: dbError,
+          timestamp: new Date().toISOString()
+        });
+        // Continue with email even if database fails - don't lose the lead
+      } else {
+        console.log("[send-quote-request] Quote request saved to database");
+      }
+    }
 
     // Send notification email to business owner using Resend REST API
     const emailResponse = await fetch("https://api.resend.com/emails", {
