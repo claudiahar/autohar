@@ -1,4 +1,11 @@
+# Robots.txt for pieseautohar.ro
+# Auto Har - Piese Auto din Dezmembrări Suceava, Botoșani, Piatra Neamț, Iași
+
+# Allow all major search engines
 User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
 Allow: /
 
 User-agent: Bingbot
@@ -10,7 +17,21 @@ Allow: /
 User-agent: facebookexternalhit
 Allow: /
 
+User-agent: LinkedInBot
+Allow: /
+
 User-agent: *
 Allow: /
 
+# Disallow admin and private paths (if any)
+Disallow: /api/
+Disallow: /_/
+
+# Sitemap location
 Sitemap: https://pieseautohar.ro/sitemap.xml
+
+# Crawl-delay for polite crawling (optional)
+Crawl-delay: 1
+
+# Host directive
+Host: https://pieseautohar.ro

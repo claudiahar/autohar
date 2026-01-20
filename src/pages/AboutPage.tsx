@@ -1,18 +1,24 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Check, Award, Users, Globe, Handshake, MessageCircle, ArrowRight } from "lucide-react";
-import { SEO, localBusinessJsonLd } from "@/components/SEO";
+import { SEO, localBusinessJsonLd, createBreadcrumbJsonLd } from "@/components/SEO";
 import aboutHero from "@/assets/about-hero.jpg";
+
+// Breadcrumb for About page
+const aboutBreadcrumb = createBreadcrumbJsonLd([
+  { name: "Acasă", url: "/" },
+  { name: "Despre Noi", url: "/despre-noi" }
+]);
 
 const AboutPage = () => {
   return (
     <>
       <SEO
-        title="Despre Noi - Dezmembrări Auto Suceava | Livrare Moldova"
-        description="Auto Har - dezmembrări auto Suceava cu peste 15 ani experiență. Livrare rapidă în Suceava, Botoșani, Piatra Neamț, Iași. Importăm piese din Belgia, Spania, Germania, Italia. Garanție inclusă."
-        keywords="dezmembrări auto Suceava, dezmembrări auto Botoșani, piese auto Piatra Neamț, piese auto Iași, Auto Har, import piese auto Europa, dezmembrări Moldova"
+        title="Despre Noi - Dezmembrări Auto Suceava | 15+ Ani Experiență"
+        description="Auto Har - dezmembrări auto Suceava cu peste 15 ani experiență. Livrare rapidă piese auto în Suceava, Botoșani, Piatra Neamț, Iași. Importăm din Belgia, Spania, Germania, Italia. Peste 10.000 clienți mulțumiți în Moldova."
+        keywords="dezmembrări auto Suceava, despre Auto Har, experiență dezmembrări, piese auto Botoșani, piese auto Piatra Neamț, piese auto Iași, import piese auto Europa, dezmembrări Moldova"
         canonical="/despre-noi"
-        jsonLd={localBusinessJsonLd}
+        jsonLd={[localBusinessJsonLd, aboutBreadcrumb]}
       />
       <div className="min-h-screen pt-20">
       {/* Hero */}
