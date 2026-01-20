@@ -5,9 +5,39 @@ import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { Phone, Mail, MapPin, Clock, MessageCircle, Send } from "lucide-react";
 import { z } from "zod";
-import { SEO, localBusinessJsonLd } from "@/components/SEO";
+import { SEO, localBusinessJsonLd, createBreadcrumbJsonLd } from "@/components/SEO";
 import contactHero from "@/assets/contact-hero.jpg";
 import { supabase } from "@/integrations/supabase/browserClient";
+
+// Breadcrumb for Contact page
+const contactBreadcrumb = createBreadcrumbJsonLd([
+  { name: "Acasă", url: "/" },
+  { name: "Contact", url: "/contact" }
+]);
+
+// Contact page specific schema
+const contactPageJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  "name": "Contact Auto Har - Cere Ofertă Piese Auto",
+  "description": "Contactează Auto Har pentru piese auto din dezmembrări. Livrare în Suceava, Botoșani, Piatra Neamț, Iași.",
+  "url": "https://pieseautohar.ro/contact",
+  "mainEntity": {
+    "@type": "LocalBusiness",
+    "name": "Auto Har - Dezmembrări Auto",
+    "telephone": ["+40749707694", "+40748951120"],
+    "email": "autohargrup@gmail.com",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Strada Traian Popovici 156",
+      "addressLocality": "Suceava",
+      "addressRegion": "Suceava",
+      "postalCode": "720000",
+      "addressCountry": "RO"
+    },
+    "areaServed": ["Suceava", "Botoșani", "Piatra Neamț", "Iași", "Moldova"]
+  }
+};
 
 const formSchema = z.object({
   name: z.string().trim().min(2, "Numele trebuie să aibă minim 2 caractere").max(100, "Numele este prea lung"),
@@ -20,6 +50,7 @@ const formSchema = z.object({
   partNeeded: z.string().trim().min(5, "Descrieți piesa dorită").max(1000, "Descrierea este prea lungă")
 });
 type FormData = z.infer<typeof formSchema>;
+
 const ContactPage = () => {
   const {
     toast
@@ -122,11 +153,11 @@ const ContactPage = () => {
   return (
     <>
       <SEO
-        title="Contact - Cere Ofertă Piese Auto | Suceava, Botoșani, Piatra Neamț, Iași"
-        description="Contactează Auto Har pentru piese auto din dezmembrări. Telefon: +40 749 707 694. Livrare rapidă în Suceava, Botoșani, Piatra Neamț, Iași și toată Moldova. Răspundem în cel mai scurt timp!"
-        keywords="contact dezmembrări auto Suceava, telefon piese auto, cere oferta piese auto, piese auto Botoșani, piese auto Piatra Neamț, piese auto Iași"
+        title="Contact - Cere Ofertă Piese Auto | Livrare Suceava, Botoșani, Piatra Neamț, Iași"
+        description="Contactează Auto Har pentru piese auto din dezmembrări. Telefon: +40 749 707 694. Livrare rapidă în Suceava, Botoșani, Piatra Neamț, Iași și toată Moldova. Răspundem în cel mai scurt timp cu cele mai bune prețuri!"
+        keywords="contact dezmembrări auto Suceava, telefon piese auto, cere oferta piese auto, piese auto Botoșani livrare, piese auto Piatra Neamț, piese auto Iași, Auto Har contact, cerere ofertă piese"
         canonical="/contact"
-        jsonLd={localBusinessJsonLd}
+        jsonLd={[localBusinessJsonLd, contactBreadcrumb, contactPageJsonLd]}
       />
       <div className="min-h-screen pt-20">
       {/* Hero */}

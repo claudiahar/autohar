@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Check, Cog, Car, Wrench, Cpu, Settings, MessageCircle, ArrowRight } from "lucide-react";
-import { SEO, localBusinessJsonLd } from "@/components/SEO";
+import { SEO, localBusinessJsonLd, createBreadcrumbJsonLd, createServiceJsonLd } from "@/components/SEO";
 import partsHero from "@/assets/parts-hero.jpg";
+
 const partsCategories = [{
   icon: Cog,
   title: "Piese Motor",
@@ -29,16 +30,92 @@ const partsCategories = [{
   description: "Componente pentru sistemul de suspensie.",
   items: ["Amortizoare față/spate", "Arcuri spirale", "Fuzete și pivoti", "Bielete antiruliu", "Brate suspensie", "Bucșe și articulații"]
 }];
+
 const brands = ["Volkswagen", "Audi", "BMW", "Mercedes-Benz", "Opel", "Ford", "Renault", "Peugeot", "Citroën", "Skoda", "Seat", "Toyota", "Honda", "Mazda", "Hyundai", "Kia", "Volvo", "Fiat", "Alfa Romeo", "Dacia"];
+
+// Breadcrumb for Parts page
+const partsBreadcrumb = createBreadcrumbJsonLd([
+  { name: "Acasă", url: "/" },
+  { name: "Piese Auto", url: "/piese-auto" }
+]);
+
+// Service schema for parts
+const partsServiceJsonLd = createServiceJsonLd(
+  "Vânzare Piese Auto din Dezmembrări",
+  "Piese auto originale second-hand pentru toate mărcile. Motoare, cutii de viteze, caroserie, electronice. Livrare în Suceava, Botoșani, Piatra Neamț, Iași.",
+  "/piese-auto"
+);
+
+// Product catalog schema
+const productCatalogJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Catalog Piese Auto din Dezmembrări",
+  "description": "Piese auto originale din dezmembrări pentru Suceava, Botoșani, Piatra Neamț, Iași",
+  "numberOfItems": 5,
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "@type": "Product",
+        "name": "Piese Motor",
+        "description": "Motoare complete, injectoare, turbine, pompe - livrare în Suceava, Botoșani, Piatra Neamț, Iași",
+        "offers": { "@type": "Offer", "availability": "https://schema.org/InStock", "priceCurrency": "RON" }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "@type": "Product",
+        "name": "Cutii de Viteze",
+        "description": "Cutii manuale, automate, DSG - import din Europa",
+        "offers": { "@type": "Offer", "availability": "https://schema.org/InStock", "priceCurrency": "RON" }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "@type": "Product",
+        "name": "Elemente Caroserie",
+        "description": "Uși, capote, aripi, bare - pentru toate mărcile auto",
+        "offers": { "@type": "Offer", "availability": "https://schema.org/InStock", "priceCurrency": "RON" }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "item": {
+        "@type": "Product",
+        "name": "Electronice Auto",
+        "description": "ECU, calculatoare, senzori, module - verificate și testate",
+        "offers": { "@type": "Offer", "availability": "https://schema.org/InStock", "priceCurrency": "RON" }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 5,
+      "item": {
+        "@type": "Product",
+        "name": "Suspensie",
+        "description": "Amortizoare, arcuri, fuzete, brate - calitate garantată",
+        "offers": { "@type": "Offer", "availability": "https://schema.org/InStock", "priceCurrency": "RON" }
+      }
+    }
+  ]
+};
+
 const PartsPage = () => {
   return (
     <>
       <SEO
-        title="Piese Auto din Dezmembrări Suceava | Livrare Botoșani, Piatra Neamț, Iași"
-        description="Piese auto second-hand originale din dezmembrări Suceava: motoare, cutii de viteze, caroserie, electronice. Livrare rapidă în Botoșani, Piatra Neamț, Iași și toată Moldova. Garanție inclusă."
-        keywords="piese auto Suceava, piese auto Botoșani, piese auto Piatra Neamț, piese auto Iași, piese motor dezmembrări, cutii de viteze second-hand, dezmembrări Moldova"
+        title="Piese Auto din Dezmembrări | Motoare, Cutii Viteze, Caroserie - Suceava"
+        description="Catalog piese auto originale din dezmembrări: motoare complete, cutii de viteze, caroserie, electronice. Livrare rapidă în Suceava, Botoșani, Piatra Neamț, Iași și toată Moldova. Garanție și posibilitate retur."
+        keywords="piese auto Suceava, piese motor dezmembrări, cutii viteze second-hand, caroserie auto, electronice auto, piese auto Botoșani, piese auto Piatra Neamț, piese auto Iași, catalog piese auto Moldova"
         canonical="/piese-auto"
-        jsonLd={localBusinessJsonLd}
+        jsonLd={[localBusinessJsonLd, partsBreadcrumb, partsServiceJsonLd, productCatalogJsonLd]}
       />
       <div className="min-h-screen pt-20">
       {/* Hero */}

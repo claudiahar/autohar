@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Check, Truck, Shield, Euro, Wrench, Car, Cog, MessageCircle, ArrowRight, Phone } from "lucide-react";
-import { SEO, localBusinessJsonLd } from "@/components/SEO";
+import { SEO, localBusinessJsonLd, websiteJsonLd, createFAQJsonLd } from "@/components/SEO";
 import heroBg from "@/assets/hero-bg.jpg";
 
 const benefits = [{
@@ -24,15 +24,31 @@ const benefits = [{
 
 const carBrands = ["Volkswagen", "Audi", "BMW", "Mercedes", "Opel", "Ford", "Renault", "Peugeot", "Skoda", "Seat", "Toyota", "Hyundai"];
 
+// FAQ data for structured data
+const homeFAQs = [
+  {
+    question: "Livrați piese auto în Suceava, Botoșani, Piatra Neamț și Iași?",
+    answer: "Da, livrăm piese auto din dezmembrări în toate aceste orașe și în toată Moldova. Livrarea se face prin curier în 24-48 ore."
+  },
+  {
+    question: "Ce garanție oferă Auto Har pentru piesele din dezmembrări?",
+    answer: "Toate piesele noastre beneficiază de garanție și posibilitatea returului în cazul în care piesa nu este compatibilă cu autovehiculul dumneavoastră."
+  },
+  {
+    question: "Din ce țări importați piesele auto?",
+    answer: "Importăm autoturisme și piese din Belgia, Spania, Germania și Italia, garantând calitatea și originalitatea pieselor."
+  }
+];
+
 const HomePage = () => {
   return (
     <>
       <SEO
         title="Piese Auto din Dezmembrări Suceava | Livrare Botoșani, Piatra Neamț, Iași"
-        description="Piese auto din dezmembrări Suceava - Auto Har oferă piese originale second-hand pentru toate mărcile. Livrare rapidă în Suceava, Botoșani, Piatra Neamț, Iași și toată Moldova. Import din Belgia, Spania, Germania, Italia."
-        keywords="piese auto din dezmembrări Suceava, dezmembrări auto Suceava, piese auto Botoșani, piese auto Piatra Neamț, piese auto Iași, piese auto second-hand Moldova, Auto Har, dezmembrări Moldova"
+        description="Piese auto din dezmembrări Suceava - Auto Har oferă piese originale second-hand pentru toate mărcile. Livrare rapidă în Suceava, Botoșani, Piatra Neamț, Iași și toată Moldova. Import din Belgia, Spania, Germania, Italia. Prețuri accesibile, garanție inclusă."
+        keywords="piese auto din dezmembrări Suceava, dezmembrări auto Suceava, piese auto Botoșani, piese auto Piatra Neamț, piese auto Iași, piese auto second-hand Moldova, Auto Har, dezmembrări Moldova, piese auto originale, import piese auto Europa"
         canonical="/"
-        jsonLd={localBusinessJsonLd}
+        jsonLd={[localBusinessJsonLd, websiteJsonLd, createFAQJsonLd(homeFAQs)]}
       />
       <div className="min-h-screen">
       {/* Hero Section */}
