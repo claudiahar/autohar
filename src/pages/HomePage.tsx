@@ -222,8 +222,7 @@ const HomePage = () => {
           <h2 className="font-display text-3xl md:text-5xl text-foreground mb-6">
             Ai nevoie de o <span className="text-gradient">piesă auto</span>?
           </h2>
-          <p className="text-muted-foreground max-w-xl mx-auto mb-8 text-lg">Trimite-ne o cerere de ofertă și îți răspundem în cel mai scurt timp cu cel mai bun preț. 
-Ne poți vizita și la sediul nostru: Str. Traian Popovici nr. 156, Suceava.</p>
+          <p className="text-muted-foreground max-w-xl mx-auto mb-8 text-lg">Trimite-ne o cerere de ofertă și îți răspundem în cel mai scurt timp cu cel mai bun preț. Ne poți vizita și la sediul nostru: Str. Traian Popovici nr. 156, Suceava.</p>
           
           {/* Phone numbers stacked vertically */}
           
