@@ -5,21 +5,16 @@ import { SEO, localBusinessJsonLd, createBreadcrumbJsonLd } from "@/components/S
 import aboutHero from "@/assets/about-hero.jpg";
 
 // Breadcrumb for About page
-const aboutBreadcrumb = createBreadcrumbJsonLd([
-  { name: "Acasă", url: "/" },
-  { name: "Despre Noi", url: "/despre-noi" }
-]);
-
+const aboutBreadcrumb = createBreadcrumbJsonLd([{
+  name: "Acasă",
+  url: "/"
+}, {
+  name: "Despre Noi",
+  url: "/despre-noi"
+}]);
 const AboutPage = () => {
-  return (
-    <>
-      <SEO
-        title="Despre Noi - Dezmembrări Auto Suceava | 15+ Ani Experiență"
-        description="Auto Har - dezmembrări auto Suceava cu peste 15 ani experiență. Livrare rapidă piese auto în Suceava, Botoșani, Piatra Neamț, Iași. Importăm din Belgia, Spania, Germania, Italia. Peste 10.000 clienți mulțumiți în Moldova."
-        keywords="dezmembrări auto Suceava, despre Auto Har, experiență dezmembrări, piese auto Botoșani, piese auto Piatra Neamț, piese auto Iași, import piese auto Europa, dezmembrări Moldova"
-        canonical="/despre-noi"
-        jsonLd={[localBusinessJsonLd, aboutBreadcrumb]}
-      />
+  return <>
+      <SEO title="Despre Noi - Dezmembrări Auto Suceava | 15+ Ani Experiență" description="Auto Har - dezmembrări auto Suceava cu peste 15 ani experiență. Livrare rapidă piese auto în Suceava, Botoșani, Piatra Neamț, Iași. Importăm din Belgia, Spania, Germania, Italia. Peste 10.000 clienți mulțumiți în Moldova." keywords="dezmembrări auto Suceava, despre Auto Har, experiență dezmembrări, piese auto Botoșani, piese auto Piatra Neamț, piese auto Iași, import piese auto Europa, dezmembrări Moldova" canonical="/despre-noi" jsonLd={[localBusinessJsonLd, aboutBreadcrumb]} />
       <div className="min-h-screen pt-20">
       {/* Hero */}
       <section className="py-20 md:py-28 bg-card relative overflow-hidden">
@@ -65,18 +60,18 @@ const AboutPage = () => {
             </div>
             <div className="grid grid-cols-2 gap-4">
               {[{
-              value: "15+",
-              label: "Ani de experiență"
-            }, {
-              value: "10K+",
-              label: "Clienți mulțumiți"
-            }, {
-              value: "50K+",
-              label: "Piese în stoc"
-            }, {
-              value: "4",
-              label: "Țări de import"
-            }].map((stat, index) => <div key={index} className="bg-card p-6 rounded-2xl border border-border text-center hover-lift">
+                value: "15+",
+                label: "Ani de experiență"
+              }, {
+                value: "10K+",
+                label: "Clienți mulțumiți"
+              }, {
+                value: "50K+",
+                label: "Piese în stoc"
+              }, {
+                value: "4",
+                label: "Țări de import"
+              }].map((stat, index) => <div key={index} className="bg-card p-6 rounded-2xl border border-border text-center hover-lift">
                   <div className="font-display text-4xl text-primary mb-2">{stat.value}</div>
                   <div className="text-muted-foreground text-sm">{stat.label}</div>
                 </div>)}
@@ -97,22 +92,22 @@ const AboutPage = () => {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[{
-            icon: Award,
-            title: "Calitate",
-            description: "Piese auto originale din dezmembrări, selectate pentru a oferi un raport corect între preț și funcționalitate."
-          }, {
-            icon: Handshake,
-            title: "Seriozitate",
-            description: "Respectăm fiecare angajament și livrăm la timp."
-          }, {
-            icon: Users,
-            title: "Suport",
-            description: "Suntem disponibili pentru informații rapide și comunicare eficientă pe tot parcursul procesului de comandă."
-          }, {
-            icon: Globe,
-            title: "Transparență",
-            description: "Prețuri corecte și informații complete despre fiecare piesă."
-          }].map((value, index) => <div key={index} className="card-glass p-6 rounded-2xl border border-border/50 hover-lift group text-center">
+              icon: Award,
+              title: "Calitate",
+              description: "Piese auto originale din dezmembrări, selectate pentru a oferi un raport corect între preț și funcționalitate."
+            }, {
+              icon: Handshake,
+              title: "Seriozitate",
+              description: "Respectăm fiecare angajament și livrăm la timp."
+            }, {
+              icon: Users,
+              title: "Suport",
+              description: "Suntem disponibili pentru informații rapide și comunicare eficientă pe tot parcursul procesului de comandă."
+            }, {
+              icon: Globe,
+              title: "Transparență",
+              description: "Prețuri corecte și informații complete despre fiecare piesă."
+            }].map((value, index) => <div key={index} className="card-glass p-6 rounded-2xl border border-border/50 hover-lift group text-center">
                 <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-accent/20 to-accent/5 flex items-center justify-center mx-auto mb-5 group-hover:scale-110 transition-transform duration-300">
                   <value.icon className="w-8 h-8 text-accent" />
                 </div>
@@ -145,16 +140,10 @@ const AboutPage = () => {
             }, {
               country: "Italia",
               flag: "https://flagcdn.com/w80/it.png"
-            }].map((item, index) => (
-              <div key={index} className="bg-card p-4 md:p-6 rounded-2xl border border-border text-center hover:border-accent/50 hover-lift transition-all duration-300">
-                <img 
-                  src={item.flag} 
-                  alt={`Steag ${item.country}`} 
-                  className="w-12 h-8 md:w-16 md:h-12 object-cover rounded mx-auto mb-2 md:mb-3 shadow-sm"
-                />
+            }].map((item, index) => <div key={index} className="bg-card p-4 md:p-6 rounded-2xl border border-border text-center hover:border-accent/50 hover-lift transition-all duration-300">
+                <img src={item.flag} alt={`Steag ${item.country}`} className="w-12 h-8 md:w-16 md:h-12 object-cover rounded mx-auto mb-2 md:mb-3 shadow-sm" />
                 <div className="font-display text-sm md:text-lg text-foreground">{item.country}</div>
-              </div>
-            ))}
+              </div>)}
           </div>
         </div>
       </section>
@@ -190,9 +179,7 @@ const AboutPage = () => {
           <h2 className="font-display text-3xl md:text-4xl text-foreground mb-6">
             Pregătiți să <span className="text-accent">colaborăm</span>?
           </h2>
-          <p className="text-muted-foreground max-w-xl mx-auto mb-10">
-            Contactează-ne pentru a găsi piesa de care ai nevoie la cel mai bun preț.
-          </p>
+          <p className="text-muted-foreground max-w-xl mx-auto mb-10">Contactează-ne pentru a găsi piesa de care ai nevoie la cel mai bun preț sau vino la sediu nostru: Str. Traian Popovici 156, Suceava.</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button variant="hero" size="xl" asChild>
               <Link to="/contact">
@@ -210,7 +197,6 @@ const AboutPage = () => {
         </div>
       </section>
       </div>
-    </>
-  );
+    </>;
 };
 export default AboutPage;
