@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import { Check, Truck, Shield, Euro, Wrench, Car, Cog, MessageCircle, ArrowRight, Phone } from "lucide-react";
 import { SEO, localBusinessJsonLd, websiteJsonLd, createFAQJsonLd } from "@/components/SEO";
 import heroBg from "@/assets/hero-bg.jpg";
-
 const benefits = [{
   icon: Euro,
   title: "Prețuri Accesibile",
@@ -21,35 +20,22 @@ const benefits = [{
   title: "Garanție & Retur",
   description: "Piesele beneficiază de garanție și posibilitatea returului în cazul în care piesa nu este compatibilă."
 }];
-
 const carBrands = ["Volkswagen", "Audi", "BMW", "Mercedes", "Opel", "Ford", "Renault", "Peugeot", "Skoda", "Seat", "Toyota", "Hyundai"];
 
 // FAQ data for structured data
-const homeFAQs = [
-  {
-    question: "Livrați piese auto în Suceava, Botoșani, Piatra Neamț și Iași?",
-    answer: "Da, livrăm piese auto din dezmembrări în toate aceste orașe și în toată Moldova. Livrarea se face prin curier în 24-48 ore."
-  },
-  {
-    question: "Ce garanție oferă Auto Har pentru piesele din dezmembrări?",
-    answer: "Toate piesele noastre beneficiază de garanție și posibilitatea returului în cazul în care piesa nu este compatibilă cu autovehiculul dumneavoastră."
-  },
-  {
-    question: "Din ce țări importați piesele auto?",
-    answer: "Importăm autoturisme și piese din Belgia, Spania, Germania și Italia, garantând calitatea și originalitatea pieselor."
-  }
-];
-
+const homeFAQs = [{
+  question: "Livrați piese auto în Suceava, Botoșani, Piatra Neamț și Iași?",
+  answer: "Da, livrăm piese auto din dezmembrări în toate aceste orașe și în toată Moldova. Livrarea se face prin curier în 24-48 ore."
+}, {
+  question: "Ce garanție oferă Auto Har pentru piesele din dezmembrări?",
+  answer: "Toate piesele noastre beneficiază de garanție și posibilitatea returului în cazul în care piesa nu este compatibilă cu autovehiculul dumneavoastră."
+}, {
+  question: "Din ce țări importați piesele auto?",
+  answer: "Importăm autoturisme și piese din Belgia, Spania, Germania și Italia, garantând calitatea și originalitatea pieselor."
+}];
 const HomePage = () => {
-  return (
-    <>
-      <SEO
-        title="Piese Auto din Dezmembrări Suceava | Livrare Botoșani, Piatra Neamț, Iași"
-        description="Piese auto din dezmembrări Suceava - Auto Har oferă piese originale second-hand pentru toate mărcile. Livrare rapidă în Suceava, Botoșani, Piatra Neamț, Iași și toată Moldova. Import din Belgia, Spania, Germania, Italia. Prețuri accesibile, garanție inclusă."
-        keywords="piese auto din dezmembrări Suceava, dezmembrări auto Suceava, piese auto Botoșani, piese auto Piatra Neamț, piese auto Iași, piese auto second-hand Moldova, Auto Har, dezmembrări Moldova, piese auto originale, import piese auto Europa"
-        canonical="/"
-        jsonLd={[localBusinessJsonLd, websiteJsonLd, createFAQJsonLd(homeFAQs)]}
-      />
+  return <>
+      <SEO title="Piese Auto din Dezmembrări Suceava | Livrare Botoșani, Piatra Neamț, Iași" description="Piese auto din dezmembrări Suceava - Auto Har oferă piese originale second-hand pentru toate mărcile. Livrare rapidă în Suceava, Botoșani, Piatra Neamț, Iași și toată Moldova. Import din Belgia, Spania, Germania, Italia. Prețuri accesibile, garanție inclusă." keywords="piese auto din dezmembrări Suceava, dezmembrări auto Suceava, piese auto Botoșani, piese auto Piatra Neamț, piese auto Iași, piese auto second-hand Moldova, Auto Har, dezmembrări Moldova, piese auto originale, import piese auto Europa" canonical="/" jsonLd={[localBusinessJsonLd, websiteJsonLd, createFAQJsonLd(homeFAQs)]} />
       <div className="min-h-screen">
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -77,15 +63,15 @@ const HomePage = () => {
           </h1>
           
           <p className="text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto mb-10 animate-fade-up" style={{
-          animationDelay: "0.1s"
-        }}>
+            animationDelay: "0.1s"
+          }}>
             Piese auto second-hand originale și garantate. 
             Găsește piesa potrivită la cel mai bun preț.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-up" style={{
-          animationDelay: "0.2s"
-        }}>
+            animationDelay: "0.2s"
+          }}>
             <Button variant="hero" size="xl" asChild>
               <Link to="/contact">
                 Cere ofertă
@@ -102,21 +88,21 @@ const HomePage = () => {
 
           {/* Quick stats */}
           <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto animate-fade-up" style={{
-          animationDelay: "0.3s"
-        }}>
+            animationDelay: "0.3s"
+          }}>
             {[{
-            value: "15+",
-            label: "Ani experiență"
-          }, {
-            value: "10K+",
-            label: "Clienți mulțumiți"
-          }, {
-            value: "50K+",
-            label: "Piese în stoc"
-          }, {
-            value: "100%",
-            label: "Piese originale"
-          }].map((stat, index) => <div key={index} className="p-4 rounded-2xl bg-foreground/5 backdrop-blur-sm border border-foreground/10">
+              value: "15+",
+              label: "Ani experiență"
+            }, {
+              value: "10K+",
+              label: "Clienți mulțumiți"
+            }, {
+              value: "50K+",
+              label: "Piese în stoc"
+            }, {
+              value: "100%",
+              label: "Piese originale"
+            }].map((stat, index) => <div key={index} className="p-4 rounded-2xl bg-foreground/5 backdrop-blur-sm border border-foreground/10">
                 <div className="font-display text-3xl md:text-4xl text-accent">{stat.value}</div>
                 <div className="text-muted-foreground text-sm mt-1">{stat.label}</div>
               </div>)}
@@ -171,22 +157,22 @@ const HomePage = () => {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[{
-            icon: Cog,
-            title: "Piese Motor",
-            items: ["Motoare complete", "Injectoare", "Turbine", "Pompe"]
-          }, {
-            icon: Car,
-            title: "Transmisie",
-            items: ["Cutii de viteze", "Ambreiaje", "Cardane", "Diferențiale"]
-          }, {
-            icon: Shield,
-            title: "Caroserie",
-            items: ["Uși", "Capote", "Aripi", "Bare"]
-          }, {
-            icon: Wrench,
-            title: "Electronice",
-            items: ["ECU", "Senzori", "Calculatoare", "Module"]
-          }].map((category, index) => <div key={index} className="bg-card p-6 rounded-2xl border border-border hover:border-accent/50 transition-all duration-300 group hover-lift">
+              icon: Cog,
+              title: "Piese Motor",
+              items: ["Motoare complete", "Injectoare", "Turbine", "Pompe"]
+            }, {
+              icon: Car,
+              title: "Transmisie",
+              items: ["Cutii de viteze", "Ambreiaje", "Cardane", "Diferențiale"]
+            }, {
+              icon: Shield,
+              title: "Caroserie",
+              items: ["Uși", "Capote", "Aripi", "Bare"]
+            }, {
+              icon: Wrench,
+              title: "Electronice",
+              items: ["ECU", "Senzori", "Calculatoare", "Module"]
+            }].map((category, index) => <div key={index} className="bg-card p-6 rounded-2xl border border-border hover:border-accent/50 transition-all duration-300 group hover-lift">
                 <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-accent to-accent/80 flex items-center justify-center mb-5">
                   <category.icon className="w-6 h-6 text-accent-foreground" />
                 </div>
@@ -236,9 +222,8 @@ const HomePage = () => {
           <h2 className="font-display text-3xl md:text-5xl text-foreground mb-6">
             Ai nevoie de o <span className="text-gradient">piesă auto</span>?
           </h2>
-          <p className="text-muted-foreground max-w-xl mx-auto mb-8 text-lg">
-            Trimite-ne o cerere de ofertă și îți răspundem în cel mai scurt timp cu cel mai bun preț.
-          </p>
+          <p className="text-muted-foreground max-w-xl mx-auto mb-8 text-lg">Trimite-ne o cerere de ofertă și îți răspundem în cel mai scurt timp cu cel mai bun preț. 
+Ne poți vizita și la sediul nostru: Str. Traian Popovici nr. 156, Suceava.</p>
           
           {/* Phone numbers stacked vertically */}
           
@@ -260,7 +245,6 @@ const HomePage = () => {
         </div>
       </section>
       </div>
-    </>
-  );
+    </>;
 };
 export default HomePage;
