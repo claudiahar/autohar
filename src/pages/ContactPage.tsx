@@ -10,10 +10,13 @@ import contactHero from "@/assets/contact-hero.jpg";
 import { supabase } from "@/integrations/supabase/browserClient";
 
 // Breadcrumb for Contact page
-const contactBreadcrumb = createBreadcrumbJsonLd([
-  { name: "Acasă", url: "/" },
-  { name: "Contact", url: "/contact" }
-]);
+const contactBreadcrumb = createBreadcrumbJsonLd([{
+  name: "Acasă",
+  url: "/"
+}, {
+  name: "Contact",
+  url: "/contact"
+}]);
 
 // Contact page specific schema
 const contactPageJsonLd = {
@@ -38,7 +41,6 @@ const contactPageJsonLd = {
     "areaServed": ["Suceava", "Botoșani", "Piatra Neamț", "Iași", "Moldova"]
   }
 };
-
 const formSchema = z.object({
   name: z.string().trim().min(2, "Numele trebuie să aibă minim 2 caractere").max(100, "Numele este prea lung"),
   phone: z.string().trim().min(10, "Numărul de telefon nu este valid").max(15, "Numărul de telefon este prea lung"),
@@ -50,7 +52,6 @@ const formSchema = z.object({
   partNeeded: z.string().trim().min(5, "Descrieți piesa dorită").max(1000, "Descrierea este prea lungă")
 });
 type FormData = z.infer<typeof formSchema>;
-
 const ContactPage = () => {
   const {
     toast
@@ -89,12 +90,14 @@ const ContactPage = () => {
     setIsSubmitting(true);
     try {
       formSchema.parse(formData);
-      
+
       // Call edge function to send email
-      const { data, error } = await supabase.functions.invoke('send-quote-request', {
+      const {
+        data,
+        error
+      } = await supabase.functions.invoke('send-quote-request', {
         body: formData
       });
-
       if (error) {
         console.error("Edge function error:", error);
         toast({
@@ -150,15 +153,8 @@ const ContactPage = () => {
       setIsSubmitting(false);
     }
   };
-  return (
-    <>
-      <SEO
-        title="Contact - Cere Ofertă Piese Auto | Livrare Suceava, Botoșani, Piatra Neamț, Iași"
-        description="Contactează Auto Har pentru piese auto din dezmembrări. Telefon: +40 749 707 694. Livrare rapidă în Suceava, Botoșani, Piatra Neamț, Iași și toată Moldova. Răspundem în cel mai scurt timp cu cele mai bune prețuri!"
-        keywords="contact dezmembrări auto Suceava, telefon piese auto, cere oferta piese auto, piese auto Botoșani livrare, piese auto Piatra Neamț, piese auto Iași, Auto Har contact, cerere ofertă piese"
-        canonical="/contact"
-        jsonLd={[localBusinessJsonLd, contactBreadcrumb, contactPageJsonLd]}
-      />
+  return <>
+      <SEO title="Contact - Cere Ofertă Piese Auto | Livrare Suceava, Botoșani, Piatra Neamț, Iași" description="Contactează Auto Har pentru piese auto din dezmembrări. Telefon: +40 749 707 694. Livrare rapidă în Suceava, Botoșani, Piatra Neamț, Iași și toată Moldova. Răspundem în cel mai scurt timp cu cele mai bune prețuri!" keywords="contact dezmembrări auto Suceava, telefon piese auto, cere oferta piese auto, piese auto Botoșani livrare, piese auto Piatra Neamț, piese auto Iași, Auto Har contact, cerere ofertă piese" canonical="/contact" jsonLd={[localBusinessJsonLd, contactBreadcrumb, contactPageJsonLd]} />
       <div className="min-h-screen pt-20">
       {/* Hero */}
       <section className="py-20 md:py-28 bg-card relative overflow-hidden">
@@ -169,9 +165,8 @@ const ContactPage = () => {
             <h1 className="font-display text-4xl md:text-5xl lg:text-6xl text-foreground mb-6">
               <span className="text-primary">Contactează</span>-ne
             </h1>
-            <p className="text-muted-foreground text-lg leading-relaxed mb-10">
-              Ai nevoie de o piesă auto? Trimite-ne o cerere și îți răspundem în cel mai scurt timp.
-            </p>
+            <p className="text-muted-foreground text-lg leading-relaxed mb-10">Ai nevoie de o piesă auto? Trimite-ne o cerere și îți răspundem în cel mai scurt timp. 
+Sau ne poți vizita la sediul nostru: Str Traian Popovici 156, Suceava.</p>
           </div>
           
           {/* Hero Image */}
@@ -268,8 +263,7 @@ const ContactPage = () => {
             {/* Form */}
             <div className="lg:col-span-2">
               <div className="bg-card p-6 md:p-8 rounded-2xl border border-border">
-                {isSubmitted ? (
-                  <div className="flex flex-col items-center justify-center py-16 text-center">
+                {isSubmitted ? <div className="flex flex-col items-center justify-center py-16 text-center">
                     <div className="w-20 h-20 rounded-full bg-gradient-to-br from-accent/20 to-accent/5 flex items-center justify-center mb-6">
                       <Send className="w-10 h-10 text-accent" />
                     </div>
@@ -279,16 +273,10 @@ const ContactPage = () => {
                     <p className="text-muted-foreground text-lg mb-8 max-w-md">
                       Vă mulțumim! Vă vom contacta în cel mai scurt timp cu oferta noastră.
                     </p>
-                    <Button 
-                      variant="outline" 
-                      size="lg"
-                      onClick={() => setIsSubmitted(false)}
-                    >
+                    <Button variant="outline" size="lg" onClick={() => setIsSubmitted(false)}>
                       Trimite altă cerere
                     </Button>
-                  </div>
-                ) : (
-                  <>
+                  </div> : <>
                     <div className="mb-8">
                       <h2 className="font-display text-2xl text-foreground">
                         Cerere de <span className="text-primary">ofertă</span>
@@ -375,8 +363,7 @@ const ContactPage = () => {
                           </>}
                       </Button>
                     </form>
-                  </>
-                )}
+                  </>}
               </div>
             </div>
           </div>
@@ -395,17 +382,9 @@ const ContactPage = () => {
             </p>
           </div>
           <div className="rounded-2xl overflow-hidden border border-border shadow-lg">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2635.8!2d26.2458!3d47.6517!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4734fc5f3bffffff%3A0x0!2sStrada%20Traian%20Popovici%20156%2C%20Suceava!5e0!3m2!1sro!2sro!4v1700000000000!5m2!1sro!2sro"
-              width="100%"
-              height="450"
-              style={{ border: 0 }}
-              allowFullScreen
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              title="Locația Auto Har - Piese Auto Suceava"
-              className="w-full"
-            />
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2635.8!2d26.2458!3d47.6517!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4734fc5f3bffffff%3A0x0!2sStrada%20Traian%20Popovici%20156%2C%20Suceava!5e0!3m2!1sro!2sro!4v1700000000000!5m2!1sro!2sro" width="100%" height="450" style={{
+              border: 0
+            }} allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade" title="Locația Auto Har - Piese Auto Suceava" className="w-full" />
           </div>
         </div>
       </section>
@@ -433,7 +412,6 @@ const ContactPage = () => {
         </div>
       </section>
       </div>
-    </>
-  );
+    </>;
 };
 export default ContactPage;
