@@ -27,42 +27,27 @@
 
     <meta
       name="description"
-      content="Piese auto din dezmembrări Suceava - Auto Har oferă piese originale second-hand pentru toate mărcile. Import din Belgia, Spania, Germania, Italia."
+      content="Piese auto din dezmembrări Suceava - Auto Har. Piese originale second-hand, import Europa, garanție și livrare rapidă."
     />
     <meta name="author" content="Auto Har" />
     <meta
       name="keywords"
-      content="piese auto dezmembrari Suceava, dezmembrari auto Suceava, piese auto second hand Suceava"
+      content="piese auto dezmembrari Suceava, piese auto second hand Suceava"
     />
 
-    <!-- SEO -->
     <meta name="robots" content="index, follow" />
     <meta name="googlebot" content="index, follow" />
 
     <!-- Open Graph -->
     <meta property="og:title" content="Piese Auto din Dezmembrări Suceava | Auto Har" />
-    <meta
-      property="og:description"
-      content="Piese auto originale second-hand. Import din Europa. Livrare rapidă."
-    />
+    <meta property="og:description" content="Piese auto originale second-hand. Import Europa." />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="ro_RO" />
     <meta property="og:url" content="https://pieseautohar.ro" />
-    <meta property="og:site_name" content="Auto Har" />
-
-    <!-- Local SEO -->
-    <meta name="geo.region" content="RO-SV" />
-    <meta name="geo.placename" content="Suceava" />
-    <meta name="geo.position" content="47.6517;26.2458" />
-    <meta name="ICBM" content="47.6517, 26.2458" />
 
     <link rel="canonical" href="https://pieseautohar.ro" />
 
-    <!-- Performance -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-
-    <!-- GA + Google Ads – pornesc DOAR după accept cookies -->
+    <!-- Google Analytics + Google Ads (după accept cookies) -->
     <script>
       function loadTracking() {
         if (window.trackingLoaded) return;
@@ -70,21 +55,24 @@
 
         const s = document.createElement("script");
         s.async = true;
-        s.src = "https://www.googletagmanager.com/gtag/js?id=G-806DL60HS1";
+        s.src =
+          "https://www.googletagmanager.com/gtag/js?id=G-806DL60HS1";
         document.head.appendChild(s);
 
         s.onload = () => {
           window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
+          function gtag() {
+            dataLayer.push(arguments);
+          }
           window.gtag = gtag;
 
           gtag("js", new Date());
 
-          /* Google Analytics */
+          // Google Analytics
           gtag("config", "G-806DL60HS1");
 
-          /* Google Ads */
-          gtag("config", "AW-1786396839");
+          // Google Ads
+          gtag("config", "AW-17863968839");
         };
       }
 
@@ -97,7 +85,7 @@
   </head>
 
   <body>
-    <!-- COOKIE BANNER GDPR -->
+    <!-- Cookie Banner GDPR -->
     <div
       id="cookie-banner"
       style="
@@ -106,12 +94,12 @@
         left: 0;
         width: 100%;
         background: #1f2937;
-        color: #ffffff;
+        color: #fff;
         padding: 14px;
         font-size: 14px;
+        display: none;
         z-index: 9999;
         text-align: center;
-        display: none;
       "
     >
       Acest site folosește cookie-uri pentru analiză și funcționalitate.
