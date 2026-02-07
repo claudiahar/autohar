@@ -94,7 +94,7 @@ export const SEO = ({
 // Enhanced Local Business JSON-LD with multiple service areas
 export const localBusinessJsonLd = {
   "@context": "https://schema.org",
-  "@type": "AutoPartsStore",
+  "@type": "LocalBusiness",
   "@id": "https://pieseautohar.ro/#organization",
   "name": "Auto Har - Piese Auto din Dezmembrări",
   "alternateName": [
@@ -194,37 +194,37 @@ export const localBusinessJsonLd = {
   "paymentAccepted": ["Cash", "Card", "Transfer bancar"],
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
-    "name": "Piese Auto din Dezmembrări",
+    "name": "Servicii Dezmembrări Auto",
     "itemListElement": [
       {
         "@type": "Offer",
         "itemOffered": {
-          "@type": "Product",
-          "name": "Piese Motor",
+          "@type": "Service",
+          "name": "Dezmembrări Piese Motor",
           "description": "Motoare complete, injectoare, turbine, pompe pentru toate mărcile auto"
         }
       },
       {
         "@type": "Offer",
         "itemOffered": {
-          "@type": "Product",
-          "name": "Cutii de Viteze",
+          "@type": "Service",
+          "name": "Dezmembrări Cutii de Viteze",
           "description": "Cutii manuale, automate, DSG pentru VW, Audi, BMW, Mercedes și alte mărci"
         }
       },
       {
         "@type": "Offer",
         "itemOffered": {
-          "@type": "Product",
-          "name": "Elemente Caroserie",
+          "@type": "Service",
+          "name": "Dezmembrări Elemente Caroserie",
           "description": "Uși, capote, aripi, bare, oglinzi pentru reparații auto"
         }
       },
       {
         "@type": "Offer",
         "itemOffered": {
-          "@type": "Product",
-          "name": "Electronice Auto",
+          "@type": "Service",
+          "name": "Dezmembrări Electronice Auto",
           "description": "ECU, calculatoare motor, senzori, module ABS și ESP"
         }
       }
