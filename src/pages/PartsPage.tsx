@@ -1,288 +1,214 @@
+import { useState, useEffect, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Check, Cog, Car, Wrench, Cpu, Settings, MessageCircle, ArrowRight } from "lucide-react";
-import { SEO, localBusinessJsonLd, createBreadcrumbJsonLd, createServiceJsonLd } from "@/components/SEO";
-import partsHero from "@/assets/parts-hero.jpg";
+import { Input } from "@/components/ui/input";
+import { Search, Loader2, X, ArrowRight, MessageCircle, Check, SlidersHorizontal } from "lucide-react";
+import { SEO, localBusinessJsonLd, createBreadcrumbJsonLd } from "@/components/SEO";
+import { storefrontApiRequest, STOREFRONT_PRODUCTS_QUERY, type ShopifyProduct } from "@/lib/shopify";
+import { ProductCard } from "@/components/ProductCard";
 
-const partsCategories = [{
-  icon: Cog,
-  title: "Piese Motor",
-  description: "Motoare complete și componente pentru toate tipurile de motorizări.",
-  items: ["Motoare complete benzină/diesel", "Injectoare și pompe de injecție", "Turbine și turbosuflante", "Chiulase și blocuri motor", "Arbori cotit și pistoane", "Pompe de apă și ulei"]
-}, {
-  icon: Settings,
-  title: "Cutii de Viteze",
-  description: "Transmisii manuale și automate pentru diverse mărci și modele.",
-  items: ["Cutii de viteze manuale", "Cutii de viteze automate", "Cutii DSG și PowerShift", "Volane bimasa", "Ambreiaje complete", "Cardane și planetare"]
-}, {
-  icon: Car,
-  title: "Elemente Caroserie",
-  description: "Piese de caroserie pentru reparații și recondiționări.",
-  items: ["Uși și portbagaje", "Capote față și spate", "Aripi și praguri", "Bare față și spate", "Oglinzi retrovizoare", "Faruri și stopuri"]
-}, {
-  icon: Cpu,
-  title: "Electronice & Senzori",
-  description: "Componente electronice și module de comandă.",
-  items: ["ECU și calculatoare motor", "Senzori de parcare", "Module ABS și ESP", "Senzori lambda", "Senzori arbore cotit", "Contactoare și relee"]
-}, {
-  icon: Wrench,
-  title: "Suspensie",
-  description: "Componente pentru sistemul de suspensie.",
-  items: ["Amortizoare față/spate", "Arcuri spirale", "Fuzete și pivoti", "Bielete antiruliu", "Brate suspensie", "Bucșe și articulații"]
-}];
+const PRODUCTS_PER_PAGE = 24;
 
-const brands = ["Volkswagen", "Audi", "BMW", "Mercedes-Benz", "Opel", "Ford", "Renault", "Peugeot", "Citroën", "Skoda", "Seat", "Toyota", "Honda", "Mazda", "Hyundai", "Kia", "Volvo", "Fiat", "Alfa Romeo", "Dacia"];
-
-// Breadcrumb for Parts page
 const partsBreadcrumb = createBreadcrumbJsonLd([
   { name: "Acasă", url: "/" },
-  { name: "Piese Auto", url: "/piese-auto" }
+  { name: "Piese Auto", url: "/piese-auto" },
 ]);
 
-// Service schema for parts
-const partsServiceJsonLd = createServiceJsonLd(
-  "Vânzare Piese Auto din Dezmembrări",
-  "Piese auto originale second-hand pentru toate mărcile. Motoare, cutii de viteze, caroserie, electronice. Livrare în Suceava, Botoșani, Piatra Neamț, Iași.",
-  "/piese-auto"
-);
-
-// Service catalog schema (presentation site, not e-commerce)
-const serviceCatalogJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "ItemList",
-  "name": "Servicii Dezmembrări Auto Suceava",
-  "description": "Categorii de piese auto disponibile din dezmembrări pentru Suceava, Botoșani, Piatra Neamț, Iași",
-  "numberOfItems": 5,
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "item": {
-        "@type": "Service",
-        "name": "Dezmembrări Piese Motor",
-        "description": "Motoare complete, injectoare, turbine, pompe - livrare în Suceava, Botoșani, Piatra Neamț, Iași",
-        "provider": { "@id": "https://pieseautohar.ro/#organization" }
-      }
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "item": {
-        "@type": "Service",
-        "name": "Dezmembrări Cutii de Viteze",
-        "description": "Cutii manuale, automate, DSG - import din Europa",
-        "provider": { "@id": "https://pieseautohar.ro/#organization" }
-      }
-    },
-    {
-      "@type": "ListItem",
-      "position": 3,
-      "item": {
-        "@type": "Service",
-        "name": "Dezmembrări Elemente Caroserie",
-        "description": "Uși, capote, aripi, bare - pentru toate mărcile auto",
-        "provider": { "@id": "https://pieseautohar.ro/#organization" }
-      }
-    },
-    {
-      "@type": "ListItem",
-      "position": 4,
-      "item": {
-        "@type": "Service",
-        "name": "Dezmembrări Electronice Auto",
-        "description": "ECU, calculatoare, senzori, module - verificate și testate",
-        "provider": { "@id": "https://pieseautohar.ro/#organization" }
-      }
-    },
-    {
-      "@type": "ListItem",
-      "position": 5,
-      "item": {
-        "@type": "Service",
-        "name": "Dezmembrări Suspensie",
-        "description": "Amortizoare, arcuri, fuzete, brate - calitate garantată",
-        "provider": { "@id": "https://pieseautohar.ro/#organization" }
-      }
-    }
-  ]
-};
-
 const PartsPage = () => {
+  const [products, setProducts] = useState<ShopifyProduct[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [hasNextPage, setHasNextPage] = useState(false);
+  const [endCursor, setEndCursor] = useState<string | null>(null);
+  const [loadingMore, setLoadingMore] = useState(false);
+  const [showFilters, setShowFilters] = useState(false);
+
+  const fetchProducts = async (query?: string, after?: string, append = false) => {
+    append ? setLoadingMore(true) : setLoading(true);
+    try {
+      const variables: Record<string, unknown> = { first: PRODUCTS_PER_PAGE };
+      if (query) variables.query = query;
+      if (after) variables.after = after;
+      const data = await storefrontApiRequest(STOREFRONT_PRODUCTS_QUERY, variables);
+      const edges = data?.data?.products?.edges || [];
+      const pageInfo = data?.data?.products?.pageInfo;
+      append ? setProducts((prev) => [...prev, ...edges]) : setProducts(edges);
+      setHasNextPage(pageInfo?.hasNextPage || false);
+      setEndCursor(pageInfo?.endCursor || null);
+    } catch (err) {
+      console.error("Failed to fetch products:", err);
+    } finally {
+      setLoading(false);
+      setLoadingMore(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchProducts(searchQuery || undefined);
+  }, [searchQuery]);
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    setSearchQuery(searchTerm.trim());
+  };
+
+  const clearSearch = () => {
+    setSearchTerm("");
+    setSearchQuery("");
+  };
+
   return (
     <>
       <SEO
-        title="Piese Auto din Dezmembrări | Motoare, Cutii Viteze, Caroserie - Suceava"
-        description="Catalog piese auto originale din dezmembrări: motoare complete, cutii de viteze, caroserie, electronice. Livrare rapidă în Suceava, Botoșani, Piatra Neamț, Iași și toată Moldova. Garanție și posibilitate retur."
-        keywords="piese auto Suceava, piese motor dezmembrări, cutii viteze second-hand, caroserie auto, electronice auto, piese auto Botoșani, piese auto Piatra Neamț, piese auto Iași, catalog piese auto Moldova"
+        title="Catalog Piese Auto | Magazin Online - Auto Har Suceava"
+        description="Catalog piese auto originale din dezmembrări. Motoare, cutii de viteze, caroserie, electronice. Cumpără online cu livrare în toată România."
+        keywords="piese auto online, catalog piese dezmembrări, magazin piese auto, cumpara piese auto"
         canonical="/piese-auto"
-        jsonLd={[localBusinessJsonLd, partsBreadcrumb, partsServiceJsonLd, serviceCatalogJsonLd]}
+        jsonLd={[localBusinessJsonLd, partsBreadcrumb]}
       />
       <div className="min-h-screen pt-20">
-      {/* Hero */}
-      <section className="py-20 md:py-28 bg-card relative overflow-hidden">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-[120px]" />
-        <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-accent/10 rounded-full blur-[100px]" />
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-3xl mx-auto text-center">
-            <h1 className="font-display text-4xl md:text-5xl lg:text-6xl text-foreground mb-6">
-              Piese Auto din <span className="text-primary">Dezmembrări</span> Suceava
-            </h1>
-            <p className="text-muted-foreground text-lg leading-relaxed mb-10">
-              Dispunem de un stoc vast de piese auto originale, second-hand, 
-              în stare foarte bună de funcționare. Piesele beneficiază de garanție și posibilitatea returului în cazul în care piesa nu este compatibilă.
+        {/* Hero compact */}
+        <section className="py-12 md:py-16 bg-card relative overflow-hidden">
+          <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-[120px]" />
+          <div className="container mx-auto px-4 relative z-10">
+            <div className="max-w-2xl mx-auto text-center">
+              <h1 className="font-display text-3xl md:text-4xl lg:text-5xl text-foreground mb-4">
+                Catalog <span className="text-primary">Piese Auto</span>
+              </h1>
+              <p className="text-muted-foreground mb-8">
+                Răsfoiește catalogul nostru de piese auto originale din dezmembrări.
+              </p>
+
+              {/* Search */}
+              <form onSubmit={handleSearch} className="flex gap-2 max-w-lg mx-auto">
+                <div className="relative flex-1">
+                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                  <Input
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    placeholder="Caută piese auto (ex: motor Audi A4, far BMW...)"
+                    className="pl-10 pr-8 h-12 bg-secondary border-border"
+                  />
+                  {searchTerm && (
+                    <button type="button" onClick={clearSearch} className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground">
+                      <X className="w-4 h-4" />
+                    </button>
+                  )}
+                </div>
+                <Button type="submit" variant="hero" size="lg">
+                  <Search className="w-4 h-4" />
+                </Button>
+              </form>
+            </div>
+          </div>
+        </section>
+
+        {/* Info Banner */}
+        <section className="py-3 bg-gradient-to-r from-primary to-primary/90">
+          <div className="container mx-auto px-4">
+            <div className="flex flex-wrap justify-center items-center gap-4 md:gap-10 text-primary-foreground">
+              {["Piese originale", "Garanție inclusă", "Posibilitate retur", "Livrare în toată țara"].map((item, i) => (
+                <div key={i} className="flex items-center gap-2">
+                  <Check className="w-4 h-4" />
+                  <span className="font-medium text-xs sm:text-sm">{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Products */}
+        <section className="py-12 bg-background">
+          <div className="container mx-auto px-4">
+            {searchQuery && (
+              <div className="flex items-center gap-2 mb-6">
+                <span className="text-muted-foreground text-sm">
+                  Rezultate pentru: <strong className="text-foreground">"{searchQuery}"</strong>
+                </span>
+                <button onClick={clearSearch} className="text-xs text-accent hover:underline">
+                  Șterge filtrul
+                </button>
+              </div>
+            )}
+
+            {loading ? (
+              <div className="flex items-center justify-center py-20">
+                <Loader2 className="w-8 h-8 animate-spin text-primary" />
+              </div>
+            ) : products.length === 0 ? (
+              <div className="text-center py-20">
+                <p className="text-muted-foreground text-lg mb-4">Nu am găsit produse.</p>
+                {searchQuery && (
+                  <Button variant="outline" onClick={clearSearch}>Resetează căutarea</Button>
+                )}
+                <div className="mt-8">
+                  <p className="text-muted-foreground mb-4">Nu găsești piesa căutată? Contactează-ne!</p>
+                  <div className="flex gap-3 justify-center">
+                    <Button variant="hero" asChild>
+                      <Link to="/contact">Cere ofertă<ArrowRight className="w-4 h-4" /></Link>
+                    </Button>
+                    <Button variant="mint" asChild>
+                      <a href="https://wa.me/40749707694" target="_blank" rel="noopener noreferrer">
+                        <MessageCircle className="w-4 h-4" />WhatsApp
+                      </a>
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <>
+                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+                  {products.map((product) => (
+                    <ProductCard key={product.node.id} product={product} />
+                  ))}
+                </div>
+
+                {hasNextPage && (
+                  <div className="text-center mt-10">
+                    <Button
+                      variant="outline"
+                      size="lg"
+                      onClick={() => fetchProducts(searchQuery || undefined, endCursor || undefined, true)}
+                      disabled={loadingMore}
+                    >
+                      {loadingMore ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : null}
+                      Încarcă mai multe produse
+                    </Button>
+                  </div>
+                )}
+              </>
+            )}
+          </div>
+        </section>
+
+        {/* CTA */}
+        <section className="py-16 bg-card relative overflow-hidden">
+          <div className="absolute inset-0">
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-accent/10 rounded-full blur-[150px]" />
+          </div>
+          <div className="container mx-auto px-4 relative z-10 text-center">
+            <h2 className="font-display text-2xl md:text-3xl text-foreground mb-4">
+              Nu găsești piesa <span className="text-primary">căutată</span>?
+            </h2>
+            <p className="text-muted-foreground max-w-xl mx-auto mb-8">
+              Contactează-ne și te ajutăm să găsești exact piesa de care ai nevoie.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button variant="hero" size="xl" asChild>
-                <Link to="/contact">
-                  Cere ofertă
-                  <ArrowRight className="w-5 h-5" />
-                </Link>
+                <Link to="/contact">Cere ofertă<ArrowRight className="w-5 h-5" /></Link>
               </Button>
               <Button variant="mint" size="xl" asChild>
                 <a href="https://wa.me/40749707694" target="_blank" rel="noopener noreferrer">
-                  <MessageCircle className="w-5 h-5" />
-                  WhatsApp
+                  <MessageCircle className="w-5 h-5" />WhatsApp
                 </a>
               </Button>
             </div>
           </div>
-          
-          {/* Hero Image */}
-          <div className="max-w-4xl mx-auto mt-10">
-            
-          </div>
-        </div>
-      </section>
-
-      {/* Info Banner */}
-      <section className="py-5 bg-gradient-to-r from-primary to-primary/90">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-wrap justify-center items-center gap-6 md:gap-12 text-primary-foreground">
-            {["Piese originale", "Garanție inclusă", "Posibilitate retur", "Livrare în toată țara"].map((item, index) => <div key={index} className="flex items-center gap-2">
-                <Check className="w-5 h-5" />
-                <span className="font-medium text-sm">{item}</span>
-              </div>)}
-          </div>
-        </div>
-      </section>
-
-      {/* Categories Grid */}
-      <section className="py-20 bg-background relative">
-        <div className="absolute top-1/2 left-0 w-80 h-80 bg-accent/5 rounded-full blur-[100px]" />
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="text-center mb-14">
-            <h2 className="font-display text-3xl md:text-4xl text-foreground">
-              Găsește piesa <span className="text-accent">potrivită</span>
-            </h2>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {partsCategories.map((category, index) => <div key={index} className="bg-card p-6 rounded-2xl border border-border hover:border-accent/50 transition-all duration-300 group hover-lift">
-                <div className="flex items-center gap-4 mb-5">
-                  <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-accent/20 to-accent/5 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                    <category.icon className="w-7 h-7 text-accent" />
-                  </div>
-                  <div>
-                    <h3 className="font-display text-xl text-foreground">{category.title}</h3>
-                  </div>
-                </div>
-                <p className="text-muted-foreground text-sm mb-5">{category.description}</p>
-                <ul className="space-y-2.5">
-                  {category.items.map((item, i) => <li key={i} className="flex items-center gap-2 text-sm text-muted-foreground">
-                      <div className="w-1.5 h-1.5 rounded-full bg-primary" />
-                      {item}
-                    </li>)}
-                </ul>
-              </div>)}
-          </div>
-        </div>
-      </section>
-
-      {/* Brands Section */}
-      <section className="py-20 bg-card">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="font-display text-3xl md:text-4xl text-foreground">
-              Mărci auto <span className="text-primary">disponibile</span>
-            </h2>
-          </div>
-
-          <div className="flex flex-wrap justify-center gap-3">
-            {brands.map((brand, index) => <div key={index} className="px-5 py-3 bg-secondary rounded-xl text-foreground text-sm font-medium hover:bg-accent hover:text-accent-foreground transition-all duration-300">
-                {brand}
-              </div>)}
-          </div>
-        </div>
-      </section>
-
-      {/* How It Works */}
-      <section className="py-20 bg-background relative overflow-hidden">
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-[120px]" />
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="text-center mb-14">
-            <h2 className="font-display text-3xl md:text-4xl text-foreground">
-              Cum <span className="text-accent">funcționează</span>?
-            </h2>
-          </div>
-
-          <div className="grid md:grid-cols-4 gap-6 max-w-4xl mx-auto">
-            {[{
-            step: "01",
-            title: "Cere Ofertă",
-            desc: "Trimite-ne detaliile piesei de care ai nevoie."
-          }, {
-            step: "02",
-            title: "Verificăm Stocul",
-            desc: "Căutăm piesa în stocul nostru și la parteneri."
-          }, {
-            step: "03",
-            title: "Primești Oferta",
-            desc: "Îți trimitem prețul și detaliile despre piesă."
-          }, {
-            step: "04",
-            title: "Livrare Rapidă",
-            desc: "Livrăm prin curier în 24-48 ore în toată țara."
-          }].map((item, index) => <div key={index} className="text-center group">
-                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center mx-auto mb-5 group-hover:scale-110 transition-transform duration-300">
-                  <span className="font-display text-2xl text-primary-foreground">{item.step}</span>
-                </div>
-                <h3 className="font-display text-lg text-foreground mb-2">{item.title}</h3>
-                <p className="text-muted-foreground text-sm">{item.desc}</p>
-              </div>)}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="py-20 bg-card relative overflow-hidden">
-        <div className="absolute inset-0">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-accent/10 rounded-full blur-[150px]" />
-        </div>
-        <div className="container mx-auto px-4 relative z-10 text-center">
-          <h2 className="font-display text-3xl md:text-4xl text-foreground mb-6">
-            Nu găsești piesa <span className="text-primary">căutată</span>?
-          </h2>
-          <p className="text-muted-foreground max-w-xl mx-auto mb-10">
-            Contactează-ne și te ajutăm să găsești exact piesa de care ai nevoie.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button variant="hero" size="xl" asChild>
-              <Link to="/contact">
-                Cere ofertă personalizată
-                <ArrowRight className="w-5 h-5" />
-              </Link>
-            </Button>
-            <Button variant="mint" size="xl" asChild>
-              <a href="https://wa.me/40749707694" target="_blank" rel="noopener noreferrer">
-                <MessageCircle className="w-5 h-5" />
-                Întreabă pe WhatsApp
-              </a>
-            </Button>
-          </div>
-        </div>
-      </section>
+        </section>
       </div>
     </>
   );
 };
+
 export default PartsPage;
