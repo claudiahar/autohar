@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -14,6 +14,9 @@ const partsBreadcrumb = createBreadcrumbJsonLd([
   { name: "Piese Auto", url: "/piese-auto" },
 ]);
 
+const CAR_BRANDS = ["Audi", "BMW", "Dacia", "Fiat", "Ford", "Honda", "Hyundai", "Kia", "Mercedes", "Nissan", "Opel", "Peugeot", "Renault", "Seat", "Skoda", "Toyota", "Volkswagen", "Volvo"];
+const PART_TYPES = ["Motor", "Cutie viteze", "Turbo", "ECU", "Caroserie", "Faruri", "Suspensie", "Frâne", "Interior", "Radiator", "Electromotor", "Alternator"];
+
 const PartsPage = () => {
   const [products, setProducts] = useState<ShopifyProduct[]>([]);
   const [loading, setLoading] = useState(true);
@@ -23,6 +26,16 @@ const PartsPage = () => {
   const [endCursor, setEndCursor] = useState<string | null>(null);
   const [loadingMore, setLoadingMore] = useState(false);
   const [showFilters, setShowFilters] = useState(false);
+  const [filters, setFilters] = useState({ brand: "", partType: "", year: "" });
+
+  const buildQuery = () => {
+    const parts: string[] = [];
+    if (searchQuery) parts.push(searchQuery);
+    if (filters.brand) parts.push(filters.brand);
+    if (filters.partType) parts.push(filters.partType);
+    if (filters.year) parts.push(filters.year);
+    return parts.join(" ") || undefined;
+  };
 
   const fetchProducts = async (query?: string, after?: string, append = false) => {
     append ? setLoadingMore(true) : setLoading(true);
@@ -45,18 +58,22 @@ const PartsPage = () => {
   };
 
   useEffect(() => {
-    fetchProducts(searchQuery || undefined);
-  }, [searchQuery]);
+    const q = buildQuery();
+    fetchProducts(q);
+  }, [searchQuery, filters.brand, filters.partType, filters.year]);
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     setSearchQuery(searchTerm.trim());
   };
 
-  const clearSearch = () => {
+  const clearAll = () => {
     setSearchTerm("");
     setSearchQuery("");
+    setFilters({ brand: "", partType: "", year: "" });
   };
+
+  const hasActiveFilters = searchQuery || filters.brand || filters.partType || filters.year;
 
   return (
     <>
@@ -81,7 +98,7 @@ const PartsPage = () => {
               </p>
 
               {/* Search */}
-              <form onSubmit={handleSearch} className="flex gap-2 max-w-lg mx-auto">
+              <form onSubmit={handleSearch} className="flex gap-2 max-w-lg mx-auto mb-4">
                 <div className="relative flex-1">
                   <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                   <Input
@@ -91,16 +108,77 @@ const PartsPage = () => {
                     className="pl-10 pr-8 h-12 bg-secondary border-border"
                   />
                   {searchTerm && (
-                    <button type="button" onClick={clearSearch} className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground">
+                    <button type="button" onClick={() => { setSearchTerm(""); setSearchQuery(""); }} className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground">
                       <X className="w-4 h-4" />
                     </button>
                   )}
                 </div>
-                <Button type="submit" variant="hero" size="lg">
-                  <Search className="w-4 h-4" />
-                </Button>
+                <Button type="submit" variant="hero" size="lg"><Search className="w-4 h-4" /></Button>
               </form>
+
+              {/* Filter toggle */}
+              <Button variant="outline" size="sm" onClick={() => setShowFilters(!showFilters)} className="gap-2">
+                <SlidersHorizontal className="w-4 h-4" />
+                {showFilters ? "Ascunde filtrele" : "Filtre avansate"}
+              </Button>
             </div>
+
+            {/* Filters */}
+            {showFilters && (
+              <div className="max-w-3xl mx-auto mt-6 bg-secondary/50 rounded-2xl p-4 md:p-6 border border-border animate-fade-in">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                  {/* Brand */}
+                  <div className="space-y-2">
+                    <label className="text-xs font-medium text-muted-foreground uppercase tracking-wider">Marcă auto</label>
+                    <select
+                      value={filters.brand}
+                      onChange={(e) => setFilters((f) => ({ ...f, brand: e.target.value }))}
+                      className="w-full h-10 rounded-lg bg-secondary border border-border px-3 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+                    >
+                      <option value="">Toate mărcile</option>
+                      {CAR_BRANDS.map((b) => (
+                        <option key={b} value={b}>{b}</option>
+                      ))}
+                    </select>
+                  </div>
+
+                  {/* Part type */}
+                  <div className="space-y-2">
+                    <label className="text-xs font-medium text-muted-foreground uppercase tracking-wider">Tip piesă</label>
+                    <select
+                      value={filters.partType}
+                      onChange={(e) => setFilters((f) => ({ ...f, partType: e.target.value }))}
+                      className="w-full h-10 rounded-lg bg-secondary border border-border px-3 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+                    >
+                      <option value="">Toate tipurile</option>
+                      {PART_TYPES.map((t) => (
+                        <option key={t} value={t}>{t}</option>
+                      ))}
+                    </select>
+                  </div>
+
+                  {/* Year */}
+                  <div className="space-y-2">
+                    <label className="text-xs font-medium text-muted-foreground uppercase tracking-wider">An fabricație</label>
+                    <Input
+                      value={filters.year}
+                      onChange={(e) => setFilters((f) => ({ ...f, year: e.target.value }))}
+                      placeholder="ex: 2015"
+                      className="h-10 bg-secondary border-border"
+                      maxLength={4}
+                    />
+                  </div>
+                </div>
+
+                {hasActiveFilters && (
+                  <div className="mt-4 flex justify-end">
+                    <Button variant="ghost" size="sm" onClick={clearAll} className="text-xs text-muted-foreground">
+                      <X className="w-3 h-3 mr-1" /> Șterge toate filtrele
+                    </Button>
+                  </div>
+                )}
+              </div>
+            )}
           </div>
         </section>
 
@@ -121,14 +199,30 @@ const PartsPage = () => {
         {/* Products */}
         <section className="py-12 bg-background">
           <div className="container mx-auto px-4">
-            {searchQuery && (
-              <div className="flex items-center gap-2 mb-6">
-                <span className="text-muted-foreground text-sm">
-                  Rezultate pentru: <strong className="text-foreground">"{searchQuery}"</strong>
-                </span>
-                <button onClick={clearSearch} className="text-xs text-accent hover:underline">
-                  Șterge filtrul
-                </button>
+            {hasActiveFilters && (
+              <div className="flex items-center gap-2 mb-6 flex-wrap">
+                <span className="text-muted-foreground text-sm">Filtre active:</span>
+                {searchQuery && (
+                  <span className="inline-flex items-center gap-1 bg-primary/10 text-primary text-xs px-2 py-1 rounded-lg">
+                    "{searchQuery}" <button onClick={() => { setSearchTerm(""); setSearchQuery(""); }}><X className="w-3 h-3" /></button>
+                  </span>
+                )}
+                {filters.brand && (
+                  <span className="inline-flex items-center gap-1 bg-accent/10 text-accent text-xs px-2 py-1 rounded-lg">
+                    {filters.brand} <button onClick={() => setFilters((f) => ({ ...f, brand: "" }))}><X className="w-3 h-3" /></button>
+                  </span>
+                )}
+                {filters.partType && (
+                  <span className="inline-flex items-center gap-1 bg-accent/10 text-accent text-xs px-2 py-1 rounded-lg">
+                    {filters.partType} <button onClick={() => setFilters((f) => ({ ...f, partType: "" }))}><X className="w-3 h-3" /></button>
+                  </span>
+                )}
+                {filters.year && (
+                  <span className="inline-flex items-center gap-1 bg-accent/10 text-accent text-xs px-2 py-1 rounded-lg">
+                    {filters.year} <button onClick={() => setFilters((f) => ({ ...f, year: "" }))}><X className="w-3 h-3" /></button>
+                  </span>
+                )}
+                <button onClick={clearAll} className="text-xs text-muted-foreground hover:underline ml-2">Șterge tot</button>
               </div>
             )}
 
@@ -139,8 +233,8 @@ const PartsPage = () => {
             ) : products.length === 0 ? (
               <div className="text-center py-20">
                 <p className="text-muted-foreground text-lg mb-4">Nu am găsit produse.</p>
-                {searchQuery && (
-                  <Button variant="outline" onClick={clearSearch}>Resetează căutarea</Button>
+                {hasActiveFilters && (
+                  <Button variant="outline" onClick={clearAll}>Resetează filtrele</Button>
                 )}
                 <div className="mt-8">
                   <p className="text-muted-foreground mb-4">Nu găsești piesa căutată? Contactează-ne!</p>
@@ -169,7 +263,7 @@ const PartsPage = () => {
                     <Button
                       variant="outline"
                       size="lg"
-                      onClick={() => fetchProducts(searchQuery || undefined, endCursor || undefined, true)}
+                      onClick={() => fetchProducts(buildQuery(), endCursor || undefined, true)}
                       disabled={loadingMore}
                     >
                       {loadingMore ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : null}
