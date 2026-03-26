@@ -14,6 +14,8 @@ import AboutPage from "./pages/AboutPage";
 import PartsPage from "./pages/PartsPage";
 import ProductPage from "./pages/ProductPage";
 import ContactPage from "./pages/ContactPage";
+import CheckoutPage from "./pages/CheckoutPage";
+import OrderConfirmationPage from "./pages/OrderConfirmationPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -30,6 +32,8 @@ const AppContent = () => {
           <Route path="/piese-auto" element={<PartsPage />} />
           <Route path="/produs/:handle" element={<ProductPage />} />
           <Route path="/contact" element={<ContactPage />} />
+          <Route path="/checkout" element={<CheckoutPage />} />
+          <Route path="/comanda-confirmata/:orderId" element={<OrderConfirmationPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
